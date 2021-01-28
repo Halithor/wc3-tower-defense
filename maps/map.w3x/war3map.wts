@@ -1,0 +1,559 @@
+﻿STRING 1
+{
+Maze Demo ALPHAv001
+}
+
+STRING 2
+{
+Any
+}
+
+STRING 3
+{
+A competative live deck builder!
+}
+
+STRING 4
+{
+Halithor
+}
+
+STRING 5
+{
+Player 1
+}
+
+STRING 6
+{
+Player 2
+}
+
+STRING 9
+{
+Players
+}
+
+STRING 11
+{
+Type: |Cffffcc00Natural|R
+}
+
+STRING 12
+{
+Type: |Cffffcc00Construct|R
+}
+
+STRING 13
+{
+Type: |Cffffcc00Elemental|R
+}
+
+STRING 14
+{
+Type: |Cffffcc00Unclean|R
+}
+
+STRING 15
+{
+Type: |Cffffcc00Natural|R
+}
+
+STRING 16
+{
+Type: |Cffffcc00Flesh|R
+}
+
+STRING 17
+{
+Type: |Cffffcc00Demonic|R
+}
+
+STRING 18
+{
+Type: |Cffffcc00Mystical|R
+}
+
+STRING 19
+{
+Type: |Cffffcc00Frost|R
+}
+
+STRING 20
+{
+Type: |Cffffcc00Arcane|R
+}
+
+STRING 21
+{
+Type: |Cffffcc00Physical|R
+}
+
+STRING 22
+{
+Type: |Cffffcc00Physical|R
+}
+
+STRING 23
+{
+Type: |Cffffcc00Cursed|R
+}
+
+STRING 24
+{
+Type: |Cffffcc00Fire|R
+}
+
+STRING 25
+{
+Type: |Cffffcc00Nature|r
+}
+
+STRING 27
+// Items: I000 (Card 5), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 28
+// Abilities: A000 (Channel Cleaned), Name (Name)
+{
+Channel Cleaned
+}
+
+STRING 30
+// Items: I000 (Card 5), Name (Name)
+{
+Card 5
+}
+
+STRING 32
+// Items: I000 (Card 5), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 33
+// Items: I000 (Card 5), Description (Description)
+{
+Card description
+}
+
+STRING 34
+// Abilities: A002 (Q Ability), Tip (Tooltip - Normal)
+{
+5 Energy
+}
+
+STRING 35
+// Items: I001 (Summon Footmen), Description (Description)
+{
+Card description
+}
+
+STRING 36
+// Items: I001 (Summon Footmen), Name (Name)
+{
+Summon Footmen
+}
+
+STRING 37
+// Items: I001 (Summon Footmen), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 38
+// Items: I001 (Summon Footmen), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 39
+// Items: I002 (Summon Treants), Description (Description)
+{
+Card description
+}
+
+STRING 40
+// Items: I002 (Summon Treants), Name (Name)
+{
+Summon Treants
+}
+
+STRING 41
+// Items: I002 (Summon Treants), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 42
+// Items: I002 (Summon Treants), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 43
+// Abilities: A004 (Item 10 Energy), Name (Name)
+{
+Item 10 Energy
+}
+
+STRING 44
+// Abilities: A002 (Q Ability), Name (Name)
+{
+Q Ability
+}
+
+STRING 45
+// Abilities: A002 (Q Ability), Tip (Tooltip - Normal)
+{
+10 Energy
+}
+
+STRING 46
+// Abilities: A002 (Q Ability), Tip (Tooltip - Normal)
+{
+15 Energy
+}
+
+STRING 47
+// Items: I003 (Summon Knight), Description (Description)
+{
+Card description
+}
+
+STRING 49
+// Items: I003 (Summon Knight), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 50
+// Items: I003 (Summon Knight), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 51
+// Items: I004 (Summon Druid), Description (Description)
+{
+Card description
+}
+
+STRING 52
+// Items: I004 (Summon Druid), Name (Name)
+{
+Summon Druid
+}
+
+STRING 53
+// Items: I004 (Summon Druid), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 54
+// Items: I004 (Summon Druid), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 55
+// Items: I003 (Summon Knight), Name (Name)
+{
+Summon Knight
+}
+
+STRING 58
+// Abilities: A005 (Rejuvenation), EditorSuffix (Editor Suffix)
+{
+ (Forest Druid)
+}
+
+STRING 59
+// Items: I005 (Fireblast), Description (Description)
+{
+Card description
+}
+
+STRING 60
+// Items: I005 (Fireblast), Name (Name)
+{
+Fireblast
+}
+
+STRING 61
+// Items: I005 (Fireblast), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 62
+// Items: I005 (Fireblast), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 63
+// Items: I006 (Enliven), Description (Description)
+{
+Card description
+}
+
+STRING 65
+// Items: I006 (Enliven), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 66
+// Items: I006 (Enliven), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 67
+// Items: I006 (Enliven), Name (Name)
+{
+Enliven
+}
+
+STRING 68
+{
+Player 11
+}
+
+STRING 69
+{
+Player 12
+}
+
+STRING 74
+// Abilities: A006 (Bash), EditorSuffix (Editor Suffix)
+{
+ (Knight)
+}
+
+STRING 76
+// Items: I007 (Summon Bear), Description (Description)
+{
+Card description
+}
+
+STRING 77
+// Items: I007 (Summon Bear), Name (Name)
+{
+Summon Bear
+}
+
+STRING 78
+// Items: I007 (Summon Bear), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 79
+// Items: I007 (Summon Bear), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 80
+// Abilities: A007 (Item 20 Energy), Name (Name)
+{
+Item 20 Energy
+}
+
+STRING 81
+// Abilities: A001 (Item 05 Energy), Name (Name)
+{
+Item 05 Energy
+}
+
+STRING 82
+// Abilities: A008 (Cleaving Attack), EditorSuffix (Editor Suffix)
+{
+ (Bear)
+}
+
+STRING 83
+// Abilities: A009 (Heal), EditorSuffix (Editor Suffix)
+{
+(Priest)
+}
+
+STRING 84
+// Items: I008 (Summon Priests), Description (Description)
+{
+Card description
+}
+
+STRING 85
+// Items: I008 (Summon Priests), Name (Name)
+{
+Summon Priests
+}
+
+STRING 86
+// Items: I008 (Summon Priests), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 87
+// Items: I008 (Summon Priests), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 88
+// Items: I009 (Gold Coins), Description (Description)
+{
+Card description
+}
+
+STRING 89
+// Items: I009 (Gold Coins), Name (Name)
+{
+Gold Coins
+}
+
+STRING 90
+// Items: I009 (Gold Coins), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 91
+// Items: I009 (Gold Coins), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 92
+{
+Player 3
+}
+
+STRING 93
+{
+Player 4
+}
+
+STRING 94
+{
+Player 5
+}
+
+STRING 95
+{
+Player 6
+}
+
+STRING 96
+{
+Enemies
+}
+
+STRING 97
+// Items: I00A (Recipe), Description (Description)
+{
+Card description
+}
+
+STRING 98
+// Items: I00A (Recipe), Name (Name)
+{
+Recipe
+}
+
+STRING 99
+// Items: I00A (Recipe), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 100
+// Items: I00A (Recipe), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 101
+// Items: I00B (Ingredient1), Description (Description)
+{
+Card description
+}
+
+STRING 102
+// Items: I00B (Ingredient1), Name (Name)
+{
+Ingredient1
+}
+
+STRING 103
+// Items: I00B (Ingredient1), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 104
+// Items: I00B (Ingredient1), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 105
+// Items: I00C (Ingredient2), Description (Description)
+{
+Card description
+}
+
+STRING 106
+// Items: I00C (Ingredient2), Name (Name)
+{
+Ingredient2
+}
+
+STRING 107
+// Items: I00C (Ingredient2), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 108
+// Items: I00C (Ingredient2), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 109
+// Items: I00D (Ingredient3), Description (Description)
+{
+Card description
+}
+
+STRING 110
+// Items: I00D (Ingredient3), Name (Name)
+{
+Ingredient3
+}
+
+STRING 111
+// Items: I00D (Ingredient3), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 112
+// Items: I00D (Ingredient3), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 113
+// Units: h000 (TOWER BASE), Name (Name)
+{
+TOWER BASE
+}
+
