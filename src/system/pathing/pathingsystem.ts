@@ -1,10 +1,12 @@
-import {KeepPath} from 'lib/keeppath';
+import {playerEnemies1, playerEnemies2} from 'constants';
+import {KeepPath} from 'system/pathing/keeppath';
 import {
   color,
   doPeriodically,
   doPeriodicallyCounted,
   onAnyUnitEntersRegion,
   playerColors,
+  Players,
   Rectangle,
   Region,
   unitId,
@@ -39,48 +41,38 @@ export class PathingSystem {
     this.keeper4 = new KeepPath(check4, check5, playerColors[5]);
     this.keeper5 = new KeepPath(check5, check0, playerColors[6]);
 
-    // doPeriodically(10, () => {
-    //   this.spawn0Keeper.flashPath();
-    //   this.spawn1Keeper.flashPath();
-    //   this.keeper0.flashPath();
-    //   this.keeper1.flashPath();
-    //   this.keeper2.flashPath();
-    //   this.keeper3.flashPath();
-    //   this.keeper4.flashPath();
-    //   this.keeper5.flashPath();
-    // });
     onAnyUnitEntersRegion(Region.fromRect(gg_rct_Check0), u => {
-      if (u.typeId == unitId('hpea')) {
+      if (u.owner.id != playerEnemies1.id && u.owner.id != playerEnemies2.id) {
         return;
       }
       u.issueOrderAt('move', check1);
     });
     onAnyUnitEntersRegion(Region.fromRect(gg_rct_Check1), u => {
-      if (u.typeId == unitId('hpea')) {
+      if (u.owner.id != playerEnemies1.id && u.owner.id != playerEnemies2.id) {
         return;
       }
       u.issueOrderAt('move', check2);
     });
     onAnyUnitEntersRegion(Region.fromRect(gg_rct_Check2), u => {
-      if (u.typeId == unitId('hpea')) {
+      if (u.owner.id != playerEnemies1.id && u.owner.id != playerEnemies2.id) {
         return;
       }
       u.issueOrderAt('move', check3);
     });
     onAnyUnitEntersRegion(Region.fromRect(gg_rct_Check3), u => {
-      if (u.typeId == unitId('hpea')) {
+      if (u.owner.id != playerEnemies1.id && u.owner.id != playerEnemies2.id) {
         return;
       }
       u.issueOrderAt('move', check4);
     });
     onAnyUnitEntersRegion(Region.fromRect(gg_rct_Check4), u => {
-      if (u.typeId == unitId('hpea')) {
+      if (u.owner.id != playerEnemies1.id && u.owner.id != playerEnemies2.id) {
         return;
       }
       u.issueOrderAt('move', check5);
     });
     onAnyUnitEntersRegion(Region.fromRect(gg_rct_Check5), u => {
-      if (u.typeId == unitId('hpea')) {
+      if (u.owner.id != playerEnemies1.id && u.owner.id != playerEnemies2.id) {
         return;
       }
       u.issueOrderAt('move', check0);

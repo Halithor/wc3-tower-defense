@@ -7,7 +7,31 @@ gg_rct_Check3 = nil
 gg_rct_Check4 = nil
 gg_rct_Check5 = nil
 gg_rct_Vision = nil
+gg_trg_Untitled_Trigger_001 = nil
+gg_trg_Untitled_Trigger_002 = nil
 function InitGlobals()
+end
+
+function CreateBuildingsForPlayer0()
+    local p = Player(0)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("h001"), -4608.0, 4224.0, 270.000, FourCC("h001"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h004"), -4480.0, 4416.0, 270.000, FourCC("h004"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h003"), -4608.0, 4416.0, 270.000, FourCC("h003"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h002"), -4736.0, 4416.0, 270.000, FourCC("h002"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h006"), -3584.0, 4096.0, 270.000, FourCC("h006"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h007"), -3584.0, 4416.0, 270.000, FourCC("h007"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h008"), -3712.0, 4416.0, 270.000, FourCC("h008"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h009"), -3456.0, 4416.0, 270.000, FourCC("h009"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00A"), -3584.0, 4288.0, 270.000, FourCC("h00A"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00B"), -3456.0, 4288.0, 270.000, FourCC("h00B"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00C"), -3712.0, 4288.0, 270.000, FourCC("h00C"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00D"), -3584.0, 4544.0, 270.000, FourCC("h00D"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00E"), -3456.0, 4544.0, 270.000, FourCC("h00E"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00F"), -3712.0, 4544.0, 270.000, FourCC("h00F"))
 end
 
 function CreateUnitsForPlayer0()
@@ -16,14 +40,71 @@ function CreateUnitsForPlayer0()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("hpea"), -662.2, 1374.0, 25.127, FourCC("hpea"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -2024.4, 1908.3, 54.856, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -4096.2, 4393.9, 288.312, FourCC("hrif"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -3062.4, 4381.0, 300.079, FourCC("hrif"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -5130.4, 4413.3, 131.038, FourCC("hrif"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -2021.1, 4405.4, 55.691, FourCC("hrif"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -4456.9, 3885.0, 217.745, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("uaco"), -4505.7, 3974.5, 118.788, FourCC("uaco"))
+end
+
+function CreateUnitsForPlayer1()
+    local p = Player(1)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1960.1, 2085.8, 60.163, FourCC("u000"))
+end
+
+function CreateUnitsForPlayer2()
+    local p = Player(2)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1842.7, 2064.2, 60.160, FourCC("u000"))
+end
+
+function CreateUnitsForPlayer3()
+    local p = Player(3)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1877.4, 1950.2, 60.160, FourCC("u000"))
+end
+
+function CreateUnitsForPlayer4()
+    local p = Player(4)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1737.1, 1974.7, 60.160, FourCC("u000"))
+end
+
+function CreateUnitsForPlayer5()
+    local p = Player(5)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1795.9, 1847.5, 60.160, FourCC("u000"))
 end
 
 function CreatePlayerBuildings()
+    CreateBuildingsForPlayer0()
 end
 
 function CreatePlayerUnits()
     CreateUnitsForPlayer0()
+    CreateUnitsForPlayer1()
+    CreateUnitsForPlayer2()
+    CreateUnitsForPlayer3()
+    CreateUnitsForPlayer4()
+    CreateUnitsForPlayer5()
 end
 
 function CreateAllUnits()
@@ -42,6 +123,36 @@ function CreateRegions()
     gg_rct_Check4 = Rect(1280.0, 0.0, 1344.0, 64.0)
     gg_rct_Check5 = Rect(-1344.0, 0.0, -1280.0, 64.0)
     gg_rct_Vision = Rect(-2176.0, -2176.0, 2176.0, 2176.0)
+end
+
+function Trig_Untitled_Trigger_001_Actions()
+end
+
+function InitTrig_Untitled_Trigger_001()
+    gg_trg_Untitled_Trigger_001 = CreateTrigger()
+    TriggerAddAction(gg_trg_Untitled_Trigger_001, Trig_Untitled_Trigger_001_Actions)
+end
+
+function Trig_Untitled_Trigger_002_Conditions()
+    if (not (IsUnitType(GetTriggerUnit(), UNIT_TYPE_STRUCTURE) == true)) then
+        return false
+    end
+    return true
+end
+
+function Trig_Untitled_Trigger_002_Actions()
+end
+
+function InitTrig_Untitled_Trigger_002()
+    gg_trg_Untitled_Trigger_002 = CreateTrigger()
+    TriggerRegisterAnyUnitEventBJ(gg_trg_Untitled_Trigger_002, EVENT_PLAYER_UNIT_DEATH)
+    TriggerAddCondition(gg_trg_Untitled_Trigger_002, Condition(Trig_Untitled_Trigger_002_Conditions))
+    TriggerAddAction(gg_trg_Untitled_Trigger_002, Trig_Untitled_Trigger_002_Actions)
+end
+
+function InitCustomTriggers()
+    InitTrig_Untitled_Trigger_001()
+    InitTrig_Untitled_Trigger_002()
 end
 
 function InitCustomPlayerSlots()
@@ -233,6 +344,7 @@ function main()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
+    InitCustomTriggers()
 end
 
 function config()

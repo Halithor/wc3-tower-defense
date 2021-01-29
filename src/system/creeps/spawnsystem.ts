@@ -24,22 +24,12 @@ export class SpawnSystem {
   }
 
   private spawn() {
-    BlzSetAbilityIntegerField;
-    const u1 = new Unit(
-      playerEnemies1,
-      unitId('n000'),
-      this.spawn0,
-      degrees(270)
-    );
+    const uid = Math.random() > 0.5 ? unitId('n000') : unitId('n001');
+    const u1 = new Unit(playerEnemies1, uid, this.spawn0, degrees(270));
     u1.removeGuardPosition();
     u1.applyTimedLife(FourCC('BHwe'), 60);
     u1.issueOrderAt('move', this.spawn0Target);
-    const u2 = new Unit(
-      playerEnemies2,
-      unitId('n000'),
-      this.spawn1,
-      degrees(0)
-    );
+    const u2 = new Unit(playerEnemies2, uid, this.spawn1, degrees(0));
     u2.removeGuardPosition();
     u2.applyTimedLife(FourCC('BHwe'), 60);
     u2.issueOrderAt('move', this.spawn1Target);

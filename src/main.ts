@@ -18,8 +18,6 @@ function tsMain() {
   } catch (e) {
     print(e);
   }
-
-  
 }
 
 addScriptHook(W3TS_HOOK.MAIN_AFTER, tsMain);
