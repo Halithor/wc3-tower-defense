@@ -1,8 +1,15 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
 import {SpawnSystem} from 'system/creeps/spawnsystem';
-import {doAfter, FogModifier, Players, Rectangle, Trigger} from 'w3lib/src/index';
+import {
+  doAfter,
+  FogModifier,
+  Players,
+  Rectangle,
+  Trigger,
+} from 'w3lib/src/index';
 import {TowerSellingSystem} from 'system/towerselling';
 import {SpellIds} from 'constants';
+import {TowerSystem} from 'system/towers/towersystem';
 
 export class Game {
   constructor() {}
@@ -18,10 +25,12 @@ export class Game {
       );
       fog.start();
       Players[i].setAbilityAvailable(SpellIds.allowTowerTurning, false);
+      Players[i].setAbilityAvailable(SpellIds.setRally, false);
     }
     doAfter(1, () => {
       const selling = new TowerSellingSystem();
       const pathing = new PathingSystem();
+      const towers = new TowerSystem();
       doAfter(2, () => {
         const spawn = new SpawnSystem();
       });

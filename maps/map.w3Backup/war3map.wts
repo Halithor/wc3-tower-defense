@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Card Brawl
+Maze Demo ALPHAv001
 }
 
 STRING 2
@@ -28,24 +28,9 @@ STRING 6
 Player 2
 }
 
-STRING 7
-{
-Player 9
-}
-
-STRING 8
-{
-Player 10
-}
-
 STRING 9
 {
 Players
-}
-
-STRING 10
-{
-Cards
 }
 
 STRING 11
@@ -141,12 +126,6 @@ STRING 30
 Card 5
 }
 
-STRING 31
-// Units: H001 (Card Master), Name (Name)
-{
-Card Master
-}
-
 STRING 32
 // Items: I000 (Card 5), Ubertip (Tooltip - Extended)
 {
@@ -157,12 +136,6 @@ STRING 33
 // Items: I000 (Card 5), Description (Description)
 {
 Card description
-}
-
-STRING 34
-// Abilities: A002 (Q Ability), Tip (Tooltip - Normal)
-{
-5 Energy
 }
 
 STRING 35
@@ -213,30 +186,6 @@ STRING 42
 Purchase a new card.
 }
 
-STRING 43
-// Abilities: A004 (Item 10 Energy), Name (Name)
-{
-Item 10 Energy
-}
-
-STRING 44
-// Abilities: A002 (Q Ability), Name (Name)
-{
-Q Ability
-}
-
-STRING 45
-// Abilities: A002 (Q Ability), Tip (Tooltip - Normal)
-{
-10 Energy
-}
-
-STRING 46
-// Abilities: A002 (Q Ability), Tip (Tooltip - Normal)
-{
-15 Energy
-}
-
 STRING 47
 // Items: I003 (Summon Knight), Description (Description)
 {
@@ -283,24 +232,6 @@ STRING 55
 // Items: I003 (Summon Knight), Name (Name)
 {
 Summon Knight
-}
-
-STRING 56
-// Units: e001 (Druid of the Forest), Casterupgradename (Caster Upgrade Names)
-{
-Initiate
-}
-
-STRING 57
-// Units: e001 (Druid of the Forest), Name (Name)
-{
-Druid of the Forest
-}
-
-STRING 58
-// Abilities: A005 (Rejuvenation), EditorSuffix (Editor Suffix)
-{
- (Forest Druid)
 }
 
 STRING 59
@@ -361,32 +292,6 @@ STRING 69
 Player 12
 }
 
-STRING 70
-{
-Player 13
-}
-
-STRING 71
-{
-Player 14
-}
-
-STRING 72
-{
-Player 15
-}
-
-STRING 73
-{
-Player 16
-}
-
-STRING 74
-// Abilities: A006 (Bash), EditorSuffix (Editor Suffix)
-{
- (Knight)
-}
-
 STRING 76
 // Items: I007 (Summon Bear), Description (Description)
 {
@@ -409,30 +314,6 @@ STRING 79
 // Items: I007 (Summon Bear), Ubertip (Tooltip - Extended)
 {
 Purchase a new card.
-}
-
-STRING 80
-// Abilities: A007 (Item 20 Energy), Name (Name)
-{
-Item 20 Energy
-}
-
-STRING 81
-// Abilities: A001 (Item 05 Energy), Name (Name)
-{
-Item 05 Energy
-}
-
-STRING 82
-// Abilities: A008 (Cleaving Attack), EditorSuffix (Editor Suffix)
-{
- (Bear)
-}
-
-STRING 83
-// Abilities: A009 (Heal), EditorSuffix (Editor Suffix)
-{
-(Priest)
 }
 
 STRING 84
@@ -481,5 +362,468 @@ STRING 91
 // Items: I009 (Gold Coins), Ubertip (Tooltip - Extended)
 {
 Purchase a new card.
+}
+
+STRING 92
+{
+Player 3
+}
+
+STRING 93
+{
+Player 4
+}
+
+STRING 94
+{
+Player 5
+}
+
+STRING 95
+{
+Player 6
+}
+
+STRING 96
+{
+Enemies
+}
+
+STRING 97
+// Items: I00A (Recipe), Description (Description)
+{
+Card description
+}
+
+STRING 98
+// Items: I00A (Recipe), Name (Name)
+{
+Recipe
+}
+
+STRING 99
+// Items: I00A (Recipe), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 100
+// Items: I00A (Recipe), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 101
+// Items: I00B (Ingredient1), Description (Description)
+{
+Card description
+}
+
+STRING 102
+// Items: I00B (Ingredient1), Name (Name)
+{
+Ingredient1
+}
+
+STRING 103
+// Items: I00B (Ingredient1), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 104
+// Items: I00B (Ingredient1), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 105
+// Items: I00C (Ingredient2), Description (Description)
+{
+Card description
+}
+
+STRING 106
+// Items: I00C (Ingredient2), Name (Name)
+{
+Ingredient2
+}
+
+STRING 107
+// Items: I00C (Ingredient2), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 108
+// Items: I00C (Ingredient2), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 109
+// Items: I00D (Ingredient3), Description (Description)
+{
+Card description
+}
+
+STRING 110
+// Items: I00D (Ingredient3), Name (Name)
+{
+Ingredient3
+}
+
+STRING 111
+// Items: I00D (Ingredient3), Tip (Tooltip - Basic)
+{
+Purchase Card
+}
+
+STRING 112
+// Items: I00D (Ingredient3), Ubertip (Tooltip - Extended)
+{
+Purchase a new card.
+}
+
+STRING 113
+// Units: h000 (TOWER BASE), Name (Name)
+{
+TOWER BASE
+}
+
+STRING 114
+// Units: h001 (Basic Melee Tower), Name (Name)
+{
+Basic Melee Tower
+}
+
+STRING 117
+// Units: h001 (Basic Melee Tower), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 118
+// Units: h001 (Basic Melee Tower), Tip (Tooltip - Basic)
+{
+Build Basic Melee Tower [|cffffcc00Q|r]
+}
+
+STRING 122
+// Units: h002 (Rapid Melee Tower), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 123
+// Units: h003 (Melee Tower), Name (Name)
+{
+Melee Tower
+}
+
+STRING 128
+// Units: h003 (Melee Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Melee Tower [|cffffcc00W|r]
+}
+
+STRING 129
+// Units: h004 (Heavy Melee Tower), Name (Name)
+{
+Heavy Melee Tower
+}
+
+STRING 130
+// Units: h004 (Heavy Melee Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Melee Tower [|cffffcc00E|r]
+}
+
+STRING 133
+// Units: h003 (Melee Tower), Hotkey (Hotkey)
+{
+W
+}
+
+STRING 135
+// Units: h004 (Heavy Melee Tower), Hotkey (Hotkey)
+{
+E
+}
+
+STRING 136
+// Abilities: A00A (Root), EditorSuffix (Editor Suffix)
+{
+(Tower Turning)
+}
+
+STRING 137
+// Abilities: A00B (Allow Tower Turning), Name (Name)
+{
+Allow Tower Turning
+}
+
+STRING 142
+// Units: u000 (Paladin), Name (Name)
+{
+Paladin
+}
+
+STRING 143
+// Units: u000 (Paladin), Tip (Tooltip - Basic)
+{
+Select Paladin
+}
+
+STRING 144
+// Units: u000 (Paladin), Ubertip (Tooltip - Extended)
+{
+Supportive warrior class. Has a mix of melee towers and support towers.|n|n|cff6699FFAvailable Towers:|r|n- Quick Melee|n- Melee|n- TODO ADD SUPPORT
+}
+
+STRING 145
+// Units: n001 (Gnoll), Name (Name)
+{
+Gnoll
+}
+
+STRING 146
+// Units: h005 (Sell Tower), Ubertip (Tooltip - Extended)
+{
+Sell this tower for |cffffcc00100% of its value|r.
+}
+
+STRING 147
+// Units: h005 (Sell Tower), Tip (Tooltip - Basic)
+{
+Sell Tower
+}
+
+STRING 148
+// Units: h005 (Sell Tower), Name (Name)
+{
+Sell Tower
+}
+
+STRING 150
+// Units: h002 (Rapid Melee Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 1.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground
+}
+
+STRING 151
+// Units: h003 (Melee Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 20|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground
+}
+
+STRING 152
+// Units: h004 (Heavy Melee Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 40|n|cff6699FFCooldown:|r 4.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground
+}
+
+STRING 153
+// Units: h006 (Basic Arrow Tower), Name (Name)
+{
+Basic Arrow Tower
+}
+
+STRING 161
+// Units: h007 (Arrow Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 162
+// Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- 
+}
+
+STRING 163
+// Units: h001 (Basic Melee Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground|n|n|n|cffffcc00Upgrades into:|r|n- Quick Melee Tower|n- Melee Tower|n- Heavy Melee Tower
+}
+
+STRING 166
+// Units: h008 (Rapid Arrow Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 1.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 168
+// Units: h009 (Heavy Arrow Tower), Name (Name)
+{
+Heavy Arrow Tower
+}
+
+STRING 169
+// Units: h009 (Heavy Arrow Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Arrow Tower
+}
+
+STRING 170
+// Units: h009 (Heavy Arrow Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 20|n|cff6699FFCooldown:|r 4.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 171
+// Units: h006 (Basic Arrow Tower), Tip (Tooltip - Basic)
+{
+Build Basic Arrow Tower [|cffffcc00W|r]
+}
+
+STRING 172
+// Units: h006 (Basic Arrow Tower), Hotkey (Hotkey)
+{
+W
+}
+
+STRING 175
+// Units: h00A (Sniper Tower), Name (Name)
+{
+Sniper Tower
+}
+
+STRING 176
+// Units: h00A (Sniper Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Sniper Tower
+}
+
+STRING 177
+// Units: h00A (Sniper Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 8|n|cff6699FFCooldown:|r 2.4|n|cff6699FFRange:|r 1000|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 178
+// Units: h00B (Heavy Sniper Tower), Name (Name)
+{
+Heavy Sniper Tower
+}
+
+STRING 179
+// Units: h00B (Heavy Sniper Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Sniper Tower
+}
+
+STRING 181
+// Units: h00B (Heavy Sniper Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 16|n|cff6699FFCooldown:|r 4.8|n|cff6699FFRange:|r 1000|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 184
+// Units: h00C (Rapid Sniper Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 4|n|cff6699FFCooldown:|r 1.2|n|cff6699FFRange:|r 1000|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 185
+// Units: h00D (Spear Tower), Name (Name)
+{
+Spear Tower
+}
+
+STRING 186
+// Units: h00D (Spear Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Spear Tower
+}
+
+STRING 187
+// Units: h00D (Spear Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 12|n|cff6699FFCooldown:|r 1.6|n|cff6699FFRange:|r 400|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 188
+// Units: h00E (Heavy Spear Tower), Name (Name)
+{
+Heavy Spear Tower
+}
+
+STRING 189
+// Units: h00E (Heavy Spear Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Spear Tower
+}
+
+STRING 190
+// Units: h00E (Heavy Spear Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 24|n|cff6699FFCooldown:|r 3.2|n|cff6699FFRange:|r 400|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 191
+// Units: h00F (Rapid Spear Tower), Name (Name)
+{
+Rapid Spear Tower
+}
+
+STRING 192
+// Units: h00F (Rapid Spear Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Spear Tower
+}
+
+STRING 193
+// Units: h00F (Rapid Spear Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 6|n|cff6699FFCooldown:|r .8|n|cff6699FFRange:|r 400|n|cff6699FFTargets:|r Ground & Air
+}
+
+STRING 194
+// Units: h007 (Arrow Tower), Name (Name)
+{
+Arrow Tower
+}
+
+STRING 195
+// Units: h007 (Arrow Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Arrow Tower
+}
+
+STRING 197
+// Units: h002 (Rapid Melee Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Melee Tower [|cffffcc00Q|r]
+}
+
+STRING 198
+// Units: h008 (Rapid Arrow Tower), Name (Name)
+{
+Rapid Arrow Tower
+}
+
+STRING 199
+// Units: h00C (Rapid Sniper Tower), Name (Name)
+{
+Rapid Sniper Tower
+}
+
+STRING 200
+// Units: h00C (Rapid Sniper Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Sniper Tower
+}
+
+STRING 201
+// Units: h002 (Rapid Melee Tower), Name (Name)
+{
+Rapid Melee Tower
+}
+
+STRING 202
+// Units: h008 (Rapid Arrow Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Arrow Tower
 }
 

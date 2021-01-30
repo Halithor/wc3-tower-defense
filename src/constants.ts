@@ -20,6 +20,7 @@ export class UnitIds {
 
 export class SpellIds {
   static readonly allowTowerTurning = abilId('A00B');
+  static readonly setRally = abilId('ARal');
 }
 
 export class DestIds {}
