@@ -1,38 +1,34 @@
-import {playerEnemies1, playerEnemies2} from 'constants';
-import {
-  degrees,
-  doPeriodically,
-  Rectangle,
-  Unit,
-  unitId,
-  Vec2,
-} from 'w3lib/src/index';
+import {playerEnemies} from 'constants';
+import {PathInfo, SpawnInfo} from 'system/pathinfo';
+import {degrees, doPeriodically, Unit, unitId} from 'w3lib/src/index';
+import {creep, CreepTracker} from './creeptracker';
+import {CreepMoveOrders} from './moveorders';
 
 export class SpawnSystem {
-  spawn0: Vec2;
-  spawn1: Vec2;
-  spawn1Target: Vec2;
-  spawn0Target: Vec2;
+  private spawns: SpawnInfo[];
+  private tracker: CreepTracker;
+  private orders: CreepMoveOrders;
 
-  constructor() {
-    this.spawn0 = Rectangle.fromHandle(gg_rct_Spawn0).center;
-    this.spawn1 = Rectangle.fromHandle(gg_rct_Spawn1).center;
-    this.spawn0Target = Rectangle.fromHandle(gg_rct_Check3).center;
-    this.spawn1Target = Rectangle.fromHandle(gg_rct_Check0).center;
+  constructor(pathInfo: PathInfo) {
+    this.spawns = pathInfo.spawns;
+    this.tracker = new CreepTracker();
+    this.orders = new CreepMoveOrders(pathInfo);
 
     doPeriodically(4, () => this.spawn());
   }
 
   private spawn() {
     const uid = Math.random() > 0.5 ? unitId('n000') : unitId('n001');
-    const u1 = new Unit(playerEnemies1, uid, this.spawn0, degrees(270));
-    u1.removeGuardPosition();
-    u1.applyTimedLife(FourCC('BHwe'), 60);
-    u1.issueOrderAt('move', this.spawn0Target);
-    const u2 = new Unit(playerEnemies2, uid, this.spawn1, degrees(0));
-    u2.removeGuardPosition();
-    u2.applyTimedLife(FourCC('BHwe'), 60);
-    u2.issueOrderAt('move', this.spawn1Target);
-    GetItemTypeId(GetManipulatedItem());
+    this.spawns.forEach((info, idx) => {
+      const u = new Unit(
+        playerEnemies[idx % 2],
+        uid,
+        info.spawn.center,
+        degrees(270)
+      );
+      u.removeGuardPosition();
+      u.issueOrderAt('move', info.moveTarget.center);
+      this.tracker.addCreep(creep(u, info.moveTarget));
+    });
   }
 }

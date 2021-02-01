@@ -10,6 +10,7 @@ import {
 import {TowerSellingSystem} from 'system/towerselling';
 import {SpellIds} from 'constants';
 import {TowerSystem} from 'system/towers/towersystem';
+import {PathInfo, SpawnInfo} from 'system/pathinfo';
 
 export class Game {
   constructor() {}
@@ -19,21 +20,46 @@ export class Game {
       const fog = FogModifier.fromRect(
         Players[i],
         FOG_OF_WAR_VISIBLE,
-        Rectangle.fromHandle(gg_rct_Vision),
+        Rectangle.fromHandle(gg_rct_PlayArea),
         true,
         true
       );
       fog.start();
       Players[i].setAbilityAvailable(SpellIds.allowTowerTurning, false);
-      Players[i].setAbilityAvailable(SpellIds.setRally, false);
     }
+
+    const pathInfo = this.setupPathInfo();
     doAfter(1, () => {
-      const selling = new TowerSellingSystem();
-      const pathing = new PathingSystem();
       const towers = new TowerSystem();
+      const selling = new TowerSellingSystem();
+      const pathing = new PathingSystem(pathInfo);
       doAfter(2, () => {
-        const spawn = new SpawnSystem();
+        print('spawning');
+        const spawn = new SpawnSystem(pathInfo);
       });
     });
+  }
+
+  setupPathInfo(): PathInfo {
+    const spawn0 = Rectangle.fromHandle(gg_rct_Spawn0);
+    const spawn1 = Rectangle.fromHandle(gg_rct_Spawn1);
+    const spawn2 = Rectangle.fromHandle(gg_rct_Spawn2);
+    const spawn3 = Rectangle.fromHandle(gg_rct_Spawn3);
+    const check0 = Rectangle.fromHandle(gg_rct_Check0);
+    const check1 = Rectangle.fromHandle(gg_rct_Check1);
+    const check2 = Rectangle.fromHandle(gg_rct_Check2);
+    const check3 = Rectangle.fromHandle(gg_rct_Check3);
+    const check4 = Rectangle.fromHandle(gg_rct_Check4);
+    const check5 = Rectangle.fromHandle(gg_rct_Check5);
+
+    return new PathInfo(
+      [check0, check1, check2, check3, check4, check5],
+      [
+        new SpawnInfo(spawn0, check3),
+        new SpawnInfo(spawn1, check1),
+        new SpawnInfo(spawn2, check0),
+        new SpawnInfo(spawn3, check2),
+      ]
+    );
   }
 }

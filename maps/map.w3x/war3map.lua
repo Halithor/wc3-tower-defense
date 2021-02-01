@@ -6,9 +6,11 @@ gg_rct_Check2 = nil
 gg_rct_Check3 = nil
 gg_rct_Check4 = nil
 gg_rct_Check5 = nil
-gg_rct_Vision = nil
+gg_rct_PlayArea = nil
 gg_trg_Untitled_Trigger_001 = nil
 gg_trg_Untitled_Trigger_002 = nil
+gg_rct_Spawn2 = nil
+gg_rct_Spawn3 = nil
 function InitGlobals()
 end
 
@@ -123,15 +125,17 @@ end
 
 function CreateRegions()
     local we
-    gg_rct_Spawn0 = Rect(1280.0, 2976.0, 1344.0, 3040.0)
-    gg_rct_Spawn1 = Rect(-3040.0, -1344.0, -2976.0, -1280.0)
+    gg_rct_Spawn0 = Rect(1248.0, 3008.0, 1312.0, 3072.0)
+    gg_rct_Spawn1 = Rect(3008.0, -1312.0, 3072.0, -1248.0)
     gg_rct_Check0 = Rect(-1312.0, -1312.0, -1248.0, -1248.0)
     gg_rct_Check1 = Rect(-32.0, -1312.0, 32.0, -1248.0)
     gg_rct_Check2 = Rect(-32.0, 1248.0, 32.0, 1312.0)
     gg_rct_Check3 = Rect(1248.0, 1248.0, 1312.0, 1312.0)
     gg_rct_Check4 = Rect(1248.0, -32.0, 1312.0, 32.0)
     gg_rct_Check5 = Rect(-1312.0, -32.0, -1248.0, 32.0)
-    gg_rct_Vision = Rect(-2176.0, -2176.0, 2176.0, 2176.0)
+    gg_rct_PlayArea = Rect(-2240.0, -2240.0, 2240.0, 2240.0)
+    gg_rct_Spawn2 = Rect(-1312.0, -3072.0, -1248.0, -3008.0)
+    gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
 end
 
 function Trig_Untitled_Trigger_001_Actions()

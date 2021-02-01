@@ -1,4 +1,5 @@
 import {
+  color,
   Color,
   doAfter,
   doPeriodicallyCounted,
@@ -41,14 +42,14 @@ export class KeepPath {
   constructor(
     private readonly start: Vec2,
     private readonly end: Vec2,
-    private readonly effectColor: Color,
+    private readonly effectColor: Color = color(255, 255, 255),
     private readonly effectPath: string = defaultEffectPath
   ) {
     this.underconstruction = new Group();
     this.checker = new PathingChecker(start, end);
     this.path = this.checker.getPath();
     this.flashPath();
-    flashEffect;
+    this.showPath();
 
     onAnyUnitConstructionStart(constructing => {
       const locs = [
@@ -101,34 +102,34 @@ export class KeepPath {
     });
   }
 
-  // private showPath() {
-  //   if (this.flashing) {
-  //     // need to cancel flashing before we can re-do this.
-  //     this.flashingCancel.cancel();
-  //     this.flashing = false;
-  //     this.flashingEffects.forEach(eff => eff.destroy());
-  //     this.flashingEffects = [];
-  //     for (let i = this.flashingIdx + 1; i < this.effects.length; i++) {
-  //       this.effects[i].destroy();
-  //     }
-  //   } else {
-  //     this.effects.forEach(eff => {
-  //       eff.destroy();
-  //     });
-  //   }
+  private showPath() {
+    if (this.flashing) {
+      // need to cancel flashing before we can re-do this.
+      this.flashingCancel.cancel();
+      this.flashing = false;
+      this.flashingEffects.forEach(eff => eff.destroy());
+      this.flashingEffects = [];
+      for (let i = this.flashingIdx + 1; i < this.effects.length; i++) {
+        this.effects[i].destroy();
+      }
+    } else {
+      this.effects.forEach(eff => {
+        eff.destroy();
+      });
+    }
 
-  //   this.effects = [];
-  //   this.path.forEach(pos => {
-  //     const eff = new Effect(this.effectPath, pos);
-  //     eff.setColor(
-  //       this.effectColor.red,
-  //       this.effectColor.green,
-  //       this.effectColor.blue
-  //     );
-  //     // eff.setColorByPlayer(Players[this.effectColor]);
-  //     this.effects.push(eff);
-  //   });
-  // }
+    this.effects = [];
+    this.path.forEach(pos => {
+      const eff = new Effect(this.effectPath, pos);
+      eff.setColor(
+        this.effectColor.red,
+        this.effectColor.green,
+        this.effectColor.blue
+      );
+      // eff.setColorByPlayer(Players[this.effectColor]);
+      this.effects.push(eff);
+    });
+  }
 
   // show the path direction by going along it and flashing it
   runPath() {
