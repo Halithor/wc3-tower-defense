@@ -1,5 +1,5 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
-import {SpawnSystem} from 'system/creeps/spawnsystem';
+import {CreepSystem} from 'system/creeps/creepsystem';
 import {
   doAfter,
   FogModifier,
@@ -34,8 +34,7 @@ export class Game {
       const selling = new TowerSellingSystem();
       const pathing = new PathingSystem(pathInfo);
       doAfter(2, () => {
-        print('spawning');
-        const spawn = new SpawnSystem(pathInfo);
+        const spawn = new CreepSystem(pathInfo);
       });
     });
   }

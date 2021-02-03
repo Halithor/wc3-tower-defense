@@ -49,7 +49,6 @@ export class KeepPath {
     this.checker = new PathingChecker(start, end);
     this.path = this.checker.getPath();
     this.flashPath();
-    this.showPath();
 
     onAnyUnitConstructionStart(constructing => {
       const locs = [

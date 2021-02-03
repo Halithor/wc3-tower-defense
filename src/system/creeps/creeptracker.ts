@@ -1,35 +1,15 @@
-import {onAnyUnitDamaged, Rectangle, Unit, Vec2} from 'w3lib/src/index';
+import {eventAnyUnitDies, Rectangle, Unit, unitId} from 'w3lib/src/index';
+import {Creep} from './creep';
 
-// Creep class keeps track of the state of a creep.
-export class Creep {
-  private _moveTarget: Rectangle;
-
-  constructor(readonly unit: Unit, moveTarget: Rectangle) {
-    this._moveTarget = moveTarget;
-    this.orderMove();
-  }
-
-  set moveTarget(target: Rectangle) {
-    this._moveTarget = target;
-    this.orderMove();
-  }
-
-  get moveTarget(): Rectangle {
-    return this._moveTarget;
-  }
-
-  orderMove() {
-    this.unit.issueOrderAt('move', this.moveTarget.center);
-  }
-}
-
-export const creep = (unit: Unit, moveTarget: Rectangle) =>
-  new Creep(unit, moveTarget);
-
+// CreepTracker handles keeping track of living creeps and removing them as they die.
 export class CreepTracker {
   private creeps: {[key: number]: Creep} = {};
   constructor() {
-    onAnyUnitDamaged;
+    eventAnyUnitDies.listen(u => {
+      if (u.id in this.creeps) {
+        delete this.creeps[u.id];
+      }
+    });
   }
 
   addCreep(creep: Creep) {

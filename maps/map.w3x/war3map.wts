@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Maze Demo ALPHAv001
+Rougelike Custom TD vAlpha001
 }
 
 STRING 2
@@ -8,14 +8,9 @@ STRING 2
 Any
 }
 
-STRING 3
-{
-A competative live deck builder!
-}
-
 STRING 4
 {
-Halithor
+Halithor & Ham
 }
 
 STRING 5
@@ -280,16 +275,6 @@ STRING 67
 // Items: I006 (Enliven), Name (Name)
 {
 Enliven
-}
-
-STRING 68
-{
-Player 11
-}
-
-STRING 69
-{
-Player 12
 }
 
 STRING 76
@@ -1089,5 +1074,10 @@ STRING 265
 // Units: h00Q (Rapid Siege Tower), Hotkey (Hotkey)
 {
 Z
+}
+
+STRING 266
+{
+Creeps
 }
 

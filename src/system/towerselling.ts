@@ -15,7 +15,7 @@ export class TowerSellingSystem {
           0,
           0,
           5,
-          `|cffffcc00Sold ${trainer.name} for ${goldValue} gold.`
+          `|cffffcc00Sold ${trainer.name} for ${goldValue} gold.|r`
         );
       }
     });

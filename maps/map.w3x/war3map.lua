@@ -1,3 +1,4 @@
+udg_damage = 0
 gg_rct_Spawn0 = nil
 gg_rct_Spawn1 = nil
 gg_rct_Check0 = nil
@@ -7,11 +8,12 @@ gg_rct_Check3 = nil
 gg_rct_Check4 = nil
 gg_rct_Check5 = nil
 gg_rct_PlayArea = nil
-gg_trg_Untitled_Trigger_001 = nil
-gg_trg_Untitled_Trigger_002 = nil
 gg_rct_Spawn2 = nil
 gg_rct_Spawn3 = nil
+gg_trg_Untitled_Trigger_001 = nil
+gg_trg_Untitled_Trigger_002 = nil
 function InitGlobals()
+    udg_damage = 0
 end
 
 function CreateBuildingsForPlayer0()
@@ -58,6 +60,14 @@ function CreateUnitsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -3062.4, 4381.0, 300.079, FourCC("hrif"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -2021.1, 4405.4, 55.691, FourCC("hrif"))
     u = BlzCreateUnitWithSkin(p, FourCC("u000"), -3058.9, 4089.0, 217.745, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n001"), 4624.7, 4978.5, 270.000, FourCC("n001"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n000"), 4712.7, 4990.7, 270.000, FourCC("n000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n007"), 4794.3, 4982.1, 270.000, FourCC("n007"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n006"), 4873.9, 4996.1, 270.000, FourCC("n006"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n005"), 4965.5, 4986.4, 270.000, FourCC("n005"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n004"), 5068.3, 4999.0, 270.000, FourCC("n004"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n003"), 5147.2, 4996.1, 270.000, FourCC("n003"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n002"), 5232.9, 4996.6, 270.000, FourCC("n002"))
 end
 
 function CreateUnitsForPlayer1()
@@ -362,7 +372,7 @@ end
 
 function config()
     SetMapName("TRIGSTR_001")
-    SetMapDescription("TRIGSTR_003")
+    SetMapDescription("")
     SetPlayers(8)
     SetTeams(8)
     SetGamePlacement(MAP_PLACEMENT_TEAMS_TOGETHER)
