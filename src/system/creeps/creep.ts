@@ -1,10 +1,14 @@
-import { Rectangle, Unit } from "w3lib/src/index";
+import {Rectangle, Unit} from 'w3lib/src/index';
 
 // Creep class keeps track of the state of a creep.
 export class Creep {
   private _moveTarget: Rectangle;
 
-  constructor(readonly unit: Unit, moveTarget: Rectangle) {
+  constructor(
+    readonly unit: Unit,
+    readonly pointValue: number,
+    moveTarget: Rectangle
+  ) {
     this._moveTarget = moveTarget;
     this.orderMove();
   }
@@ -23,5 +27,5 @@ export class Creep {
   }
 }
 
-export const creep = (unit: Unit, moveTarget: Rectangle) =>
-  new Creep(unit, moveTarget);
+export const creep = (unit: Unit, pointValue: number, moveTarget: Rectangle) =>
+  new Creep(unit, pointValue, moveTarget);

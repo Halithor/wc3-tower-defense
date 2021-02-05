@@ -26,7 +26,7 @@ export class PathingSystem {
       );
     });
 
-    doPeriodically(5, () => {
+    doPeriodically(30, () => {
       let totalLength = 0;
       this.keepers.forEach(keeper => (totalLength += keeper.length));
       print(`Maze length: ${totalLength}`);
