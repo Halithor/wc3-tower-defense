@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Rougelike Custom TD vAlpha002
+Rougelike Custom TD vAlpha003
 }
 
 STRING 2
@@ -620,12 +620,6 @@ STRING 161
 |cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air
 }
 
-STRING 162
-// Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- 
-}
-
 STRING 163
 // Units: h001 (Basic Melee Tower), Ubertip (Tooltip - Extended)
 {
@@ -1079,5 +1073,11 @@ Z
 STRING 266
 {
 Creeps
+}
+
+STRING 267
+// Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- 
 }
 
