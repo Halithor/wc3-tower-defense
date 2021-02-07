@@ -818,12 +818,6 @@ STRING 208
 Basic Magic Tower
 }
 
-STRING 210
-// Units: h00H (Basic Magic Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Firebolt|n|cff6699FFMana:|r 100 + 1/sec
-}
-
 STRING 213
 // Units: h00G (Basic Rock Tower), Hotkey (Hotkey)
 {
@@ -840,12 +834,6 @@ STRING 215
 // Units: h00H (Basic Magic Tower), Hotkey (Hotkey)
 {
 S
-}
-
-STRING 216
-// Units: h00G (Basic Rock Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, AoE
 }
 
 STRING 217
@@ -1075,9 +1063,105 @@ STRING 266
 Creeps
 }
 
-STRING 267
+STRING 268
+// Abilities: A001 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (1 slot)
+}
+
+STRING 269
+// Abilities: A002 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (2 slot)
+}
+
+STRING 270
+// Abilities: A003 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (3 slot)
+}
+
+STRING 271
+// Abilities: A004 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (4 slot)
+}
+
+STRING 272
+// Abilities: A005 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (5 slot)
+}
+
+STRING 273
+// Abilities: A006 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (6 slot)
+}
+
+STRING 274
+// Units: h00H (Basic Magic Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Firebolt|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 275
 // Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
 {
-|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- 
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- Spear Towers|n- Arrow Towers|n- Sniper Towers
+}
+
+STRING 276
+// Units: h00G (Basic Rock Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, AoE|n|n|cffffcc00Upgrades into:|r|n- Splash Towers|n- Rock Towers|n-Siege Towers
+}
+
+STRING 281
+// Units: h00R (Chain Lightning Tower), Name (Name)
+{
+Chain Lightning Tower
+}
+
+STRING 282
+// Units: h00R (Chain Lightning Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Chain Lightning Tower [|cffffcc00Q|r]
+}
+
+STRING 283
+// Units: h00R (Chain Lightning Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 8|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r Chain Lightning (5 targets)|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 284
+// Units: h00R (Chain Lightning Tower), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 285
+// Abilities: A009 (Chain Lightning), Tip (Tooltip - Normal)
+{
+Chain Lightning
+}
+
+STRING 292
+// Abilities: A009 (Chain Lightning), Name (Name)
+{
+Chain Lightning
+}
+
+STRING 293
+// Abilities: A009 (Chain Lightning), EditorSuffix (Editor Suffix)
+{
+ (Tower)
+}
+
+STRING 294
+// Abilities: A009 (Chain Lightning), Ubertip (Tooltip - Normal - Extended)
+{
+|cffaaaaaaSpells are cast on attack when mana is available.|r|n|nOn attack, hit the target enemy with a bolt of lightning dealing 2 x Attack Damage to the target, bouncing to up to 4 nearby units. Bounces deal 25% less damage.
 }
 

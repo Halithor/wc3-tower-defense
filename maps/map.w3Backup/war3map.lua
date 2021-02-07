@@ -1,3 +1,4 @@
+udg_damage = 0
 gg_rct_Spawn0 = nil
 gg_rct_Spawn1 = nil
 gg_rct_Check0 = nil
@@ -6,10 +7,13 @@ gg_rct_Check2 = nil
 gg_rct_Check3 = nil
 gg_rct_Check4 = nil
 gg_rct_Check5 = nil
-gg_rct_Vision = nil
+gg_rct_PlayArea = nil
+gg_rct_Spawn2 = nil
+gg_rct_Spawn3 = nil
 gg_trg_Untitled_Trigger_001 = nil
 gg_trg_Untitled_Trigger_002 = nil
 function InitGlobals()
+    udg_damage = 0
 end
 
 function CreateBuildingsForPlayer0()
@@ -22,6 +26,8 @@ function CreateBuildingsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("h004"), -4480.0, 4416.0, 270.000, FourCC("h004"))
     u = BlzCreateUnitWithSkin(p, FourCC("h003"), -4608.0, 4416.0, 270.000, FourCC("h003"))
     u = BlzCreateUnitWithSkin(p, FourCC("h002"), -4736.0, 4416.0, 270.000, FourCC("h002"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00I"), -2560.0, 4416.0, 270.000, FourCC("h00I"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00J"), -2432.0, 4416.0, 270.000, FourCC("h00J"))
     u = BlzCreateUnitWithSkin(p, FourCC("h006"), -3584.0, 4096.0, 270.000, FourCC("h006"))
     u = BlzCreateUnitWithSkin(p, FourCC("h007"), -3584.0, 4416.0, 270.000, FourCC("h007"))
     u = BlzCreateUnitWithSkin(p, FourCC("h008"), -3712.0, 4416.0, 270.000, FourCC("h008"))
@@ -32,6 +38,15 @@ function CreateBuildingsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("h00D"), -3584.0, 4544.0, 270.000, FourCC("h00D"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00E"), -3456.0, 4544.0, 270.000, FourCC("h00E"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00F"), -3712.0, 4544.0, 270.000, FourCC("h00F"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00G"), -2560.0, 4096.0, 270.000, FourCC("h00G"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00H"), -1536.0, 4096.0, 270.000, FourCC("h00H"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00K"), -2688.0, 4416.0, 270.000, FourCC("h00K"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00L"), -2560.0, 4544.0, 270.000, FourCC("h00L"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00M"), -2688.0, 4544.0, 270.000, FourCC("h00M"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00N"), -2432.0, 4544.0, 270.000, FourCC("h00N"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00O"), -2560.0, 4288.0, 270.000, FourCC("h00O"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00Q"), -2688.0, 4288.0, 270.000, FourCC("h00Q"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00P"), -2432.0, 4288.0, 270.000, FourCC("h00P"))
 end
 
 function CreateUnitsForPlayer0()
@@ -43,10 +58,16 @@ function CreateUnitsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("u000"), -2024.4, 1908.3, 54.856, FourCC("u000"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -4096.2, 4393.9, 288.312, FourCC("hrif"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -3062.4, 4381.0, 300.079, FourCC("hrif"))
-    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -5130.4, 4413.3, 131.038, FourCC("hrif"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -2021.1, 4405.4, 55.691, FourCC("hrif"))
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -4456.9, 3885.0, 217.745, FourCC("u000"))
-    u = BlzCreateUnitWithSkin(p, FourCC("uaco"), -4505.7, 3974.5, 118.788, FourCC("uaco"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -3058.9, 4089.0, 217.745, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n001"), 4624.7, 4978.5, 270.000, FourCC("n001"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n000"), 4712.7, 4990.7, 270.000, FourCC("n000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n007"), 4794.3, 4982.1, 270.000, FourCC("n007"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n006"), 4873.9, 4996.1, 270.000, FourCC("n006"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n005"), 4965.5, 4986.4, 270.000, FourCC("n005"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n004"), 5068.3, 4999.0, 270.000, FourCC("n004"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n003"), 5147.2, 4996.1, 270.000, FourCC("n003"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n002"), 5232.9, 4996.6, 270.000, FourCC("n002"))
 end
 
 function CreateUnitsForPlayer1()
@@ -114,15 +135,17 @@ end
 
 function CreateRegions()
     local we
-    gg_rct_Spawn0 = Rect(1280.0, 2976.0, 1344.0, 3040.0)
-    gg_rct_Spawn1 = Rect(-3040.0, -1344.0, -2976.0, -1280.0)
-    gg_rct_Check0 = Rect(-1344.0, -1344.0, -1280.0, -1280.0)
-    gg_rct_Check1 = Rect(0.0, -1344.0, 64.0, -1280.0)
-    gg_rct_Check2 = Rect(0.0, 1280.0, 64.0, 1344.0)
-    gg_rct_Check3 = Rect(1280.0, 1280.0, 1344.0, 1344.0)
-    gg_rct_Check4 = Rect(1280.0, 0.0, 1344.0, 64.0)
-    gg_rct_Check5 = Rect(-1344.0, 0.0, -1280.0, 64.0)
-    gg_rct_Vision = Rect(-2176.0, -2176.0, 2176.0, 2176.0)
+    gg_rct_Spawn0 = Rect(1248.0, 3008.0, 1312.0, 3072.0)
+    gg_rct_Spawn1 = Rect(3008.0, -1312.0, 3072.0, -1248.0)
+    gg_rct_Check0 = Rect(-1312.0, -1312.0, -1248.0, -1248.0)
+    gg_rct_Check1 = Rect(-32.0, -1312.0, 32.0, -1248.0)
+    gg_rct_Check2 = Rect(-32.0, 1248.0, 32.0, 1312.0)
+    gg_rct_Check3 = Rect(1248.0, 1248.0, 1312.0, 1312.0)
+    gg_rct_Check4 = Rect(1248.0, -32.0, 1312.0, 32.0)
+    gg_rct_Check5 = Rect(-1312.0, -32.0, -1248.0, 32.0)
+    gg_rct_PlayArea = Rect(-2240.0, -2240.0, 2240.0, 2240.0)
+    gg_rct_Spawn2 = Rect(-1312.0, -3072.0, -1248.0, -3008.0)
+    gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
 end
 
 function Trig_Untitled_Trigger_001_Actions()
@@ -349,7 +372,7 @@ end
 
 function config()
     SetMapName("TRIGSTR_001")
-    SetMapDescription("TRIGSTR_003")
+    SetMapDescription("")
     SetPlayers(8)
     SetTeams(8)
     SetGamePlacement(MAP_PLACEMENT_TEAMS_TOGETHER)

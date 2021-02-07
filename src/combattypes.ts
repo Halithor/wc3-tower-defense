@@ -26,6 +26,7 @@ export function attackTypeString(val: AttackType): string {
       throw new Error('should not happen');
   }
 }
+
 export function attackTypeIndex(val: AttackType): number {
   switch (val) {
     case AttackType.Physical:
@@ -44,6 +45,44 @@ export function attackTypeIndex(val: AttackType): number {
       const _checkExhaustive: never = val;
       throw new Error('should not happen');
   }
+}
+
+export function attackTypeConvert(val: AttackType): attacktype {
+  switch (val) {
+    case AttackType.Physical:
+      return ATTACK_TYPE_MELEE;
+    case AttackType.Cursed:
+      return ATTACK_TYPE_PIERCE;
+    case AttackType.Fire:
+      return ATTACK_TYPE_SIEGE;
+    case AttackType.Frost:
+      return ATTACK_TYPE_HERO;
+    case AttackType.Natural:
+      return ATTACK_TYPE_CHAOS;
+    case AttackType.Arcane:
+      return ATTACK_TYPE_MAGIC;
+    default:
+      const _checkExhaustive: never = val;
+      throw new Error('should not happen');
+  }
+}
+
+export function attackTypeInvert(val: attacktype): AttackType {
+  switch (val) {
+    case ATTACK_TYPE_MELEE:
+      return AttackType.Physical;
+    case ATTACK_TYPE_PIERCE:
+      return AttackType.Cursed;
+    case ATTACK_TYPE_SIEGE:
+      return AttackType.Fire;
+    case ATTACK_TYPE_HERO:
+      return AttackType.Frost;
+    case ATTACK_TYPE_CHAOS:
+      return AttackType.Natural;
+    case ATTACK_TYPE_MAGIC:
+      return AttackType.Arcane;
+  }
+  return AttackType.Physical;
 }
 
 export enum DefenseType {

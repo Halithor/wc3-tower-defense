@@ -1,6 +1,6 @@
 ﻿STRING 1
 {
-Maze Demo ALPHAv001
+Rougelike Custom TD vAlpha003
 }
 
 STRING 2
@@ -8,14 +8,9 @@ STRING 2
 Any
 }
 
-STRING 3
-{
-A competative live deck builder!
-}
-
 STRING 4
 {
-Halithor
+Halithor & Ham
 }
 
 STRING 5
@@ -280,16 +275,6 @@ STRING 67
 // Items: I006 (Enliven), Name (Name)
 {
 Enliven
-}
-
-STRING 68
-{
-Player 11
-}
-
-STRING 69
-{
-Player 12
 }
 
 STRING 76
@@ -635,12 +620,6 @@ STRING 161
 |cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air
 }
 
-STRING 162
-// Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- 
-}
-
 STRING 163
 // Units: h001 (Basic Melee Tower), Ubertip (Tooltip - Extended)
 {
@@ -825,5 +804,364 @@ STRING 202
 // Units: h008 (Rapid Arrow Tower), Tip (Tooltip - Basic)
 {
 Upgrade to Rapid Arrow Tower
+}
+
+STRING 207
+// Units: h00N (Heavy Splash Tower), Hotkey (Hotkey)
+{
+E
+}
+
+STRING 208
+// Units: h00H (Basic Magic Tower), Name (Name)
+{
+Basic Magic Tower
+}
+
+STRING 213
+// Units: h00G (Basic Rock Tower), Hotkey (Hotkey)
+{
+A
+}
+
+STRING 214
+// Units: h00H (Basic Magic Tower), Tip (Tooltip - Basic)
+{
+Build Basic Magic Tower [|cffffcc00S|r]
+}
+
+STRING 215
+// Units: h00H (Basic Magic Tower), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 217
+// Units: h00L (Splash Tower), Name (Name)
+{
+Splash Tower
+}
+
+STRING 219
+// Units: h00I (Rock Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 220
+// Units: h00I (Rock Tower), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 221
+// Units: h00N (Heavy Splash Tower), Name (Name)
+{
+Heavy Splash Tower
+}
+
+STRING 223
+// Units: h00J (Heavy Rock Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 20|n|cff6699FFCooldown:|r 4.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 226
+// Units: h00J (Heavy Rock Tower), Hotkey (Hotkey)
+{
+D
+}
+
+STRING 229
+// Units: h00K (Rapid Rock Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 1.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 230
+// Units: h00M (Rapid Splash Tower), Name (Name)
+{
+Rapid Splash Tower
+}
+
+STRING 231
+// Units: h00K (Rapid Rock Tower), Hotkey (Hotkey)
+{
+A
+}
+
+STRING 232
+// Units: h00I (Rock Tower), Name (Name)
+{
+Rock Tower
+}
+
+STRING 233
+// Units: h00I (Rock Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rock Tower [|cffffcc00S|r]
+}
+
+STRING 235
+// Units: h00L (Splash Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Splash Tower [|cffffcc00W|r]
+}
+
+STRING 237
+// Units: h00K (Rapid Rock Tower), Name (Name)
+{
+Rapid Rock Tower
+}
+
+STRING 238
+// Units: h00K (Rapid Rock Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Rock Tower [|cffffcc00A|r]
+}
+
+STRING 239
+// Units: h00J (Heavy Rock Tower), Name (Name)
+{
+Heavy Rock Tower
+}
+
+STRING 240
+// Units: h00J (Heavy Rock Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Rock Tower [|cffffcc00D|r]
+}
+
+STRING 241
+// Units: h00L (Splash Tower), Hotkey (Hotkey)
+{
+W
+}
+
+STRING 242
+// Units: h00M (Rapid Splash Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Tower [|cffffcc00Q|r]
+}
+
+STRING 244
+// Units: h00M (Rapid Splash Tower), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 245
+// Units: h00L (Splash Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 12|n|cff6699FFCooldown:|r 1.6|n|cff6699FFRange:|r 300|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 247
+// Units: h00M (Rapid Splash Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 6|n|cff6699FFCooldown:|r .8|n|cff6699FFRange:|r 300|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 248
+// Units: h00N (Heavy Splash Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Splash Tower [|cffffcc00E|r]
+}
+
+STRING 250
+// Units: h00N (Heavy Splash Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 24|n|cff6699FFCooldown:|r 3.2|n|cff6699FFRange:|r 300|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 251
+// Units: h00G (Basic Rock Tower), Name (Name)
+{
+Basic Rock Tower
+}
+
+STRING 252
+// Units: h00G (Basic Rock Tower), Tip (Tooltip - Basic)
+{
+Build Basic Rock Tower [|cffffcc00A|r]
+}
+
+STRING 253
+// Units: h00O (Siege Tower), Name (Name)
+{
+Siege Tower
+}
+
+STRING 255
+// Units: h00O (Siege Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Siege Tower [|cffffcc00X|r]
+}
+
+STRING 256
+// Units: h00O (Siege Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 8|n|cff6699FFCooldown:|r 2.4|n|cff6699FFRange:|r 1000|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 257
+// Units: h00O (Siege Tower), Hotkey (Hotkey)
+{
+X
+}
+
+STRING 258
+// Units: h00P (Heavy Siege Tower), Name (Name)
+{
+Heavy Siege Tower
+}
+
+STRING 259
+// Units: h00P (Heavy Siege Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Heavy Siege Tower [|cffffcc00C|r]
+}
+
+STRING 260
+// Units: h00P (Heavy Siege Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 16|n|cff6699FFCooldown:|r 4.8|n|cff6699FFRange:|r 1000|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 261
+// Units: h00P (Heavy Siege Tower), Hotkey (Hotkey)
+{
+C
+}
+
+STRING 262
+// Units: h00Q (Rapid Siege Tower), Name (Name)
+{
+Rapid Siege Tower
+}
+
+STRING 263
+// Units: h00Q (Rapid Siege Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Rapid Siege Tower [|cffffcc00Z|r]
+}
+
+STRING 264
+// Units: h00Q (Rapid Siege Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 4|n|cff6699FFCooldown:|r 1.2|n|cff6699FFRange:|r 1000|n|cff6699FFTargets:|r Ground, AoE
+}
+
+STRING 265
+// Units: h00Q (Rapid Siege Tower), Hotkey (Hotkey)
+{
+Z
+}
+
+STRING 266
+{
+Creeps
+}
+
+STRING 268
+// Abilities: A001 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (1 slot)
+}
+
+STRING 269
+// Abilities: A002 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (2 slot)
+}
+
+STRING 270
+// Abilities: A003 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (3 slot)
+}
+
+STRING 271
+// Abilities: A004 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (4 slot)
+}
+
+STRING 272
+// Abilities: A005 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (5 slot)
+}
+
+STRING 273
+// Abilities: A006 (Inventory), EditorSuffix (Editor Suffix)
+{
+ (6 slot)
+}
+
+STRING 274
+// Units: h00H (Basic Magic Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Firebolt|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 275
+// Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air|n|n|n|cffffcc00Upgrades into:|r|n- Spear Towers|n- Arrow Towers|n- Sniper Towers
+}
+
+STRING 276
+// Units: h00G (Basic Rock Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, AoE|n|n|cffffcc00Upgrades into:|r|n- Splash Towers|n- Rock Towers|n-Siege Towers
+}
+
+STRING 281
+// Units: h00R (Chain Lightning Tower), Name (Name)
+{
+Chain Lightning Tower
+}
+
+STRING 282
+// Units: h00R (Chain Lightning Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Chain Lightning Tower [|cffffcc00Q|r]
+}
+
+STRING 283
+// Units: h00R (Chain Lightning Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 8|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r Chain Lightning (5 targets)|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 284
+// Units: h00R (Chain Lightning Tower), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 285
+// Abilities: A009 (Chain Lightning), Tip (Tooltip - Normal)
+{
+Chain Lightning
+}
+
+STRING 292
+// Abilities: A009 (Chain Lightning), Name (Name)
+{
+Chain Lightning
+}
+
+STRING 293
+// Abilities: A009 (Chain Lightning), EditorSuffix (Editor Suffix)
+{
+ (Tower)
+}
+
+STRING 294
+// Abilities: A009 (Chain Lightning), Ubertip (Tooltip - Normal - Extended)
+{
+|cffaaaaaaSpells are cast on attack when mana is available.|r|n|nOn attack, hit the target enemy with a bolt of lightning dealing 2 x Attack Damage to the target, bouncing to up to 4 nearby units. Bounces deal 25% less damage.
 }
 

@@ -55,7 +55,7 @@ function CreateUnitsForPlayer0()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -2024.4, 1908.3, 54.856, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1846.3, 1819.8, 54.856, FourCC("u000"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -4096.2, 4393.9, 288.312, FourCC("hrif"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -3062.4, 4381.0, 300.079, FourCC("hrif"))
     u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -2021.1, 4405.4, 55.691, FourCC("hrif"))
@@ -76,7 +76,7 @@ function CreateUnitsForPlayer1()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1960.1, 2085.8, 60.163, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1717.9, 2004.2, 60.163, FourCC("u000"))
 end
 
 function CreateUnitsForPlayer2()
@@ -85,7 +85,7 @@ function CreateUnitsForPlayer2()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1842.7, 2064.2, 60.160, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1861.3, 1961.3, 60.160, FourCC("u000"))
 end
 
 function CreateUnitsForPlayer3()
@@ -94,7 +94,7 @@ function CreateUnitsForPlayer3()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1877.4, 1950.2, 60.160, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1699.3, 1861.7, 60.160, FourCC("u000"))
 end
 
 function CreateUnitsForPlayer4()
@@ -103,7 +103,7 @@ function CreateUnitsForPlayer4()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1737.1, 1974.7, 60.160, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1559.0, 1886.1, 60.160, FourCC("u000"))
 end
 
 function CreateUnitsForPlayer5()
@@ -112,7 +112,7 @@ function CreateUnitsForPlayer5()
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1795.9, 1847.5, 60.160, FourCC("u000"))
+    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1617.8, 1759.0, 60.160, FourCC("u000"))
 end
 
 function CreatePlayerBuildings()

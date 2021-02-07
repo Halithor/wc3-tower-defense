@@ -3,10 +3,13 @@ import {
   onAnyUnitConstructionFinish,
   onAnyUnitUpgradeFinish,
 } from 'w3lib/src/index';
+import {SpellTowerEffects} from './spelltowers';
 
 export class TowerSystem {
   constructor() {
     this.removeRallyAbilityOnTowers();
+
+    const spellTowerEffects = new SpellTowerEffects();
   }
 
   private removeRallyAbilityOnTowers() {

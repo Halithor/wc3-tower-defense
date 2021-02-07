@@ -184,7 +184,7 @@ export class CreepSpawning {
             if (typeof scale == 'number') {
               u.setScale(1.5 * scale, 1.5 * scale, 1.5 * scale);
             }
-            u.name = '|cffffcc00Champion|r' + u.name;
+            u.name = '|cffffcc00Champion|r ' + u.name;
             value = 2;
           }
           u.setField(
