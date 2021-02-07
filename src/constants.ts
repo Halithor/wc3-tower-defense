@@ -29,6 +29,7 @@ export class SpellIds {
   static readonly setRally = abilId('ARal');
 
   static readonly spellChainLightning = abilId('A009');
+  static readonly spellShockwave = abilId('A007');
 }
 
 export class DestIds {}

@@ -620,12 +620,6 @@ STRING 161
 |cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground & Air
 }
 
-STRING 163
-// Units: h001 (Basic Melee Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground|n|n|n|cffffcc00Upgrades into:|r|n- Quick Melee Tower|n- Melee Tower|n- Heavy Melee Tower
-}
-
 STRING 166
 // Units: h008 (Rapid Arrow Tower), Ubertip (Tooltip - Extended)
 {
@@ -1099,12 +1093,6 @@ STRING 273
  (6 slot)
 }
 
-STRING 274
-// Units: h00H (Basic Magic Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Firebolt|n|cff6699FFMana:|r 25 + 1/sec
-}
-
 STRING 275
 // Units: h006 (Basic Arrow Tower), Ubertip (Tooltip - Extended)
 {
@@ -1127,12 +1115,6 @@ STRING 282
 // Units: h00R (Chain Lightning Tower), Tip (Tooltip - Basic)
 {
 Upgrade to Chain Lightning Tower [|cffffcc00Q|r]
-}
-
-STRING 283
-// Units: h00R (Chain Lightning Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 8|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r Chain Lightning (5 targets)|n|cff6699FFMana:|r 25 + 1/sec
 }
 
 STRING 284
@@ -1163,5 +1145,71 @@ STRING 294
 // Abilities: A009 (Chain Lightning), Ubertip (Tooltip - Normal - Extended)
 {
 |cffaaaaaaSpells are cast on attack when mana is available.|r|n|nOn attack, hit the target enemy with a bolt of lightning dealing 2 x Attack Damage to the target, bouncing to up to 4 nearby units. Bounces deal 25% less damage.
+}
+
+STRING 295
+// Units: h00R (Chain Lightning Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r Chain Lightning (5 targets)|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 296
+// Units: h001 (Basic Melee Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 2.0|n|cff6699FFRange:|r Melee|n|cff6699FFTargets:|r Ground|n|n|cffffcc00Upgrades into:|r|n- Quick Melee Tower|n- Melee Tower|n- Heavy Melee Tower
+}
+
+STRING 298
+// Units: h00H (Basic Magic Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 5|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r None (requires upgrade)|n|cff6699FFMana:|r 25 + 1/sec|n|n|cffffcc00Upgrades into:|r|n- Chain Lightning Tower|n- Shockwave Tower
+}
+
+STRING 299
+// Units: h00S (Shockwave Tower), Name (Name)
+{
+Shockwave Tower
+}
+
+STRING 300
+// Units: h00S (Shockwave Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Shockwave Tower [|cffffcc00W|r]
+}
+
+STRING 301
+// Units: h00S (Shockwave Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r Shockwave|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 302
+// Units: h00S (Shockwave Tower), Hotkey (Hotkey)
+{
+W
+}
+
+STRING 303
+// Abilities: A007 (Shockwave), Tip (Tooltip - Normal)
+{
+Shockwave
+}
+
+STRING 304
+// Abilities: A007 (Shockwave), Name (Name)
+{
+Shockwave
+}
+
+STRING 305
+// Abilities: A007 (Shockwave), EditorSuffix (Editor Suffix)
+{
+ (Tower)
+}
+
+STRING 306
+// Abilities: A007 (Shockwave), Ubertip (Tooltip - Normal - Extended)
+{
+|cffaaaaaaSpells are cast on attack when mana is available.|r|n|nOn attack, launch a wave of energy at the targed enemy's location, dealing damage to any foe it passes through. |n|nDeals attack damage to all hit units, travels for 150% of attack range.
 }
 
