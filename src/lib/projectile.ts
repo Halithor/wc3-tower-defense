@@ -1,6 +1,7 @@
 /** @noSelfInFile **/
 import {
   doPeriodically,
+  Event,
   forDestructablesInCircle,
   forUnitsInRange,
   vec3,
@@ -20,6 +21,7 @@ export class Projectile {
   private destFilter?: (d: Destructable) => boolean;
   private unitFilter?: (u: Unit) => boolean;
   vertSpeed: number;
+  readonly onEnd: Event<[]>;
 
   constructor(
     private pos: Vec3,
@@ -29,6 +31,7 @@ export class Projectile {
     effectPath: string,
     private onImpact: (target: Vec3 | Unit | Destructable, pos: Vec2) => void
   ) {
+    this.onEnd = new Event<[]>();
     this.fx = new Effect(effectPath, pos.withoutZ());
     this.fx.pos = pos;
     let targetPos: Vec3;
@@ -71,8 +74,7 @@ export class Projectile {
 
     if (this.groundSpeed * interval >= distance) {
       this.onImpact(this.target, targetGroundPos);
-      this.fx.destroy();
-      this.releaseTimer();
+      this.destroyProjectile();
     } else {
       const nextGroundPos = groundPos.moveTowards(
         targetGroundPos,
@@ -87,37 +89,30 @@ export class Projectile {
       this.pos = nextPos;
 
       if (this._impactUnits) {
-        forUnitsInRange(
-          nextGroundPos,
-          80,
-          (u: Unit) => {
-            if (!this.unitFilter || this.unitFilter(u)) {
-              const absDist = u.pos
-                .withTerrainZ()
-                .add(vec3(0, 0, u.getflyHeight()))
-                .distanceTo(nextPos);
-              if (absDist > 100 + u.collisionSize) {
-                // don't hit units if they're not on the same vertical position
-                // as the projectile.
-                return;
-              }
-              this.onImpact(u, nextGroundPos);
-              if (this._destroyOnImpact) {
-                this.fx.destroy();
-                this.releaseTimer();
-              }
+        forUnitsInRange(nextGroundPos, 80, (u: Unit) => {
+          if (!this.unitFilter || this.unitFilter(u)) {
+            const absDist = u.pos
+              .withTerrainZ()
+              .add(vec3(0, 0, u.getflyHeight()))
+              .distanceTo(nextPos);
+            if (absDist > 100 + u.collisionSize) {
+              // don't hit units if they're not on the same vertical position
+              // as the projectile.
+              return;
             }
-          },
-          true
-        );
+            this.onImpact(u, nextGroundPos);
+            if (this._destroyOnImpact) {
+              this.destroyProjectile();
+            }
+          }
+        });
       }
       if (this._impactDestructables) {
         forDestructablesInCircle(nextGroundPos, 80, (d: Destructable) => {
           if (!this.destFilter || this.destFilter(d)) {
             this.onImpact(d, nextGroundPos);
             if (this._destroyOnImpact) {
-              this.fx.destroy();
-              this.releaseTimer();
+              this.destroyProjectile();
             }
           }
         });
@@ -138,7 +133,9 @@ export class Projectile {
     this.destFilter = filter ? d => filter(d) : undefined;
   }
 
-  public destroyOnImpact(value: boolean) {
-    this._destroyOnImpact = value;
+  private destroyProjectile() {
+    this.fx.destroy();
+    this.releaseTimer();
+    this.onEnd.fire();
   }
 }

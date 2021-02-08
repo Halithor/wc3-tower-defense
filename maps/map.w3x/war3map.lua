@@ -49,6 +49,8 @@ function CreateBuildingsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("h00P"), -2432.0, 4288.0, 270.000, FourCC("h00P"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00R"), -1664.0, 4544.0, 270.000, FourCC("h00R"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00S"), -1536.0, 4544.0, 270.000, FourCC("h00S"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00T"), -1664.0, 4416.0, 270.000, FourCC("h00T"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h00U"), -1536.0, 4416.0, 270.000, FourCC("h00U"))
 end
 
 function CreateUnitsForPlayer0()

@@ -1,5 +1,5 @@
 import {DefenseType, defenseTypeIndex, defenseTypeString} from 'combattypes';
-import {playerEnemies} from 'constants';
+import {getPlayerCount, playerEnemies} from 'constants';
 import {SpawnInfo} from 'system/pathinfo';
 import {
   unitId,
@@ -80,7 +80,7 @@ export class CreepSpawning {
   }
 
   spawnLevel(difficulty: number, levelInfo: LevelInfo) {
-    const maxLife = Math.round(12 * difficulty);
+    const maxLife = Math.round(16 * difficulty * getPlayerCount());
     const armor = Math.floor(difficulty / 2) + 1;
     const movespeed = Math.round(280 + difficulty);
 
