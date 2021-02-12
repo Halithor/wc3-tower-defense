@@ -7,8 +7,8 @@ import {CreepMoveOrders} from './moveorders';
 import {CreepSpawning} from './spawning';
 
 export class CreepSystem {
-  private orders: CreepMoveOrders;
-  private spawning: CreepSpawning;
+  readonly orders: CreepMoveOrders;
+  readonly spawning: CreepSpawning;
 
   constructor(readonly creepTracker: CreepTracker, pathInfo: PathInfo) {
     this.orders = new CreepMoveOrders(creepTracker, pathInfo);

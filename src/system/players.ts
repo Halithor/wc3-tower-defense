@@ -17,7 +17,9 @@ const startingFood = 7;
 const waveFoodReward = 3;
 
 export class PlayerSystem {
+  private goldFraction = 0;
   private players: MapPlayer[] = [];
+
   constructor() {
     const playArea = Rectangle.fromHandle(gg_rct_PlayArea);
     for (let i = 0; i < 6; i++) {
@@ -61,13 +63,27 @@ export class PlayerSystem {
 
   giveGold(amount: number, pos: Vec2) {
     const tt = createGoldBountyTextTag(pos, amount);
+    this.goldFraction += amount;
+    const floored = Math.floor(this.goldFraction);
+    if (floored > 0) {
+      this.goldFraction -= floored;
+    }
     this.players.forEach(p => {
-      p.gold += amount;
+      p.gold += floored;
       tt.setVisibleForPlayer(p, true);
     });
   }
 
   waveReward(waveNumber: number) {
-    this.players.forEach(p => (p.foodCap += waveFoodReward));
+    this.players.forEach(p => {
+      p.foodCap += waveFoodReward;
+      DisplayTimedTextToPlayer(
+        p.handle,
+        0,
+        0,
+        10,
+        `Wave ${waveNumber} Cleared!\n|cffaaaaaaYou have gained ${waveFoodReward} max food.|r`
+      );
+    });
   }
 }

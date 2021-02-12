@@ -7,6 +7,7 @@ import {PathInfo, SpawnInfo} from 'system/pathinfo';
 import {CreepTracker} from 'system/creeps/creeptracker';
 import {EconomicSystem} from 'system/economics/economicsystem';
 import {PlayerSystem} from 'system/players';
+import {WaveSystem} from 'system/wavesystem';
 
 export class Game {
   constructor() {}
@@ -20,8 +21,9 @@ export class Game {
       const selling = new TowerSellingSystem();
       const pathing = new PathingSystem(pathInfo);
       const economics = new EconomicSystem(creepTracker, players);
+      const creeps = new CreepSystem(creepTracker, pathInfo);
       doAfter(2, () => {
-        const spawn = new CreepSystem(creepTracker, pathInfo);
+        const waves = new WaveSystem(creeps.spawning, players);
       });
     });
   }
