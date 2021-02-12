@@ -16,8 +16,8 @@ function InitGlobals()
     udg_damage = 0
 end
 
-function CreateBuildingsForPlayer0()
-    local p = Player(0)
+function CreateNeutralHostileBuildings()
+    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
     local u
     local unitID
     local t
@@ -40,6 +40,7 @@ function CreateBuildingsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("h00F"), -3712.0, 4544.0, 270.000, FourCC("h00F"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00G"), -2560.0, 4096.0, 270.000, FourCC("h00G"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00H"), -1536.0, 4096.0, 270.000, FourCC("h00H"))
+    SetUnitState(u, UNIT_STATE_MANA, 0)
     u = BlzCreateUnitWithSkin(p, FourCC("h00K"), -2688.0, 4416.0, 270.000, FourCC("h00K"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00L"), -2560.0, 4544.0, 270.000, FourCC("h00L"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00M"), -2688.0, 4544.0, 270.000, FourCC("h00M"))
@@ -48,23 +49,23 @@ function CreateBuildingsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("h00Q"), -2688.0, 4288.0, 270.000, FourCC("h00Q"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00P"), -2432.0, 4288.0, 270.000, FourCC("h00P"))
     u = BlzCreateUnitWithSkin(p, FourCC("h00R"), -1664.0, 4544.0, 270.000, FourCC("h00R"))
+    SetUnitState(u, UNIT_STATE_MANA, 0)
     u = BlzCreateUnitWithSkin(p, FourCC("h00S"), -1536.0, 4544.0, 270.000, FourCC("h00S"))
+    SetUnitState(u, UNIT_STATE_MANA, 0)
     u = BlzCreateUnitWithSkin(p, FourCC("h00T"), -1664.0, 4416.0, 270.000, FourCC("h00T"))
+    SetUnitState(u, UNIT_STATE_MANA, 0)
     u = BlzCreateUnitWithSkin(p, FourCC("h00U"), -1536.0, 4416.0, 270.000, FourCC("h00U"))
+    SetUnitState(u, UNIT_STATE_MANA, 0)
     u = BlzCreateUnitWithSkin(p, FourCC("h00V"), -1664.0, 4288.0, 270.000, FourCC("h00V"))
+    SetUnitState(u, UNIT_STATE_MANA, 0)
 end
 
-function CreateUnitsForPlayer0()
-    local p = Player(0)
+function CreateNeutralHostile()
+    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
     local u
     local unitID
     local t
     local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1846.3, 1819.8, 54.856, FourCC("u000"))
-    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -4096.2, 4393.9, 288.312, FourCC("hrif"))
-    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -3062.4, 4381.0, 300.079, FourCC("hrif"))
-    u = BlzCreateUnitWithSkin(p, FourCC("hrif"), -2021.1, 4405.4, 55.691, FourCC("hrif"))
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -3058.9, 4089.0, 217.745, FourCC("u000"))
     u = BlzCreateUnitWithSkin(p, FourCC("n001"), 4624.7, 4978.5, 270.000, FourCC("n001"))
     u = BlzCreateUnitWithSkin(p, FourCC("n000"), 4712.7, 4990.7, 270.000, FourCC("n000"))
     u = BlzCreateUnitWithSkin(p, FourCC("n007"), 4794.3, 4982.1, 270.000, FourCC("n007"))
@@ -75,66 +76,16 @@ function CreateUnitsForPlayer0()
     u = BlzCreateUnitWithSkin(p, FourCC("n002"), 5232.9, 4996.6, 270.000, FourCC("n002"))
 end
 
-function CreateUnitsForPlayer1()
-    local p = Player(1)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1717.9, 2004.2, 60.163, FourCC("u000"))
-end
-
-function CreateUnitsForPlayer2()
-    local p = Player(2)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1861.3, 1961.3, 60.160, FourCC("u000"))
-end
-
-function CreateUnitsForPlayer3()
-    local p = Player(3)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1699.3, 1861.7, 60.160, FourCC("u000"))
-end
-
-function CreateUnitsForPlayer4()
-    local p = Player(4)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1559.0, 1886.1, 60.160, FourCC("u000"))
-end
-
-function CreateUnitsForPlayer5()
-    local p = Player(5)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("u000"), -1617.8, 1759.0, 60.160, FourCC("u000"))
-end
-
 function CreatePlayerBuildings()
-    CreateBuildingsForPlayer0()
 end
 
 function CreatePlayerUnits()
-    CreateUnitsForPlayer0()
-    CreateUnitsForPlayer1()
-    CreateUnitsForPlayer2()
-    CreateUnitsForPlayer3()
-    CreateUnitsForPlayer4()
-    CreateUnitsForPlayer5()
 end
 
 function CreateAllUnits()
+    CreateNeutralHostileBuildings()
     CreatePlayerBuildings()
+    CreateNeutralHostile()
     CreatePlayerUnits()
 end
 

@@ -154,6 +154,11 @@ export class CreepSpawning {
           u.life = Math.round(maxLife / 2);
           u.armor = armor;
           u.moveSpeed = Math.round(movespeed * 0.9);
+          const scale = u.getField(UNIT_RF_SCALING_VALUE);
+          if (typeof scale == 'number') {
+            u.setScale(0.8 * scale, 0.8 * scale, 0.8 * scale);
+          }
+          u.name = u.name + ' Mass';
           u.setField(
             UNIT_IF_DEFENSE_TYPE,
             defenseTypeIndex(levelInfo.defenseType)

@@ -32,6 +32,8 @@ export let playerComputers: MapPlayer[];
 
 export class UnitIds {
   static readonly sellTower = unitId('h005');
+
+  static readonly builderPaladin = unitId('u000');
 }
 
 export class SpellIds {

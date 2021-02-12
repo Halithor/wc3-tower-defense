@@ -1,11 +1,11 @@
-import {eventAnyUnitDies, Rectangle, Unit, unitId} from 'w3lib/src/index';
+import {onAnyUnitDecay, Unit} from 'w3lib/src/index';
 import {Creep} from './creep';
 
 // CreepTracker handles keeping track of living creeps and removing them as they die.
 export class CreepTracker {
   private creeps: {[key: number]: Creep} = {};
   constructor() {
-    eventAnyUnitDies.listen(u => {
+    onAnyUnitDecay(u => {
       if (u.id in this.creeps) {
         delete this.creeps[u.id];
       }

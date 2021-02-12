@@ -1,42 +1,27 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
 import {CreepSystem} from 'system/creeps/creepsystem';
-import {
-  abilId,
-  doAfter,
-  FogModifier,
-  onAnyUnitDamaged,
-  Players,
-  Rectangle,
-  Trigger,
-} from 'w3lib/src/index';
+import {doAfter, Rectangle} from 'w3lib/src/index';
 import {TowerSellingSystem} from 'system/towerselling';
-import {SpellIds} from 'constants';
 import {TowerSystem} from 'system/towers/towersystem';
 import {PathInfo, SpawnInfo} from 'system/pathinfo';
+import {CreepTracker} from 'system/creeps/creeptracker';
+import {EconomicSystem} from 'system/economics/economicsystem';
+import {PlayerSystem} from 'system/players';
 
 export class Game {
   constructor() {}
 
   start() {
-    for (let i = 0; i < 6; i++) {
-      const fog = FogModifier.fromRect(
-        Players[i],
-        FOG_OF_WAR_VISIBLE,
-        Rectangle.fromHandle(gg_rct_PlayArea),
-        true,
-        true
-      );
-      fog.start();
-      Players[i].setAbilityAvailable(SpellIds.allowTowerTurning, false);
-    }
-
     const pathInfo = this.setupPathInfo();
     doAfter(1, () => {
+      const players = new PlayerSystem();
+      const creepTracker = new CreepTracker();
       const towers = new TowerSystem();
       const selling = new TowerSellingSystem();
       const pathing = new PathingSystem(pathInfo);
+      const economics = new EconomicSystem(creepTracker, players);
       doAfter(2, () => {
-        const spawn = new CreepSystem(pathInfo);
+        const spawn = new CreepSystem(creepTracker, pathInfo);
       });
     });
   }
