@@ -17,6 +17,8 @@ import {
 const shockwavePath = 'Abilities\\Spells\\Orc\\Shockwave\\ShockwaveMissile.mdl';
 const warstompPath = 'Abilities\\Spells\\Orc\\WarStomp\\WarStompCaster.mdl';
 const energyNovaPath = 'Units\\NightElf\\Wisp\\WispExplode.mdl';
+const stormboltEffectPath =
+  'Abilities\\Spells\\Human\\StormBolt\\StormBoltMissile.mdl';
 
 const lightningDamage = 3.0;
 const lightningBounceScaling = 0.75;
@@ -30,12 +32,15 @@ const novaDamageFactor = 2;
 const novaPrimaryFactor = 1;
 const novaAoEFactor = 0.33;
 
+const stormhammerDamageFactor = 5;
+
 export class SpellTowerEffects {
   constructor() {
     this.setupChainLightning();
     this.setupShockwave();
     this.setupWarstomp();
     this.setupNova();
+    this.setupStormbolt();
   }
 
   private setupSpell(
@@ -58,53 +63,49 @@ export class SpellTowerEffects {
   }
 
   private setupChainLightning() {
-    this.setupSpell(
-      SpellIds.spellChainLightning,
-      10,
-      (target, attacker, info) => {
-        const atkType = attackTypeInvert(info.attackType);
-        let source = attacker;
-        let targ = target;
-        let damage = info.damage * lightningDamage;
-        let alreadyHit = new Group();
-        doPeriodicallyCounted(
-          0.15,
-          5,
-          cancel => {
-            alreadyHit.addUnit(targ);
-            const lightning = AddLightningEx(
-              'CLPB',
-              false,
-              source.pos.x,
-              source.pos.y,
-              40,
-              targ.pos.x,
-              targ.pos.y,
-              40
-            );
-            doAfter(0.3, () => DestroyLightning(lightning));
-            dealDamageSpell(attacker, targ, damage, true, atkType);
-            let nearest = findNearestUnit(
-              targ.pos,
-              500,
-              u => isUnitCreep(u) && !alreadyHit.hasUnit(u) && u.isAlive()
-            );
-            if (!nearest) {
-              cancel();
-              return;
-            }
-            source = targ;
-            targ = nearest;
-            damage *= lightningBounceScaling;
-          },
-          () => alreadyHit.destroy()
-        );
-      }
-    );
+    this.setupSpell(SpellIds.chainLightning, 10, (target, attacker, info) => {
+      const atkType = attackTypeInvert(info.attackType);
+      let source = attacker;
+      let targ = target;
+      let damage = info.damage * lightningDamage;
+      let alreadyHit = new Group();
+      doPeriodicallyCounted(
+        0.15,
+        5,
+        cancel => {
+          alreadyHit.addUnit(targ);
+          const lightning = AddLightningEx(
+            'CLPB',
+            false,
+            source.pos.x,
+            source.pos.y,
+            40,
+            targ.pos.x,
+            targ.pos.y,
+            40
+          );
+          doAfter(0.3, () => DestroyLightning(lightning));
+          dealDamageSpell(attacker, targ, damage, true, atkType);
+          let nearest = findNearestUnit(
+            targ.pos,
+            500,
+            u => isUnitCreep(u) && !alreadyHit.hasUnit(u) && u.isAlive()
+          );
+          if (!nearest) {
+            cancel();
+            return;
+          }
+          source = targ;
+          targ = nearest;
+          damage *= lightningBounceScaling;
+        },
+        () => alreadyHit.destroy()
+      );
+    });
   }
 
   private setupShockwave() {
-    this.setupSpell(SpellIds.spellShockwave, 10, (target, attacker, info) => {
+    this.setupSpell(SpellIds.shockwave, 10, (target, attacker, info) => {
       const atkType = attackTypeInvert(info.attackType);
       const travelDistance =
         attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) *
@@ -140,7 +141,7 @@ export class SpellTowerEffects {
   }
 
   private setupWarstomp() {
-    this.setupSpell(SpellIds.spellWarstomp, 10, (target, attacker, info) => {
+    this.setupSpell(SpellIds.warstomp, 10, (target, attacker, info) => {
       const atkType = attackTypeInvert(info.attackType);
       const range = attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0);
       const dmg = info.damage * warstompDamageFactor;
@@ -154,7 +155,7 @@ export class SpellTowerEffects {
   }
 
   private setupNova() {
-    this.setupSpell(SpellIds.spellNova, 10, (target, attacker, info) => {
+    this.setupSpell(SpellIds.energyNova, 10, (target, attacker, info) => {
       const atkType = attackTypeInvert(info.attackType);
       const aoe =
         attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) *
@@ -168,6 +169,25 @@ export class SpellTowerEffects {
         }
       });
       flashEffect(energyNovaPath, target.pos);
+    });
+  }
+
+  private setupStormbolt() {
+    this.setupSpell(SpellIds.stormbolt, 10, (target, attacker, info) => {
+      const atkType = attackTypeInvert(info.attackType);
+      const dmg = info.damage * stormhammerDamageFactor;
+      const projectile = new Projectile(
+        attacker.pos.withZ(60),
+        target,
+        1200,
+        100,
+        stormboltEffectPath,
+        u => {
+          if (u instanceof Unit) {
+            dealDamageSpell(attacker, u, dmg, false, atkType);
+          }
+        }
+      );
     });
   }
 }

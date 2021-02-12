@@ -1291,12 +1291,6 @@ STRING 327
 S
 }
 
-STRING 328
-// Units: h00U (Energy Nova Tower), Ubertip (Tooltip - Extended)
-{
-|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Warstomp|n|cff6699FFMana:|r 25 + 1/sec
-}
-
 STRING 329
 // Abilities: A00C (Energy Nova), Tip (Tooltip - Normal)
 {
@@ -1307,5 +1301,59 @@ STRING 330
 // Abilities: A00C (Energy Nova), Name (Name)
 {
 Energy Nova
+}
+
+STRING 333
+// Abilities: A00D (Storm Bolt), EditorSuffix (Editor Suffix)
+{
+ (Tower)
+}
+
+STRING 334
+// Abilities: A00D (Storm Bolt), Ubertip (Tooltip - Normal - Extended)
+{
+|cffaaaaaaSpells are cast on attack when mana is available.|r|n|nOn attack, throw a magical hammer at the target, dealing high damage. |n|nDeals 500% attack damage to the target of the attack.
+}
+
+STRING 335
+// Abilities: A00D (Storm Bolt), Tip (Tooltip - Normal)
+{
+Storm Bolt
+}
+
+STRING 336
+// Abilities: A00D (Storm Bolt), Name (Name)
+{
+Storm Bolt
+}
+
+STRING 337
+// Units: h00V (Storm Bolt Tower), Name (Name)
+{
+Storm Bolt Tower
+}
+
+STRING 338
+// Units: h00V (Storm Bolt Tower), Tip (Tooltip - Basic)
+{
+Upgrade to Storm Bolt Tower [|cffffcc00Z|r]
+}
+
+STRING 339
+// Units: h00V (Storm Bolt Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground, Air|n|cff6699FFSpells:|r Storm Bolt|n|cff6699FFMana:|r 25 + 1/sec
+}
+
+STRING 340
+// Units: h00V (Storm Bolt Tower), Hotkey (Hotkey)
+{
+Z
+}
+
+STRING 341
+// Units: h00U (Energy Nova Tower), Ubertip (Tooltip - Extended)
+{
+|cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Energy Nova|n|cff6699FFMana:|r 25 + 1/sec
 }
 

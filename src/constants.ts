@@ -38,10 +38,11 @@ export class SpellIds {
   static readonly allowTowerTurning = abilId('A00B');
   static readonly setRally = abilId('ARal');
 
-  static readonly spellChainLightning = abilId('A009');
-  static readonly spellShockwave = abilId('A007');
-  static readonly spellWarstomp = abilId('A008');
-  static readonly spellNova = abilId('A00C');
+  static readonly chainLightning = abilId('A009');
+  static readonly shockwave = abilId('A007');
+  static readonly warstomp = abilId('A008');
+  static readonly energyNova = abilId('A00C');
+  static readonly stormbolt = abilId('A00D');
 }
 
 export class DestIds {}
