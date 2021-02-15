@@ -19,13 +19,27 @@ export class TowerStats {
     readonly manaRegenPrec: number = 0
   ) {}
 
-  express(tower: Unit) {
+  private calcExpressed() {
     const atkType = this.attackType;
-    const dmg = this.damage * ((100 + this.damagePerc) * 0.01);
-    const range = this.range * ((100 + this.rangePerc) * 0.01);
+    const dmg = Math.round(this.damage * ((100 + this.damagePerc) * 0.01));
+    const range = Math.round(this.range * ((100 + this.rangePerc) * 0.01));
     const cd = this.cooldown / ((100 + this.cooldownPerc) * 0.01);
-    const maxMana = this.manaMax * ((100 + this.manaMaxPerc) * 0.01);
+    const manaMax = Math.round(
+      this.manaMax * ((100 + this.manaMaxPerc) * 0.01)
+    );
     const manaRegen = this.manaRegen * ((100 + this.manaRegenPrec) * 0.01);
+    return {
+      atkType,
+      dmg,
+      range,
+      cd,
+      manaMax,
+      manaRegen,
+    };
+  }
+
+  express(tower: Unit) {
+    const {atkType, dmg, range, cd, manaMax, manaRegen} = this.calcExpressed();
 
     tower.setWeaponField(
       UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE,
@@ -42,7 +56,7 @@ export class TowerStats {
     tower.setWeaponField(UNIT_WEAPON_RF_ATTACK_RANGE, 1, rangeDiff);
     tower.setWeaponField(UNIT_WEAPON_RF_ATTACK_BASE_COOLDOWN, 0, cd);
     tower.acquireRange = range + 128;
-    tower.maxMana = maxMana;
+    tower.maxMana = manaMax;
     tower.setField(UNIT_RF_MANA_REGENERATION, manaRegen);
   }
 
@@ -66,13 +80,26 @@ export class TowerStats {
     );
   }
 
+  // integratePercentages merges the percent increases into the resulting stats.
+  integratePercentages(): TowerStats {
+    const {atkType, dmg, range, cd, manaMax, manaRegen} = this.calcExpressed();
+    return new TowerStats(
+      atkType,
+      dmg,
+      0,
+      range,
+      0,
+      cd,
+      0,
+      manaMax,
+      0,
+      manaRegen,
+      0
+    );
+  }
+
   toString(): string {
-    const atkType = this.attackType;
-    const dmg = this.damage * ((100 + this.damagePerc) * 0.01);
-    const range = this.range * ((100 + this.rangePerc) * 0.01);
-    const cd = this.cooldown / ((100 + this.cooldownPerc) * 0.01);
-    const manaMax = this.manaMax * ((100 + this.manaMaxPerc) * 0.01);
-    const manaRegen = this.manaRegen * ((100 + this.manaRegenPrec) * 0.01);
+    const {atkType, dmg, range, cd, manaMax, manaRegen} = this.calcExpressed();
 
     let str = `|cff6699ffAttack Type:|r ${attackTypeString(atkType)}
 |cff6699ffDamage:|r ${this.damage} + ${this.damagePerc}% = ${Math.round(dmg)}
@@ -89,5 +116,21 @@ export class TowerStats {
       }% = ${string.format('%.2f', 1 / manaRegen)}`;
     }
     return str;
+  }
+
+  static empty(): TowerStats {
+    return new TowerStats(AttackType.Whoknows, 0, 0, 0, 0, 0, 0);
+  }
+
+  static damage(flat: number, percentage: number): TowerStats {
+    return new TowerStats(AttackType.Whoknows, flat, percentage, 0, 0, 0, 0);
+  }
+
+  static range(flat: number, percentage: number): TowerStats {
+    return new TowerStats(AttackType.Whoknows, 0, 0, flat, percentage, 0, 0);
+  }
+
+  static attackSpeed(flat: number, percentage: number): TowerStats {
+    return new TowerStats(AttackType.Whoknows, 0, 0, 0, 0, flat, percentage);
   }
 }

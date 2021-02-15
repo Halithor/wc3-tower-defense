@@ -4,11 +4,15 @@ import {TowerStats} from './towerstats';
 // TowerInfo contains the statistics for a give tower.
 export class TowerInfo {
   readonly statMods: TowerStats[] = [];
+  private upgradeStats: TowerStats;
+
   constructor(
     readonly tower: Unit,
     readonly baseStats: TowerStats,
-    readonly _goldValue: number
+    private _goldValue: number
   ) {
+    this.upgradeStats = TowerStats.empty();
+
     this.applyStats();
   }
 
@@ -23,7 +27,9 @@ export class TowerInfo {
   }
 
   private applyStats() {
-    let merged = this.baseStats;
+    // Start with the base stats + upgrades as an integrated set of base values
+    let merged = this.baseStats.merge(this.upgradeStats).integratePercentages();
+
     this.statMods.forEach(mod => {
       merged = merged.merge(mod);
       print(`Merged as:\n${merged.toString()}`);
@@ -33,6 +39,17 @@ export class TowerInfo {
     );
     merged.express(this.tower);
     print('express finish');
+  }
+
+  addUpgradeStats(stats: TowerStats) {
+    this.upgradeStats = this.upgradeStats.merge(stats);
+    this.applyStats();
+  }
+
+  // upgradeInto moves important information from one tower to another, as in an upgrade.
+  upgradeInto(other: TowerInfo) {
+    other.addStatMods(...this.statMods)
+    other.addUpgradeStats(this.upgradeStats)
   }
 
   get goldValue(): number {

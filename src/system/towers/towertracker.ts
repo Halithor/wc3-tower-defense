@@ -60,7 +60,6 @@ export class TowerTracker {
   private onUpgrade(tower: Unit) {
     print(`${tower.name} onUpgrade`);
     const prev = this.getTower(tower);
-
     this.removeTower(tower);
     this.onConstruction(tower);
     const next = this.getTower(tower);
@@ -68,9 +67,7 @@ export class TowerTracker {
     if (!prev || !next) {
       return;
     }
-    next.addStatMods(...prev.statMods);
-
-    // TODO move other things over
+    prev.upgradeInto(next);
   }
 
   addTower(info: TowerInfo) {

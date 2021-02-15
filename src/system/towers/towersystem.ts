@@ -6,6 +6,7 @@ import {
 import {SpellTowerEffects} from './spelltowers';
 import {TowerSellingSystem} from './towerselling';
 import {TowerTracker} from './towertracker';
+import {TowerUpgrades} from './towerupgrades';
 
 export class TowerSystem {
   constructor(readonly towerTracker: TowerTracker) {
@@ -13,6 +14,7 @@ export class TowerSystem {
 
     const towerSelling = new TowerSellingSystem(towerTracker);
     const spellTowerEffects = new SpellTowerEffects();
+    const towerUpgrades = new TowerUpgrades(towerTracker);
   }
 
   private removeRallyAbilityOnTowers() {

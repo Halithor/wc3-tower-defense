@@ -1357,3 +1357,51 @@ STRING 341
 |cff6699FFDamage:|r 10|n|cff6699FFCooldown:|r 3.0|n|cff6699FFRange:|r 700|n|cff6699FFTargets:|r Ground|n|cff6699FFSpells:|r Energy Nova|n|cff6699FFMana:|r 25 + 1/sec
 }
 
+STRING 343
+// Units: h00W (Upgrade Damage), Tip (Tooltip - Basic)
+{
+Upgrade Damage (|cffffcc00Z|r)
+}
+
+STRING 344
+// Units: h00W (Upgrade Damage), Name (Name)
+{
+Upgrade Damage
+}
+
+STRING 345
+// Units: h00W (Upgrade Damage), Hotkey (Hotkey)
+{
+Z
+}
+
+STRING 346
+// Units: h00W (Upgrade Damage), Ubertip (Tooltip - Extended)
+{
+Increase the |cff6699ffbase damage|r of this tower by |cffffcc0020%|r.
+}
+
+STRING 349
+// Units: h00X (Upgrade Attack Speed), Name (Name)
+{
+Upgrade Attack Speed
+}
+
+STRING 351
+// Units: h00X (Upgrade Attack Speed), Ubertip (Tooltip - Extended)
+{
+Increase the |cff6699ffattack speed|r of this tower by |cffffcc0010%|r.
+}
+
+STRING 353
+// Units: h00X (Upgrade Attack Speed), Tip (Tooltip - Basic)
+{
+Upgrade Attack Speed (|cffffcc00X|r)
+}
+
+STRING 354
+// Units: h00X (Upgrade Attack Speed), Hotkey (Hotkey)
+{
+X
+}
+
