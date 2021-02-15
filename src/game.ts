@@ -9,6 +9,7 @@ import {EconomicSystem} from 'system/economics/economicsystem';
 import {PlayerSystem} from 'system/players';
 import {WaveSystem} from 'system/wavesystem';
 import {TowerTracker} from 'system/towers/towertracker';
+import {Quests} from 'quests';
 
 export class Game {
   constructor() {}
@@ -17,6 +18,7 @@ export class Game {
     const pathInfo = this.setupPathInfo();
     doAfter(1, () => {
       const players = new PlayerSystem();
+      const quests = new Quests();
 
       // Trackers
       const creepTracker = new CreepTracker();

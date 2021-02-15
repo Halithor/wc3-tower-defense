@@ -5,7 +5,7 @@ import {TowerStats} from './towerstats';
 import {TowerTracker} from './towertracker';
 
 const dmgUpgrade = TowerStats.damage(0, 20);
-const spdUpgrade = TowerStats.attackSpeed(0, 10);
+const spdUpgrade = TowerStats.attackSpeed(0, 20);
 
 export class TowerUpgrades {
   constructor(tracker: TowerTracker) {

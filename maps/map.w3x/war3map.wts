@@ -1375,22 +1375,10 @@ STRING 345
 Z
 }
 
-STRING 346
-// Units: h00W (Upgrade Damage), Ubertip (Tooltip - Extended)
-{
-Increase the |cff6699ffbase damage|r of this tower by |cffffcc0020%|r.
-}
-
 STRING 349
 // Units: h00X (Upgrade Attack Speed), Name (Name)
 {
 Upgrade Attack Speed
-}
-
-STRING 351
-// Units: h00X (Upgrade Attack Speed), Ubertip (Tooltip - Extended)
-{
-Increase the |cff6699ffattack speed|r of this tower by |cffffcc0010%|r.
 }
 
 STRING 353
@@ -1403,5 +1391,17 @@ STRING 354
 // Units: h00X (Upgrade Attack Speed), Hotkey (Hotkey)
 {
 X
+}
+
+STRING 355
+// Units: h00W (Upgrade Damage), Ubertip (Tooltip - Extended)
+{
+Increase the |cff6699ffbase damage|r of this tower by |cffffcc0020%|r additively. |cff6699FFBase damage|r is computed before applying any additional modifiers.
+}
+
+STRING 358
+// Units: h00X (Upgrade Attack Speed), Ubertip (Tooltip - Extended)
+{
+Increase the |cff6699ffbase attack speed|r of this tower by |cffffcc0020|r additively. |cff6699FFBase attack speed|r is computed before applying any modifiers.
 }
 
