@@ -5,6 +5,7 @@ export enum AttackType {
   Frost,
   Natural,
   Arcane,
+  Whoknows,
 }
 
 export function attackTypeString(val: AttackType): string {
@@ -21,6 +22,8 @@ export function attackTypeString(val: AttackType): string {
       return 'Natural';
     case AttackType.Arcane:
       return 'Arcane';
+    case AttackType.Whoknows:
+      return 'Who Knows?';
     default:
       const _checkExhaustive: never = val;
       throw new Error('should not happen');
@@ -41,6 +44,8 @@ export function attackTypeIndex(val: AttackType): number {
       return 5;
     case AttackType.Arcane:
       return 4;
+    case AttackType.Whoknows:
+      return 1;
     default:
       const _checkExhaustive: never = val;
       throw new Error('should not happen');
@@ -61,6 +66,8 @@ export function attackTypeConvert(val: AttackType): attacktype {
       return ATTACK_TYPE_CHAOS;
     case AttackType.Arcane:
       return ATTACK_TYPE_MAGIC;
+    case AttackType.Whoknows:
+      return ATTACK_TYPE_MELEE;
     default:
       const _checkExhaustive: never = val;
       throw new Error('should not happen');

@@ -1,13 +1,14 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
 import {CreepSystem} from 'system/creeps/creepsystem';
 import {doAfter, Rectangle} from 'w3lib/src/index';
-import {TowerSellingSystem} from 'system/towerselling';
+import {TowerSellingSystem} from 'system/towers/towerselling';
 import {TowerSystem} from 'system/towers/towersystem';
 import {PathInfo, SpawnInfo} from 'system/pathinfo';
 import {CreepTracker} from 'system/creeps/creeptracker';
 import {EconomicSystem} from 'system/economics/economicsystem';
 import {PlayerSystem} from 'system/players';
 import {WaveSystem} from 'system/wavesystem';
+import {TowerTracker} from 'system/towers/towertracker';
 
 export class Game {
   constructor() {}
@@ -16,12 +17,18 @@ export class Game {
     const pathInfo = this.setupPathInfo();
     doAfter(1, () => {
       const players = new PlayerSystem();
+
+      // Trackers
       const creepTracker = new CreepTracker();
-      const towers = new TowerSystem();
-      const selling = new TowerSellingSystem();
+      const towerTracker = new TowerTracker();
+
+      // Other systems
+      const towers = new TowerSystem(towerTracker);
       const pathing = new PathingSystem(pathInfo);
       const economics = new EconomicSystem(creepTracker, players);
       const creeps = new CreepSystem(creepTracker, pathInfo);
+
+      // delay the start of the game a second
       doAfter(2, () => {
         const waves = new WaveSystem(creeps.spawning, players);
       });

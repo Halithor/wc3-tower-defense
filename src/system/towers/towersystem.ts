@@ -4,11 +4,14 @@ import {
   onAnyUnitUpgradeFinish,
 } from 'w3lib/src/index';
 import {SpellTowerEffects} from './spelltowers';
+import {TowerSellingSystem} from './towerselling';
+import {TowerTracker} from './towertracker';
 
 export class TowerSystem {
-  constructor() {
+  constructor(readonly towerTracker: TowerTracker) {
     this.removeRallyAbilityOnTowers();
 
+    const towerSelling = new TowerSellingSystem(towerTracker);
     const spellTowerEffects = new SpellTowerEffects();
   }
 
