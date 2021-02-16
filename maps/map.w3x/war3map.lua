@@ -16,15 +16,6 @@ function InitGlobals()
     udg_damage = 0
 end
 
-function CreateBuildingsForPlayer0()
-    local p = Player(0)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("h004"), -1536.0, 1728.0, 270.000, FourCC("h004"))
-end
-
 function CreateUnitsForPlayer0()
     local p = Player(0)
     local u
@@ -89,7 +80,6 @@ function CreateNeutralHostile()
 end
 
 function CreatePlayerBuildings()
-    CreateBuildingsForPlayer0()
 end
 
 function CreatePlayerUnits()
