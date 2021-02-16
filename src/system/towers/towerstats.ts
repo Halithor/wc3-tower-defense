@@ -110,9 +110,9 @@ export class TowerStats {
       str += `\n|cff6699ffMana:|r ${this.manaMax} + ${
         this.manaMaxPerc
       }% = ${Math.round(manaMax)}
-|cff6699ffMana Regen:|r ${this.manaRegen} + ${
+|cff6699ffMana Regen:|r ${string.format('%.2f', this.manaRegen)} + ${
         this.manaRegenPrec
-      }% = ${string.format('%.2f', 1 / manaRegen)}`;
+      }% = ${string.format('%.2f', manaRegen)}`;
     }
     return str;
   }

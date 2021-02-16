@@ -24,9 +24,9 @@ export class CreepSpawning {
 
   spawnLevel(difficulty: number, levelInfo: WaveInfo, group: Group): Event<[]> {
     const spawnFinishedEvent = new Event<[]>();
-    const maxLife = Math.round(16 * difficulty * getPlayerCount());
+    const maxLife = Math.round(12 * difficulty * getPlayerCount());
     const armor = Math.floor(difficulty / 2) + 1;
-    const movespeed = Math.round(280 + difficulty);
+    const movespeed = Math.round(240 + difficulty);
 
     const uid = CreepIds.list[Math.floor(Math.random() * CreepIds.list.length)];
     print(
@@ -75,8 +75,8 @@ export class CreepSpawning {
           );
           u.removeGuardPosition();
           u.issueOrderAt('move', spawnInfo.moveTarget.center);
-          u.maxLife = maxLife * 20;
-          u.life = maxLife * 20;
+          u.maxLife = maxLife * 10;
+          u.life = maxLife * 10;
           u.armor = armor * 3;
           u.moveSpeed = Math.floor(movespeed * 0.8);
           const scale = u.getField(UNIT_RF_SCALING_VALUE);
@@ -148,6 +148,7 @@ export class CreepSpawning {
             if (creepIndex === 1 || creepIndex === 3 || creepIndex === 5) {
               u.maxLife = Math.round(maxLife * 2.5);
               u.life = Math.round(maxLife * 2.5);
+              u.armor = armor * 2;
               const scale = u.getField(UNIT_RF_SCALING_VALUE);
               if (typeof scale == 'number') {
                 u.setScale(1.5 * scale, 1.5 * scale, 1.5 * scale);

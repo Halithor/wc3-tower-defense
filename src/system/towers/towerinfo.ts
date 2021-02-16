@@ -27,7 +27,6 @@ export class TowerInfo {
   }
 
   private applyStats() {
-
     this.stats.express(this.tower);
   }
 
@@ -47,9 +46,13 @@ export class TowerInfo {
   }
 
   get stats(): TowerStats {
+    print(
+      `Stats w/ Base:\n${this.baseStats.toString()}\nand upgrades:\n ${this.upgradeStats.toString()}`
+    );
     // Start with the base stats + upgrades as an integrated set of base values
     let merged = this.baseStats.merge(this.upgradeStats).integratePercentages();
 
+    print(`merged:\n${merged.toString()}`);
     this.statMods.forEach(mod => {
       merged = merged.merge(mod);
     });

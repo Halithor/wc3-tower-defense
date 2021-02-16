@@ -36,7 +36,7 @@ export class UnitIds {
   static readonly builderPaladin = unitId('u000');
 
   static readonly upgradeDamage = unitId('h00W');
-  static readonly upgradeSpeed = unitId('h00x');
+  static readonly upgradeSpeed = unitId('h00X');
 }
 
 export class SpellIds {

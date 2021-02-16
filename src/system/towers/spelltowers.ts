@@ -108,7 +108,7 @@ export class SpellTowerEffects {
     this.setupSpell(SpellIds.shockwave, 10, (target, attacker, info) => {
       const atkType = attackTypeInvert(info.attackType);
       const travelDistance =
-        attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) *
+        (attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) + 64) *
         shockwaveRangeFactor;
       const targetPos = attacker.pos.add(
         attacker.pos.normalizedPointerTo(target.pos).scale(travelDistance)
@@ -143,7 +143,8 @@ export class SpellTowerEffects {
   private setupWarstomp() {
     this.setupSpell(SpellIds.warstomp, 10, (target, attacker, info) => {
       const atkType = attackTypeInvert(info.attackType);
-      const range = attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0);
+      const range =
+        attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) + 64;
       const dmg = info.damage * warstompDamageFactor;
       flashEffect(warstompPath, attacker.pos);
       forUnitsInRange(attacker.pos, range, u => {
@@ -158,7 +159,7 @@ export class SpellTowerEffects {
     this.setupSpell(SpellIds.energyNova, 10, (target, attacker, info) => {
       const atkType = attackTypeInvert(info.attackType);
       const aoe =
-        attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) *
+        (attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) + 64) *
         novaAoEFactor;
       const dmg = info.damage * novaDamageFactor;
       const primaryDamage = info.damage * novaPrimaryFactor;
