@@ -15,7 +15,7 @@ export class TowerStats {
     readonly cooldownPerc: number,
     readonly manaMax: number = 0,
     readonly manaMaxPerc: number = 0,
-    readonly manaRegen: number = 1.0,
+    readonly manaRegen: number = 0,
     readonly manaRegenPrec: number = 0
   ) {}
 
@@ -52,7 +52,6 @@ export class TowerStats {
     // expected. The 'setter' is actually an 'add to current value"
     const curRange = tower.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0);
     const rangeDiff = range - curRange;
-    print(`ranging: ${range} - ${curRange} = ${rangeDiff}`);
     tower.setWeaponField(UNIT_WEAPON_RF_ATTACK_RANGE, 1, rangeDiff);
     tower.setWeaponField(UNIT_WEAPON_RF_ATTACK_BASE_COOLDOWN, 0, cd);
     tower.acquireRange = range + 128;

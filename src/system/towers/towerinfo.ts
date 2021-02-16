@@ -27,18 +27,8 @@ export class TowerInfo {
   }
 
   private applyStats() {
-    // Start with the base stats + upgrades as an integrated set of base values
-    let merged = this.baseStats.merge(this.upgradeStats).integratePercentages();
 
-    this.statMods.forEach(mod => {
-      merged = merged.merge(mod);
-      print(`Merged as:\n${merged.toString()}`);
-    });
-    print(
-      `|cffffcc00Expressing ${this.tower.name} as|r:\n${merged.toString()}`
-    );
-    merged.express(this.tower);
-    print('express finish');
+    this.stats.express(this.tower);
   }
 
   addUpgradeStats(stats: TowerStats) {
@@ -48,11 +38,21 @@ export class TowerInfo {
 
   // upgradeInto moves important information from one tower to another, as in an upgrade.
   upgradeInto(other: TowerInfo) {
-    other.addStatMods(...this.statMods)
-    other.addUpgradeStats(this.upgradeStats)
+    other.addStatMods(...this.statMods);
+    other.addUpgradeStats(this.upgradeStats);
   }
 
   get goldValue(): number {
     return this._goldValue;
+  }
+
+  get stats(): TowerStats {
+    // Start with the base stats + upgrades as an integrated set of base values
+    let merged = this.baseStats.merge(this.upgradeStats).integratePercentages();
+
+    this.statMods.forEach(mod => {
+      merged = merged.merge(mod);
+    });
+    return merged;
   }
 }

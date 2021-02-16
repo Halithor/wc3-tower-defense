@@ -1405,3 +1405,27 @@ STRING 358
 Increase the |cff6699ffbase attack speed|r of this tower by |cffffcc0020|r additively. |cff6699FFBase attack speed|r is computed before applying any modifiers.
 }
 
+STRING 360
+// Abilities: A00E (Show Tower Stats), Name (Name)
+{
+Show Tower Stats
+}
+
+STRING 362
+// Abilities: A00E (Show Tower Stats), Ubertip (Tooltip - Normal - Extended)
+{
+Prints the statistics and creates indicators showing the attack range for this tower.
+}
+
+STRING 363
+// Abilities: A00E (Show Tower Stats), Tip (Tooltip - Normal)
+{
+Show Tower Stats (|cffffcc00R|r)
+}
+
+STRING 364
+// Abilities: A00E (Show Tower Stats), Hotkey (Hotkey - Normal)
+{
+R
+}
+

@@ -42,6 +42,7 @@ export class UnitIds {
 export class SpellIds {
   static readonly allowTowerTurning = abilId('A00B');
   static readonly setRally = abilId('ARal');
+  static readonly showTowerStats = abilId('A00E');
 
   static readonly chainLightning = abilId('A009');
   static readonly shockwave = abilId('A007');

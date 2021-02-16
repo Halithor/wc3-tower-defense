@@ -25,7 +25,6 @@ export class TowerUpgrades {
       } else {
         return;
       }
-      print(`Added ${trained.name} upgrade to ${tower.name}`);
       info.addUpgradeStats(upgrade);
     });
   }

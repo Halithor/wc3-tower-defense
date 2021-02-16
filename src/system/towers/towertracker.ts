@@ -32,25 +32,9 @@ export class TowerTracker {
       }
       this.onUpgrade(tower);
     });
-    const test = new Trigger();
-    test.registerPlayerChatEvent(Players[0], '-range', false);
-    test.addAction(() => {
-      const selected = Group.fromHandle(GetUnitsSelectedAll(Players[0].handle));
-      selected.for(() => {
-        const u = Unit.fromHandle(GetEnumUnit());
-        const info = this.getTower(u);
-        if (info) {
-          print(`adding 10% range to ${u.name}`);
-          info.addStatMods(
-            new TowerStats(AttackType.Whoknows, 0, 10, 0, 10, 0, 0)
-          );
-        }
-      });
-    });
   }
 
   private onConstruction(tower: Unit) {
-    print(`${tower.name} onConstruction`);
     const baseStats = baseTowerStats(tower.typeId);
     this.addTower(
       new TowerInfo(tower, baseStats, towerGoldValue(tower.typeId))
@@ -58,7 +42,6 @@ export class TowerTracker {
   }
 
   private onUpgrade(tower: Unit) {
-    print(`${tower.name} onUpgrade`);
     const prev = this.getTower(tower);
     this.removeTower(tower);
     this.onConstruction(tower);

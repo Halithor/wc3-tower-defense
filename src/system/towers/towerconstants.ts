@@ -13,9 +13,9 @@ export class TowerIds {
   static readonly basicRockTower = unitId('h00G');
 
   // Melee Towers
-  static readonly rpdMeleeTower = unitId('h004');
+  static readonly rpdMeleeTower = unitId('h002');
   static readonly stdMeleeTower = unitId('h003');
-  static readonly hvyMeleeTower = unitId('h002');
+  static readonly hvyMeleeTower = unitId('h004');
 
   // Single towers
   static readonly rpdSpearTower = unitId('h00F');
