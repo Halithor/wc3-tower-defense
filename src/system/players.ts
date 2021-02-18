@@ -21,37 +21,13 @@ export class PlayerSystem {
   private players: MapPlayer[] = [];
 
   constructor() {
-    const playArea = Rectangle.fromHandle(gg_rct_PlayArea);
     for (let i = 0; i < 6; i++) {
       const p = Players[i];
       if (!p.isIngame()) {
         continue;
       }
       this.players.push(p);
-      p.gold = startingGold;
-      p.foodCap = startingFood;
-
-      const fog = FogModifier.fromRect(
-        p,
-        FOG_OF_WAR_VISIBLE,
-        playArea,
-        true,
-        true
-      );
-      fog.start();
       p.setAbilityAvailable(SpellIds.allowTowerTurning, false);
-      const builder = new Unit(
-        p,
-        UnitIds.builderPaladin,
-        playArea.center,
-        degrees(270)
-      );
-      p.selectUnitSingle(builder);
-      SetCameraPositionForPlayer(
-        p.handle,
-        playArea.center.x,
-        playArea.center.y
-      );
     }
     onAnyPlayerLeaves(leaving => {
       const idx = this.players.indexOf(leaving);
@@ -85,5 +61,18 @@ export class PlayerSystem {
         `Wave ${waveNumber} Cleared!\n|cffaaaaaaYou have gained ${waveFoodReward} max food.|r`
       );
     });
+  }
+
+  selectClass(player: MapPlayer) {
+    player.gold = startingGold;
+    player.foodCap = startingFood;
+    const fog = FogModifier.fromRect(
+      player,
+      FOG_OF_WAR_VISIBLE,
+      Rectangle.fromHandle(gg_rct_PlayArea),
+      true,
+      true
+    );
+    fog.start();
   }
 }

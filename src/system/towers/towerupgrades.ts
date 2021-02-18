@@ -25,7 +25,7 @@ export class TowerUpgrades {
       } else {
         return;
       }
-      info.addUpgradeStats(upgrade);
+      info.addUpgradeStats(upgrade, 10);
     });
   }
 }

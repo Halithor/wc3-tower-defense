@@ -1,22 +1,21 @@
 import {AttackType} from 'combattypes';
 import {
-  Group,
+  Event,
   onAnyUnitConstructionFinish,
   onAnyUnitDeath,
   onAnyUnitUpgradeFinish,
-  onAnyUnitUpgradeStart,
-  Players,
-  Trigger,
   Unit,
 } from 'w3lib/src/index';
 import {baseTowerStats, isUnitTower, towerGoldValue} from './towerconstants';
 import {TowerInfo} from './towerinfo';
-import {TowerStats} from './towerstats';
 
 // TowerTracker tracks the association of TowerInfos with a given unit
 export class TowerTracker {
+  readonly eventNewTower: Event<[info: TowerInfo]>;
   private towers: {[key: number]: TowerInfo} = {};
   constructor() {
+    this.eventNewTower = new Event<[info: TowerInfo]>();
+
     onAnyUnitDeath(dying => {
       this.removeTower(dying);
     });
@@ -36,21 +35,21 @@ export class TowerTracker {
 
   private onConstruction(tower: Unit) {
     const baseStats = baseTowerStats(tower.typeId);
-    this.addTower(
-      new TowerInfo(tower, baseStats, towerGoldValue(tower.typeId))
-    );
+    const info = new TowerInfo(tower, baseStats, towerGoldValue(tower.typeId));
+    this.addTower(info);
+    this.eventNewTower.fire(info);
   }
 
   private onUpgrade(tower: Unit) {
-    const prev = this.getTower(tower);
+    const prevInfo = this.getTower(tower);
     this.removeTower(tower);
-    this.onConstruction(tower);
-    const next = this.getTower(tower);
-
-    if (!prev || !next) {
-      return;
+    const baseStats = baseTowerStats(tower.typeId);
+    const info = new TowerInfo(tower, baseStats, towerGoldValue(tower.typeId));
+    if (prevInfo) {
+      prevInfo.moveInfoTo(info);
     }
-    prev.upgradeInto(next);
+    this.addTower(info);
+    this.eventNewTower.fire(info);
   }
 
   addTower(info: TowerInfo) {

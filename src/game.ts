@@ -10,6 +10,7 @@ import {PlayerSystem} from 'system/players';
 import {WaveSystem} from 'system/wavesystem';
 import {TowerTracker} from 'system/towers/towertracker';
 import {Quests} from 'quests';
+import {ClassSelection} from 'system/class/classSelection';
 
 export class Game {
   constructor() {}
@@ -30,8 +31,9 @@ export class Game {
       const economics = new EconomicSystem(creepTracker, players);
       const creeps = new CreepSystem(creepTracker, pathInfo);
 
-      // delay the start of the game a second
-      doAfter(2, () => {
+      const classSelection = new ClassSelection(players);
+      classSelection.eventComplete.listen(() => {
+        // Will start the game
         const waves = new WaveSystem(creeps.spawning, players);
       });
     });

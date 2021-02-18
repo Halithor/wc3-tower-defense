@@ -548,24 +548,6 @@ STRING 137
 Allow Tower Turning
 }
 
-STRING 142
-// Units: u000 (Paladin), Name (Name)
-{
-Paladin
-}
-
-STRING 143
-// Units: u000 (Paladin), Tip (Tooltip - Basic)
-{
-Select Paladin
-}
-
-STRING 144
-// Units: u000 (Paladin), Ubertip (Tooltip - Extended)
-{
-Supportive warrior class. Has a mix of melee towers and support towers.|n|n|cff6699FFAvailable Towers:|r|n- Quick Melee|n- Melee|n- TODO ADD SUPPORT
-}
-
 STRING 145
 // Units: n001 (Gnoll), Name (Name)
 {
@@ -939,7 +921,7 @@ Upgrade to Rapid Tower [|cffffcc00Q|r]
 }
 
 STRING 244
-// Units: h00M (Rapid Splash Tower), Hotkey (Hotkey)
+// Units: u000 (Warrior), Hotkey (Hotkey)
 {
 Q
 }
@@ -1118,7 +1100,7 @@ Upgrade to Chain Lightning Tower [|cffffcc00Q|r]
 }
 
 STRING 284
-// Units: h00R (Chain Lightning Tower), Hotkey (Hotkey)
+// Units: h00M (Rapid Splash Tower), Hotkey (Hotkey)
 {
 Q
 }
@@ -1427,5 +1409,167 @@ STRING 366
 // Units: h00X (Upgrade Attack Speed), Ubertip (Tooltip - Extended)
 {
 Increase the |cff6699ffbase attack speed|r of this tower by |cffffcc0020|r additively.|n|n|cff6699FFBase attack speed|r |cffaaaaaais computed before applying any modifiers.
+}
+
+STRING 367
+// Units: h00Y (Class Purchaser), Tip (Tooltip - Basic)
+{
+Class Purchaser
+}
+
+STRING 368
+// Units: h00Y (Class Purchaser), Name (Name)
+{
+Class Purchaser
+}
+
+STRING 369
+// Units: h00R (Chain Lightning Tower), Hotkey (Hotkey)
+{
+Q
+}
+
+STRING 370
+// Units: u001 (Druid), Name (Name)
+{
+Druid
+}
+
+STRING 374
+// Units: u000 (Warrior), Name (Name)
+{
+Warrior
+}
+
+STRING 375
+// Units: u000 (Warrior), Tip (Tooltip - Basic)
+{
+Select Warrior (|cffffcc00Q|r)
+}
+
+STRING 377
+// Units: u001 (Druid), Ubertip (Tooltip - Extended)
+{
+Magical warrior of the forest. Kindred to beasts and the land.|n|n|cffffcc00Damage Type:|r Natural|n|cffffcc00Bonuses:|r|n+20% base damage for Melee, Spear, and Splash Towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 378
+// Units: u000 (Warrior), Ubertip (Tooltip - Extended)
+{
+Master of melee combat.|n|n|cffffcc00Damage Type:|r Physical|n|cffffcc00Bonuses:|r|n+20% Base Damage and Attack speed for melee towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 379
+// Units: u002 (Sorceress), Name (Name)
+{
+Sorceress
+}
+
+STRING 380
+// Units: u002 (Sorceress), Tip (Tooltip - Basic)
+{
+Select Sorceress (|cffffcc00A|r)
+}
+
+STRING 382
+// Units: u002 (Sorceress), Hotkey (Hotkey)
+{
+A
+}
+
+STRING 383
+// Units: u002 (Sorceress), Ubertip (Tooltip - Extended)
+{
+Expert in the arcane crafts. Trained to manipulate magical energy to destroy her enemies.|n|n|cffffcc00Damage Type:|r Arcane|n|cffffcc00Bonuses:|r|n+3 Base Mana to all towers|n+20% mana regen for all towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 384
+// Units: u003 (Engineer), Name (Name)
+{
+Engineer
+}
+
+STRING 385
+// Units: u003 (Engineer), Tip (Tooltip - Basic)
+{
+Select Engineer (|cffffcc00S|r)
+}
+
+STRING 386
+// Units: u003 (Engineer), Ubertip (Tooltip - Extended)
+{
+Master of machines and mechanical functions. Also has a penchant for explosives|n|n|cffffcc00Damage Type:|r Fire|n|cffffcc00Bonuses:|r|n+200 range for sniper and siege towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 387
+// Units: u003 (Engineer), Hotkey (Hotkey)
+{
+S
+}
+
+STRING 388
+// Units: u001 (Druid), Tip (Tooltip - Basic)
+{
+Select Druid (|cffffcc00W|r)
+}
+
+STRING 389
+// Units: u001 (Druid), Hotkey (Hotkey)
+{
+W
+}
+
+STRING 394
+// Units: u004 (Gravedigger), Name (Name)
+{
+Gravedigger
+}
+
+STRING 395
+// Units: u004 (Gravedigger), Tip (Tooltip - Basic)
+{
+Select Gravedigger (|cffffcc00Z|r)
+}
+
+STRING 396
+// Units: u004 (Gravedigger), Ubertip (Tooltip - Extended)
+{
+Caretaker of the cursed and unholy.|n|n|cffffcc00Damage Type:|r Curse|n|cffffcc00Bonuses:|r|n+TODO|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 397
+// Units: u004 (Gravedigger), Hotkey (Hotkey)
+{
+Z
+}
+
+STRING 398
+// Units: u005 (Frozen Spirit), Name (Name)
+{
+Frozen Spirit
+}
+
+STRING 399
+// Units: u005 (Frozen Spirit), Tip (Tooltip - Basic)
+{
+Select Frozen Spirit (|cffffcc00X|r)
+}
+
+STRING 401
+// Units: u005 (Frozen Spirit), Hotkey (Hotkey)
+{
+X
+}
+
+STRING 402
+// Units: u005 (Frozen Spirit), Ubertip (Tooltip - Extended)
+{
+The spirit of a hero killed by the icey forces of nature.|n|n|cffffcc00Damage Type:|r Frost|n|cffffcc00Bonuses:|r|n+TODO|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 403
+// Units: n008 (Class Selection), Name (Name)
+{
+Class Selection
 }
 

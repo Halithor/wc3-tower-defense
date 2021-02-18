@@ -12,6 +12,14 @@ import {
 export const playerEnemy1 = Players[10];
 export const playerEnemy2 = Players[11];
 export const playerEnemies = [playerEnemy1, playerEnemy2];
+export const playerHumans = [
+  Players[0],
+  Players[1],
+  Players[2],
+  Players[3],
+  Players[4],
+  Players[5],
+];
 
 export function isUnitCreep(u: Unit): boolean {
   return u.owner.id == playerEnemy1.id || u.owner.id == playerEnemy2.id;
@@ -19,11 +27,11 @@ export function isUnitCreep(u: Unit): boolean {
 
 export function getPlayerCount(): number {
   let count = 0;
-  for (let i = 0; i < 6; i++) {
-    if (Players[i].isIngame()) {
+  playerHumans.forEach(p => {
+    if (p.isIngame()) {
       count++;
     }
-  }
+  });
   return count;
 }
 
@@ -33,7 +41,15 @@ export let playerComputers: MapPlayer[];
 export class UnitIds {
   static readonly sellTower = unitId('h005');
 
-  static readonly builderPaladin = unitId('u000');
+  static readonly classPurchaser = unitId('h00Y');
+  static readonly classTavern = unitId('n008');
+
+  static readonly builderWarrior = unitId('u000');
+  static readonly builderDruid = unitId('u001');
+  static readonly builderSorceress = unitId('u002');
+  static readonly builderEngineer = unitId('u003');
+  static readonly builderGravedigger = unitId('u004');
+  static readonly builderFrozenSpirit = unitId('u005');
 
   static readonly upgradeDamage = unitId('h00W');
   static readonly upgradeSpeed = unitId('h00X');
