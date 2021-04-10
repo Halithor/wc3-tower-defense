@@ -2,22 +2,36 @@ import {playerHumans, UnitIds} from 'constants';
 import {PlayerSystem} from 'system/players/playerSystem';
 import {
   degrees,
+  doAfter,
   Event,
   FogModifier,
   forUnitsInRect,
   Group,
   onAnyUnitSellUnit,
   Rectangle,
+  Timer,
+  TimerDialog,
   Unit,
 } from 'w3lib/src/index';
 import {builderClassInfo} from './classInfo';
 
 const classGoldCost = 25;
+const builderOptions = [
+  UnitIds.builderWarrior,
+  UnitIds.builderDruid,
+  UnitIds.builderSorceress,
+  UnitIds.builderEngineer,
+  UnitIds.builderGravedigger,
+  UnitIds.builderNorthern,
+];
 
 export class ClassSelection {
   eventComplete: Event<[]>;
   eventPlayerSelect: Event<[]>;
   private visions: FogModifier[] = [];
+  timerDialog: TimerDialog;
+  private hasSelected: {[key: number]: boolean} = {};
+  timeLimit: {cancel: () => void; timer: Timer};
 
   constructor(playerSystem: PlayerSystem) {
     this.eventComplete = new Event<[]>();
@@ -36,6 +50,7 @@ export class ClassSelection {
 
     let playersInGame = 0;
     playerHumans.forEach(p => {
+      this.hasSelected[p.id] = false;
       if (!p.isIngame()) {
         return;
       }
@@ -67,6 +82,7 @@ export class ClassSelection {
         return;
       }
       playersSelected++;
+      this.hasSelected[sold.owner.id] = true;
       sold.pos = playArea.center;
       sold.owner.selectUnitSingle(sold);
       SetCameraPositionForPlayer(
@@ -88,6 +104,41 @@ export class ClassSelection {
         this.completeSelection();
       }
     });
+
+    // Add time limit
+    this.timeLimit = doAfter(60, () => {
+      playerHumans.forEach(p => {
+        if (!p.isIngame()) {
+          return;
+        }
+        if (this.hasSelected[p.id]) {
+          return;
+        }
+        const randomBuilderId =
+          builderOptions[Math.floor(Math.random() * builderOptions.length)];
+        const builder = new Unit(
+          p,
+          randomBuilderId,
+          playArea.center,
+          degrees(0)
+        );
+        p.selectUnitSingle(builder);
+        SetCameraPositionForPlayer(
+          p.handle,
+          playArea.center.x,
+          playArea.center.y
+        );
+        const classInfo = builderClassInfo(builder);
+        if (!classInfo) {
+          return;
+        }
+        playerSystem.selectClass(p, classInfo);
+      });
+      this.completeSelection();
+    });
+    this.timerDialog = new TimerDialog(this.timeLimit.timer);
+    this.timerDialog.setTitle('Class Selection');
+    this.timerDialog.display = true;
   }
 
   private completeSelection() {
@@ -100,5 +151,7 @@ export class ClassSelection {
     this.visions.forEach(v => {
       v.destroy();
     });
+    this.timeLimit.cancel();
+    this.timerDialog.destroy();
   }
 }

@@ -105,7 +105,7 @@ export class TowerStats {
 |cff6699ffRange:|r ${this.range} + ${this.rangePerc}% = ${Math.round(range)}
 |cff6699ffCooldown:|r ${string.format('%.2f', this.cooldown)} - ${
       this.cooldownPerc
-    }% = ${string.format('%.2f', cd)} (${string.format('%.2f', 1 / cd)} APM)`;
+    }% = ${string.format('%.2f', cd)} (${string.format('%.2f', 1 / cd)} APS)`;
     if (manaMax != 0) {
       str += `\n|cff6699ffMana:|r ${this.manaMax} + ${
         this.manaMaxPerc
