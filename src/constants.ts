@@ -49,7 +49,7 @@ export class UnitIds {
   static readonly builderSorceress = unitId('u002');
   static readonly builderEngineer = unitId('u003');
   static readonly builderGravedigger = unitId('u004');
-  static readonly builderFrozenSpirit = unitId('u005');
+  static readonly builderNorthern = unitId('u005');
 
   static readonly upgradeDamage = unitId('h00W');
   static readonly upgradeSpeed = unitId('h00X');

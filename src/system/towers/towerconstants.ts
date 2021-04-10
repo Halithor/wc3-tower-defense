@@ -1,9 +1,24 @@
 import {AttackType} from 'combattypes';
 import {Unit, UnitId, unitId} from 'w3lib/src/index';
-import {TowerInfo} from './towerinfo';
 import {TowerStats} from './towerstats';
 
 const defaultAtkType = AttackType.Physical;
+
+export enum TowerCategories {
+  Melee,
+  Ranged,
+  AoE,
+  Magic,
+  Spear,
+  Arrow,
+  Sniper,
+  Splash,
+  Rock,
+  Siege,
+  Rapid,
+  Standard,
+  Heavy,
+}
 
 export class TowerIds {
   // basic towers
@@ -43,7 +58,7 @@ export class TowerIds {
   static readonly chainLightning = unitId('h00R');
   static readonly stormbolt = unitId('h00V');
   static readonly shockwave = unitId('h00S');
-  static readonly energyNove = unitId('h00U');
+  static readonly energyNova = unitId('h00U');
   static readonly warstomp = unitId('h00T');
 }
 
@@ -79,7 +94,7 @@ export function isUnitTower(u: Unit) {
       TowerIds.chainLightning.equals(uid) ||
       TowerIds.stormbolt.equals(uid) ||
       TowerIds.shockwave.equals(uid) ||
-      TowerIds.energyNove.equals(uid) ||
+      TowerIds.energyNova.equals(uid) ||
       TowerIds.warstomp.equals(uid))
   );
 }
@@ -88,58 +103,58 @@ export function isUnitTower(u: Unit) {
 export function baseTowerStats(towerId: UnitId): TowerStats {
   switch (towerId.value) {
     case TowerIds.basicArrowTower.value:
-      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0);
+      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.basicMeleeTower.value:
-      return new TowerStats(defaultAtkType, 10, 0, 128, 0, 2.0, 0);
+      return new TowerStats(defaultAtkType, 10, 0, 128, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.basicMagicTower.value:
       return new TowerStats(defaultAtkType, 5, 0, 700, 0, 3.0, 0, 25, 0, 1, 0);
     case TowerIds.basicRockTower.value:
-      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0);
+      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
     // === Melee ===
     case TowerIds.rpdMeleeTower.value:
-      return new TowerStats(defaultAtkType, 10, 0, 128, 0, 1.0, 0);
+      return new TowerStats(defaultAtkType, 10, 0, 128, 0, 1.0, 0, 0, 0, 1.0);
     case TowerIds.stdMeleeTower.value:
-      return new TowerStats(defaultAtkType, 20, 0, 128, 0, 2.0, 0);
+      return new TowerStats(defaultAtkType, 20, 0, 128, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.hvyMeleeTower.value:
-      return new TowerStats(defaultAtkType, 40, 0, 128, 0, 4.0, 0);
+      return new TowerStats(defaultAtkType, 40, 0, 128, 0, 4.0, 0, 0, 0, 1.0);
     // === Single Target ===
     case TowerIds.rpdSpearTower.value:
-      return new TowerStats(defaultAtkType, 6, 0, 400, 0, 0.8, 0);
+      return new TowerStats(defaultAtkType, 6, 0, 400, 0, 0.8, 0, 0, 0, 1.0);
     case TowerIds.stdSpearTower.value:
-      return new TowerStats(defaultAtkType, 12, 0, 400, 0, 1.6, 0);
+      return new TowerStats(defaultAtkType, 12, 0, 400, 0, 1.6, 0, 0, 0, 1.0);
     case TowerIds.hvySpearTower.value:
-      return new TowerStats(defaultAtkType, 24, 0, 400, 0, 3.2, 0);
+      return new TowerStats(defaultAtkType, 24, 0, 400, 0, 3.2, 0, 0, 0, 1.0);
     case TowerIds.rpdArrowTower.value:
-      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 1.0, 0);
+      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 1.0, 0, 0, 0, 1.0);
     case TowerIds.stdArrowTower.value:
-      return new TowerStats(defaultAtkType, 10, 0, 700, 0, 2.0, 0);
+      return new TowerStats(defaultAtkType, 10, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.hvyArrowTower.value:
-      return new TowerStats(defaultAtkType, 20, 0, 700, 0, 4.0, 0);
+      return new TowerStats(defaultAtkType, 20, 0, 700, 0, 4.0, 0, 0, 0, 1.0);
     case TowerIds.rpdSniperTower.value:
-      return new TowerStats(defaultAtkType, 4, 0, 1000, 0, 1.2, 0);
+      return new TowerStats(defaultAtkType, 4, 0, 1000, 0, 1.2, 0, 0, 0, 1.0);
     case TowerIds.stdSniperTower.value:
-      return new TowerStats(defaultAtkType, 8, 0, 1000, 0, 2.2, 0);
+      return new TowerStats(defaultAtkType, 8, 0, 1000, 0, 2.2, 0, 0, 0, 1.0);
     case TowerIds.hvySniperTower.value:
-      return new TowerStats(defaultAtkType, 16, 0, 1000, 0, 4.4, 0);
+      return new TowerStats(defaultAtkType, 16, 0, 1000, 0, 4.4, 0, 0, 0, 1.0);
     // === AoE ===
     case TowerIds.rpdSplashTower.value:
-      return new TowerStats(defaultAtkType, 6, 0, 400, 0, 0.8, 0);
+      return new TowerStats(defaultAtkType, 6, 0, 400, 0, 0.8, 0, 0, 0, 1.0);
     case TowerIds.stdSplashTower.value:
-      return new TowerStats(defaultAtkType, 12, 0, 400, 0, 1.6, 0);
+      return new TowerStats(defaultAtkType, 12, 0, 400, 0, 1.6, 0, 0, 0, 1.0);
     case TowerIds.hvySplashTower.value:
-      return new TowerStats(defaultAtkType, 24, 0, 400, 0, 3.2, 0);
+      return new TowerStats(defaultAtkType, 24, 0, 400, 0, 3.2, 0, 0, 0, 1.0);
     case TowerIds.rpdRockTower.value:
-      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 1, 0);
+      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 1, 0, 0, 0, 1.0);
     case TowerIds.stdRockTower.value:
-      return new TowerStats(defaultAtkType, 10, 0, 700, 0, 2.0, 0);
+      return new TowerStats(defaultAtkType, 10, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.hvyRockTower.value:
-      return new TowerStats(defaultAtkType, 20, 0, 700, 0, 4.0, 0);
+      return new TowerStats(defaultAtkType, 20, 0, 700, 0, 4.0, 0, 0, 0, 1.0);
     case TowerIds.rpdSiegeTower.value:
-      return new TowerStats(defaultAtkType, 4, 0, 1000, 0, 1.2, 0);
+      return new TowerStats(defaultAtkType, 4, 0, 1000, 0, 1.2, 0, 0, 0, 1.0);
     case TowerIds.stdSiegeTower.value:
-      return new TowerStats(defaultAtkType, 8, 0, 1000, 0, 2.4, 0);
+      return new TowerStats(defaultAtkType, 8, 0, 1000, 0, 2.4, 0, 0, 0, 1.0);
     case TowerIds.hvySiegeTower.value:
-      return new TowerStats(defaultAtkType, 16, 0, 1000, 0, 4.4, 0);
+      return new TowerStats(defaultAtkType, 16, 0, 1000, 0, 4.4, 0, 0, 0, 1.0);
     // === Magical ===
     case TowerIds.chainLightning.value:
       return new TowerStats(defaultAtkType, 10, 0, 700, 0, 3.0, 0, 25, 0, 1.0);
@@ -147,12 +162,12 @@ export function baseTowerStats(towerId: UnitId): TowerStats {
       return new TowerStats(defaultAtkType, 10, 0, 700, 0, 3.0, 0, 25, 0, 1.0);
     case TowerIds.shockwave.value:
       return new TowerStats(defaultAtkType, 10, 0, 700, 0, 3.0, 0, 25, 0, 1.0);
-    case TowerIds.energyNove.value:
+    case TowerIds.energyNova.value:
       return new TowerStats(defaultAtkType, 10, 0, 700, 0, 3.0, 0, 25, 0, 1.0);
     case TowerIds.warstomp.value:
       return new TowerStats(defaultAtkType, 15, 0, 128, 0, 3.0, 0, 25, 0, 1.0);
   }
-  return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0);
+  return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
 }
 
 export function towerGoldValue(towerId: UnitId): number {
@@ -165,4 +180,132 @@ export function towerGoldValue(towerId: UnitId): number {
     return 5;
   }
   return 15;
+}
+
+export function towerCategories(towerId: UnitId): TowerCategories[] {
+  const categories: TowerCategories[] = [];
+  if (
+    towerId.equals(TowerIds.basicMeleeTower) ||
+    towerId.equals(TowerIds.rpdMeleeTower) ||
+    towerId.equals(TowerIds.stdMeleeTower) ||
+    towerId.equals(TowerIds.hvyMeleeTower) ||
+    towerId.equals(TowerIds.warstomp)
+  ) {
+    categories.push(TowerCategories.Melee);
+  } else {
+    categories.push(TowerCategories.Ranged);
+  }
+
+  if (
+    towerId.equals(TowerIds.basicRockTower) ||
+    towerId.equals(TowerIds.rpdSplashTower) ||
+    towerId.equals(TowerIds.stdSplashTower) ||
+    towerId.equals(TowerIds.hvySplashTower) ||
+    towerId.equals(TowerIds.rpdRockTower) ||
+    towerId.equals(TowerIds.stdRockTower) ||
+    towerId.equals(TowerIds.hvyRockTower) ||
+    towerId.equals(TowerIds.rpdSiegeTower) ||
+    towerId.equals(TowerIds.stdSiegeTower) ||
+    towerId.equals(TowerIds.hvySiegeTower)
+  ) {
+    categories.push(TowerCategories.AoE);
+  }
+
+  if (
+    towerId.equals(TowerIds.basicMagicTower) ||
+    towerId.equals(TowerIds.chainLightning) ||
+    towerId.equals(TowerIds.stormbolt) ||
+    towerId.equals(TowerIds.shockwave) ||
+    towerId.equals(TowerIds.energyNova) ||
+    towerId.equals(TowerIds.warstomp)
+  ) {
+    categories.push(TowerCategories.Magic);
+  }
+
+  // Single target types
+  if (
+    towerId.equals(TowerIds.rpdSpearTower) ||
+    towerId.equals(TowerIds.stdSpearTower) ||
+    towerId.equals(TowerIds.hvySpearTower)
+  ) {
+    categories.push(TowerCategories.Spear);
+  }
+  if (
+    towerId.equals(TowerIds.basicArrowTower) ||
+    towerId.equals(TowerIds.rpdArrowTower) ||
+    towerId.equals(TowerIds.stdArrowTower) ||
+    towerId.equals(TowerIds.hvyArrowTower)
+  ) {
+    categories.push(TowerCategories.Arrow);
+  }
+  if (
+    towerId.equals(TowerIds.rpdSniperTower) ||
+    towerId.equals(TowerIds.stdSniperTower) ||
+    towerId.equals(TowerIds.hvySniperTower)
+  ) {
+    categories.push(TowerCategories.Sniper);
+  }
+
+  // AoE target types
+  if (
+    towerId.equals(TowerIds.rpdSplashTower) ||
+    towerId.equals(TowerIds.stdSplashTower) ||
+    towerId.equals(TowerIds.hvySplashTower)
+  ) {
+    categories.push(TowerCategories.Splash);
+  }
+  if (
+    towerId.equals(TowerIds.basicRockTower) ||
+    towerId.equals(TowerIds.rpdRockTower) ||
+    towerId.equals(TowerIds.stdRockTower) ||
+    towerId.equals(TowerIds.hvyRockTower)
+  ) {
+    categories.push(TowerCategories.Rock);
+  }
+  if (
+    towerId.equals(TowerIds.rpdSiegeTower) ||
+    towerId.equals(TowerIds.stdSiegeTower) ||
+    towerId.equals(TowerIds.hvySiegeTower)
+  ) {
+    categories.push(TowerCategories.Siege);
+  }
+
+  // Rapid
+  if (
+    towerId.equals(TowerIds.rpdMeleeTower) ||
+    towerId.equals(TowerIds.rpdSpearTower) ||
+    towerId.equals(TowerIds.rpdArrowTower) ||
+    towerId.equals(TowerIds.rpdSniperTower) ||
+    towerId.equals(TowerIds.rpdSplashTower) ||
+    towerId.equals(TowerIds.rpdRockTower) ||
+    towerId.equals(TowerIds.rpdSiegeTower)
+  ) {
+    categories.push(TowerCategories.Rapid);
+  }
+  // std
+  if (
+    towerId.equals(TowerIds.stdMeleeTower) ||
+    towerId.equals(TowerIds.stdSpearTower) ||
+    towerId.equals(TowerIds.stdArrowTower) ||
+    towerId.equals(TowerIds.stdSniperTower) ||
+    towerId.equals(TowerIds.stdSplashTower) ||
+    towerId.equals(TowerIds.stdRockTower) ||
+    towerId.equals(TowerIds.stdSiegeTower)
+  ) {
+    categories.push(TowerCategories.Standard);
+  }
+  // Heavy
+  if (
+    towerId.equals(TowerIds.hvyMeleeTower) ||
+    towerId.equals(TowerIds.hvySpearTower) ||
+    towerId.equals(TowerIds.hvyArrowTower) ||
+    towerId.equals(TowerIds.hvySniperTower) ||
+    towerId.equals(TowerIds.hvySplashTower) ||
+    towerId.equals(TowerIds.hvyRockTower) ||
+    towerId.equals(TowerIds.hvySiegeTower)
+  ) {
+    categories.push(TowerCategories.Heavy);
+  }
+
+  return categories;
 }

@@ -1447,18 +1447,6 @@ STRING 375
 Select Warrior (|cffffcc00Q|r)
 }
 
-STRING 377
-// Units: u001 (Druid), Ubertip (Tooltip - Extended)
-{
-Magical warrior of the forest. Kindred to beasts and the land.|n|n|cffffcc00Damage Type:|r Natural|n|cffffcc00Bonuses:|r|n+20% base damage for Melee, Spear, and Splash Towers|n|n|cffffcc00Available Towers:|r|n-TODO
-}
-
-STRING 378
-// Units: u000 (Warrior), Ubertip (Tooltip - Extended)
-{
-Master of melee combat.|n|n|cffffcc00Damage Type:|r Physical|n|cffffcc00Bonuses:|r|n+20% Base Damage and Attack speed for melee towers|n|n|cffffcc00Available Towers:|r|n-TODO
-}
-
 STRING 379
 // Units: u002 (Sorceress), Name (Name)
 {
@@ -1543,33 +1531,45 @@ STRING 397
 Z
 }
 
-STRING 398
-// Units: u005 (Frozen Spirit), Name (Name)
-{
-Frozen Spirit
-}
-
-STRING 399
-// Units: u005 (Frozen Spirit), Tip (Tooltip - Basic)
-{
-Select Frozen Spirit (|cffffcc00X|r)
-}
-
 STRING 401
-// Units: u005 (Frozen Spirit), Hotkey (Hotkey)
+// Units: u005 (Amaqjuaq), Hotkey (Hotkey)
 {
 X
-}
-
-STRING 402
-// Units: u005 (Frozen Spirit), Ubertip (Tooltip - Extended)
-{
-The spirit of a hero killed by the icey forces of nature.|n|n|cffffcc00Damage Type:|r Frost|n|cffffcc00Bonuses:|r|n+TODO|n|n|cffffcc00Available Towers:|r|n-TODO
 }
 
 STRING 403
 // Units: n008 (Class Selection), Name (Name)
 {
 Class Selection
+}
+
+STRING 404
+// Units: u001 (Druid), Ubertip (Tooltip - Extended)
+{
+Magical warrior of the forest. Kindred to beasts and the land.|n|n|cffffcc00Damage Type:|r Natural|n|cffffcc00Bonuses:|r|n+1 base damage for Melee, Spear, and Splash Towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 405
+// Units: u005 (Amaqjuaq), Name (Name)
+{
+Amaqjuaq
+}
+
+STRING 406
+// Units: u005 (Amaqjuaq), Ubertip (Tooltip - Extended)
+{
+Strong warrior of the frozen north.|n|n|cffffcc00Damage Type:|r Frost|n|cffffcc00Bonuses:|r|n+1 damage for AoE towers|n+50% mana regen for Storm Bolt towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 407
+// Units: u005 (Amaqjuaq), Tip (Tooltip - Basic)
+{
+Select Amaqjuaq (|cffffcc00X|r)
+}
+
+STRING 408
+// Units: u000 (Warrior), Ubertip (Tooltip - Extended)
+{
+Master of melee combat.|n|n|cffffcc00Damage Type:|r Physical|n|cffffcc00Bonuses:|r|n+2 Damage for melee towers|n|n|cffffcc00Available Towers:|r|n-TODO
 }
 

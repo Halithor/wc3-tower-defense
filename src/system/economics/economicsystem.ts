@@ -1,5 +1,5 @@
 import {CreepTracker} from 'system/creeps/creeptracker';
-import {PlayerSystem} from 'system/players';
+import {PlayerSystem} from 'system/players/playerSystem';
 import {flashEffect, onAnyUnitDeath} from 'w3lib/src/index';
 
 const goldEffectPath = 'UI\\Feedback\\GoldCredit\\GoldCredit.mdl';

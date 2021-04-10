@@ -1,5 +1,5 @@
 import {playerHumans, UnitIds} from 'constants';
-import {PlayerSystem} from 'system/players';
+import {PlayerSystem} from 'system/players/playerSystem';
 import {
   degrees,
   Event,

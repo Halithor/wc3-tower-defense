@@ -3,6 +3,7 @@ import {CircleIndicator} from 'lib/indicator';
 import {
   doAfter,
   onAnyUnitConstructionFinish,
+  onAnyUnitDamaged,
   onAnyUnitDamaging,
   onAnyUnitSpellEffect,
   onAnyUnitUpgradeFinish,
@@ -20,11 +21,29 @@ export class TowerSystem {
     const spellTowerEffects = new SpellTowerEffects();
     const towerUpgrades = new TowerUpgrades(towerTracker);
 
+    this.setupStatisticsAbility();
+    this.setupDamageTracking();
+  }
+
+  private removeRallyAbilityOnTowers() {
+    onAnyUnitConstructionFinish(constructed => {
+      if (constructed.isUnitType(UNIT_TYPE_STRUCTURE)) {
+        constructed.removeAbility(SpellIds.setRally);
+      }
+    });
+    onAnyUnitUpgradeFinish(upgraded => {
+      if (upgraded.isUnitType(UNIT_TYPE_STRUCTURE)) {
+        upgraded.removeAbility(SpellIds.setRally);
+      }
+    });
+  }
+
+  private setupStatisticsAbility() {
     onAnyUnitSpellEffect((caster, ability) => {
       if (!ability.equals(SpellIds.showTowerStats)) {
         return;
       }
-      const info = towerTracker.getTower(caster);
+      const info = this.towerTracker.getTower(caster);
       if (!info) {
         return;
       }
@@ -46,7 +65,10 @@ ${info.stats.toString()}`
       );
       doAfter(4, () => indicator.remove());
     });
-    onAnyUnitDamaging((target, attacker, info) => {
+  }
+
+  private setupDamageTracking() {
+    onAnyUnitDamaged((target, attacker, info) => {
       const tower = this.towerTracker.getTower(attacker);
       if (!tower) {
         return;
@@ -57,19 +79,6 @@ ${info.stats.toString()}`
         dmg = target.life;
       }
       tower.addDamageDealt(dmg);
-    });
-  }
-
-  private removeRallyAbilityOnTowers() {
-    onAnyUnitConstructionFinish(constructed => {
-      if (constructed.isUnitType(UNIT_TYPE_STRUCTURE)) {
-        constructed.removeAbility(SpellIds.setRally);
-      }
-    });
-    onAnyUnitUpgradeFinish(upgraded => {
-      if (upgraded.isUnitType(UNIT_TYPE_STRUCTURE)) {
-        upgraded.removeAbility(SpellIds.setRally);
-      }
     });
   }
 }

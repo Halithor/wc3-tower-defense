@@ -1,16 +1,16 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
 import {CreepSystem} from 'system/creeps/creepsystem';
 import {doAfter, Rectangle} from 'w3lib/src/index';
-import {TowerSellingSystem} from 'system/towers/towerselling';
 import {TowerSystem} from 'system/towers/towersystem';
 import {PathInfo, SpawnInfo} from 'system/pathinfo';
 import {CreepTracker} from 'system/creeps/creeptracker';
 import {EconomicSystem} from 'system/economics/economicsystem';
-import {PlayerSystem} from 'system/players';
+import {PlayerSystem} from 'system/players/playerSystem';
 import {WaveSystem} from 'system/wavesystem';
 import {TowerTracker} from 'system/towers/towertracker';
 import {Quests} from 'quests';
 import {ClassSelection} from 'system/class/classSelection';
+import {ClassApplication} from 'system/class/classApplication';
 
 export class Game {
   constructor() {}
@@ -30,6 +30,7 @@ export class Game {
       const pathing = new PathingSystem(pathInfo);
       const economics = new EconomicSystem(creepTracker, players);
       const creeps = new CreepSystem(creepTracker, pathInfo);
+      const classApplication = new ClassApplication(players, towerTracker);
 
       const classSelection = new ClassSelection(players);
       classSelection.eventComplete.listen(() => {

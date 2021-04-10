@@ -1,7 +1,7 @@
 import {DefenseType} from 'combattypes';
 import {doAfter, doPeriodically, Group, onAnyUnitDeath} from 'w3lib/src/index';
 import {CreepSpawning} from './creeps/spawning';
-import {PlayerSystem} from './players';
+import {PlayerSystem} from './players/playerSystem';
 
 const defOptions = [
   DefenseType.Flesh,

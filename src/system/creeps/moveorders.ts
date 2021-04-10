@@ -23,9 +23,13 @@ export class CreepMoveOrders {
           return;
         }
         const creep = tracker.getCreep(u);
-        if (creep) {
-          creep.moveTarget = end;
+        if (!creep) {
+          return;
         }
+        if (creep.moveTarget != start) {
+          return;
+        }
+        creep.moveTarget = end;
       });
     }
     // Re-order move for all nearby creeps.

@@ -10,16 +10,23 @@ import {
   Unit,
   Vec2,
 } from 'w3lib/src/index';
-import {ClassInfo} from './class/classInfo';
+import {ClassInfo, classNone} from '../class/classInfo';
 
 const startingGold = 50;
 const startingFood = 7;
 
 const waveFoodReward = 3;
 
+// PlayerInfo contains information about each player
+export class PlayerInfo {
+  classInfo: ClassInfo = classNone;
+  constructor(readonly player: MapPlayer) {}
+}
+
 export class PlayerSystem {
   private goldFraction = 0;
   private players: MapPlayer[] = [];
+  private playerInfos: {[key: number]: PlayerInfo} = {};
 
   constructor() {
     for (let i = 0; i < 6; i++) {
@@ -29,6 +36,7 @@ export class PlayerSystem {
       }
       this.players.push(p);
       p.setAbilityAvailable(SpellIds.allowTowerTurning, false);
+      this.playerInfos[p.id] = new PlayerInfo(p);
     }
     onAnyPlayerLeaves(leaving => {
       const idx = this.players.indexOf(leaving);
@@ -75,5 +83,14 @@ export class PlayerSystem {
       true
     );
     fog.start();
+    const info = this.getInfo(player);
+    if (!info) {
+      return;
+    }
+    info.classInfo = classInfo;
+  }
+
+  getInfo(player: MapPlayer): PlayerInfo | undefined {
+    return this.playerInfos[player.id];
   }
 }

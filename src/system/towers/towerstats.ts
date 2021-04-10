@@ -103,9 +103,9 @@ export class TowerStats {
     let str = `|cff6699ffAttack Type:|r ${attackTypeString(atkType)}
 |cff6699ffDamage:|r ${this.damage} + ${this.damagePerc}% = ${Math.round(dmg)}
 |cff6699ffRange:|r ${this.range} + ${this.rangePerc}% = ${Math.round(range)}
-|cff6699ffCooldown:|r ${this.cooldown} - ${
+|cff6699ffCooldown:|r ${string.format('%.2f', this.cooldown)} - ${
       this.cooldownPerc
-    }% = ${cd} (${string.format('%.2f', 1 / cd)} APM)`;
+    }% = ${string.format('%.2f', cd)} (${string.format('%.2f', 1 / cd)} APM)`;
     if (manaMax != 0) {
       str += `\n|cff6699ffMana:|r ${this.manaMax} + ${
         this.manaMaxPerc
@@ -135,5 +135,35 @@ export class TowerStats {
 
   static attackSpeed(flat: number, percentage: number): TowerStats {
     return new TowerStats(AttackType.Whoknows, 0, 0, 0, 0, flat, percentage);
+  }
+
+  static mana(flat: number, percentage: number): TowerStats {
+    return new TowerStats(
+      AttackType.Whoknows,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      flat,
+      percentage
+    );
+  }
+
+  static manaRegen(flat: number, percentage: number): TowerStats {
+    return new TowerStats(
+      AttackType.Whoknows,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      flat,
+      percentage
+    );
   }
 }

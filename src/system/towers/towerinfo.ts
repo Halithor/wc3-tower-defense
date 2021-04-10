@@ -1,29 +1,35 @@
 import {Unit} from 'w3lib/src/index';
+import {towerCategories, TowerCategories} from './towerconstants';
 import {TowerStats} from './towerstats';
 
 // TowerInfo contains the statistics for a give tower.
 export class TowerInfo {
-  private upgradeStats: TowerStats;
+  private upgradeStats: TowerStats = TowerStats.empty();
+  private _classStats: TowerStats = TowerStats.empty();
   private upgradeGoldValue = 0;
   private _damageDealt = 0;
+
   constructor(
     readonly tower: Unit,
     readonly baseStats: TowerStats,
     private _goldValue: number
   ) {
-    this.upgradeStats = TowerStats.empty();
-
-    this.applyStats();
+    this.expressStats();
   }
 
-  private applyStats() {
+  private expressStats() {
     this.stats.express(this.tower);
   }
 
   addUpgradeStats(stats: TowerStats, goldValue: number) {
     this.upgradeGoldValue += goldValue;
     this.upgradeStats = this.upgradeStats.merge(stats);
-    this.applyStats();
+    this.expressStats();
+  }
+
+  set classStats(stats: TowerStats) {
+    this._classStats = stats;
+    this.expressStats();
   }
 
   // moveInfoTo moves important information from one tower to another, as in an upgrade.
@@ -37,7 +43,11 @@ export class TowerInfo {
 
   get stats(): TowerStats {
     // Start with the base stats + upgrades as an integrated set of base values
-    let merged = this.baseStats.merge(this.upgradeStats).integratePercentages();
+    let merged = this.baseStats
+      .merge(this._classStats)
+      .integratePercentages()
+      .merge(this.upgradeStats)
+      .integratePercentages();
     return merged;
   }
 
@@ -47,5 +57,9 @@ export class TowerInfo {
 
   addDamageDealt(value: number) {
     this._damageDealt += value;
+  }
+
+  get categories(): TowerCategories[] {
+    return towerCategories(this.tower.typeId);
   }
 }
