@@ -5,6 +5,7 @@ import {TowerStats} from './towerstats';
 export class TowerInfo {
   private upgradeStats: TowerStats;
   private upgradeGoldValue = 0;
+  private _damageDealt = 0;
   constructor(
     readonly tower: Unit,
     readonly baseStats: TowerStats,
@@ -38,5 +39,13 @@ export class TowerInfo {
     // Start with the base stats + upgrades as an integrated set of base values
     let merged = this.baseStats.merge(this.upgradeStats).integratePercentages();
     return merged;
+  }
+
+  get damageDealt(): number {
+    return this._damageDealt;
+  }
+
+  addDamageDealt(value: number) {
+    this._damageDealt += value;
   }
 }

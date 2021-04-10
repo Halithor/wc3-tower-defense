@@ -10,6 +10,7 @@ import {
   Rectangle,
   Unit,
 } from 'w3lib/src/index';
+import {builderClassInfo} from './classInfo';
 
 const classGoldCost = 25;
 
@@ -78,7 +79,11 @@ export class ClassSelection {
           u.destroy();
         }
       });
-      playerSystem.selectClass(sold.owner);
+      const classInfo = builderClassInfo(sold);
+      if (!classInfo) {
+        return;
+      }
+      playerSystem.selectClass(sold.owner, classInfo);
       if (playersSelected >= playersInGame) {
         this.completeSelection();
       }

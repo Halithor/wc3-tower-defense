@@ -10,9 +10,9 @@ gg_rct_Check5 = nil
 gg_rct_PlayArea = nil
 gg_rct_Spawn2 = nil
 gg_rct_Spawn3 = nil
+gg_rct_ClassSelection = nil
 gg_trg_Untitled_Trigger_001 = nil
 gg_trg_Untitled_Trigger_002 = nil
-gg_rct_ClassSelection = nil
 function InitGlobals()
     udg_damage = 0
 end

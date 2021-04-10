@@ -121,6 +121,10 @@ export class TowerStats {
     return new TowerStats(AttackType.Whoknows, 0, 0, 0, 0, 0, 0);
   }
 
+  static attackType(atkType: AttackType) {
+    return new TowerStats(atkType, 0, 0, 0, 0, 0, 0);
+  }
+
   static damage(flat: number, percentage: number): TowerStats {
     return new TowerStats(AttackType.Whoknows, flat, percentage, 0, 0, 0, 0);
   }

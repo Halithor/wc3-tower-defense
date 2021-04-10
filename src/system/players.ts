@@ -10,6 +10,7 @@ import {
   Unit,
   Vec2,
 } from 'w3lib/src/index';
+import {ClassInfo} from './class/classInfo';
 
 const startingGold = 50;
 const startingFood = 7;
@@ -63,7 +64,7 @@ export class PlayerSystem {
     });
   }
 
-  selectClass(player: MapPlayer) {
+  selectClass(player: MapPlayer, classInfo: ClassInfo) {
     player.gold = startingGold;
     player.foodCap = startingFood;
     const fog = FogModifier.fromRect(

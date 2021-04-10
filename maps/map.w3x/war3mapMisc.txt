@@ -4,6 +4,7 @@ AgiDefenseBase=0.0
 AgiDefenseBonus=0.0
 BoneDecayTime=30.0
 ChanceToMiss=0.0
+ConstructionRefundRate=1.0
 DamageBonusChaos=1.00,1.00,0.50,0.50,1.00,1.00,2.00,1.00
 DamageBonusHero=1.00,0.50,0.50,0.50,2.00,1.00,1.00,1.00
 DamageBonusMagic=1.00,1.00,2.00,0.50,0.50,0.50,1.00,2.00
@@ -21,4 +22,5 @@ StrRegenBonus=0.0
 StructureDecayTime=10.0
 TradingIncLarge=0
 TradingIncSmall=0
+UpgradeRefundRate=1.0
 

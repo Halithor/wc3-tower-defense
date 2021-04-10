@@ -22,8 +22,12 @@ export enum WaveFormat {
 
 const waveFormatOptions = [
   WaveFormat.Standard,
+  WaveFormat.Standard,
+  WaveFormat.Standard,
+  WaveFormat.Challenge,
   WaveFormat.Challenge,
   WaveFormat.Boss,
+  WaveFormat.Mass,
   WaveFormat.Mass,
 ];
 
@@ -65,6 +69,7 @@ export class WaveSystem {
     });
 
     onAnyUnitDeath(dying => {
+      
       for (let i = 0; i < this.waves.length; i++) {
         const w = this.waves[i];
         if (w.group.hasUnit(dying)) {

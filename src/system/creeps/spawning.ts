@@ -77,7 +77,7 @@ export class CreepSpawning {
           u.issueOrderAt('move', spawnInfo.moveTarget.center);
           u.maxLife = maxLife * 10;
           u.life = maxLife * 10;
-          u.armor = armor * 3;
+          u.armor = armor * 2;
           u.moveSpeed = Math.floor(movespeed * 0.8);
           const scale = u.getField(UNIT_RF_SCALING_VALUE);
           if (typeof scale == 'number') {
