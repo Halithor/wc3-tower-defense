@@ -11,10 +11,42 @@ import {
   doPeriodically,
   Group,
   Event,
+  UnitId,
+  Rectangle,
 } from 'w3lib/src/index';
 import {creep} from './creep';
 import {CreepIds} from './creepids';
 import {CreepTracker} from './creeptracker';
+
+const movespeed = (difficulty: number) => Math.round(240 + difficulty);
+const maxLife = (difficulty: number) =>
+  Math.round(12 * difficulty * getPlayerCount());
+const armor = (difficulty: number) => Math.floor(difficulty / 2) + 1;
+
+const standardValue = 1;
+const bossValue = 10;
+const massValue = 0.5;
+const challengeValue = 2;
+
+const standardIntervalDistance = 128;
+const standardCount = 10;
+
+const bossLifeFactor = 10;
+const bossArmorFactor = 2;
+const bossMovespeedFactor = 0.8;
+const bossVisualScale = 2.5;
+
+const massIntervalDistance = 64;
+const massCount = 20;
+const massLifeFactor = 0.6;
+const massArmorFactor = 0.6;
+const massMovespeedFactor = 0.9;
+const massVisualScale = 0.8;
+
+const challengeIntervalDistance = 192;
+const challengeLifeFactor = 2.5;
+const challengeArmorFactor = 2.0;
+const challengeVisualScale = 1.5;
 
 export class CreepSpawning {
   constructor(
@@ -22,151 +54,191 @@ export class CreepSpawning {
     private spawns: SpawnInfo[]
   ) {}
 
-  spawnLevel(difficulty: number, levelInfo: WaveInfo, group: Group): Event<[]> {
-    const spawnFinishedEvent = new Event<[]>();
-    const maxLife = Math.round(12 * difficulty * getPlayerCount());
-    const armor = Math.floor(difficulty / 2) + 1;
-    const movespeed = Math.round(240 + difficulty);
-
+  spawnLevel(difficulty: number, waveInfo: WaveInfo, group: Group): Event<[]> {
     const uid = CreepIds.list[Math.floor(Math.random() * CreepIds.list.length)];
-    print(
-      `${waveFormatString(
-        levelInfo.format
-      )}@${difficulty} w/ ${defenseTypeString(
-        levelInfo.defenseType
-      )} defense / ${maxLife} life / ${armor} armor / ${movespeed} ms`
-    );
-    if (levelInfo.format == WaveFormat.Standard) {
-      doPeriodicallyCounted(
-        1.0,
-        10,
-        () => {
-          this.spawns.forEach((spawnInfo, idx) => {
-            const u = new Unit(
-              playerEnemies[idx % 2],
-              uid,
-              spawnInfo.spawn.center,
-              spawnInfo.spawn.center.angleTo(spawnInfo.moveTarget.center)
-            );
-            u.removeGuardPosition();
-            u.issueOrderAt('move', spawnInfo.moveTarget.center);
-            u.maxLife = maxLife;
-            u.life = maxLife;
-            u.armor = armor;
-            u.moveSpeed = movespeed;
-            u.setField(
-              UNIT_IF_DEFENSE_TYPE,
-              defenseTypeIndex(levelInfo.defenseType)
-            );
-            group.addUnit(u);
-            this.tracker.addCreep(creep(u, 1, spawnInfo.moveTarget));
-          });
-        },
-        () => spawnFinishedEvent.fire()
-      );
-    } else if (levelInfo.format == WaveFormat.Boss) {
-      this.spawns.forEach(
-        (spawnInfo, idx) => {
-          const u = new Unit(
-            playerEnemies[idx % 2],
-            uid,
-            spawnInfo.spawn.center,
-            spawnInfo.spawn.center.angleTo(spawnInfo.moveTarget.center)
-          );
-          u.removeGuardPosition();
-          u.issueOrderAt('move', spawnInfo.moveTarget.center);
-          u.maxLife = maxLife * 10;
-          u.life = maxLife * 10;
-          u.armor = armor * 2;
-          u.moveSpeed = Math.floor(movespeed * 0.8);
-          const scale = u.getField(UNIT_RF_SCALING_VALUE);
-          if (typeof scale == 'number') {
-            u.setScale(2.5 * scale, 2.5 * scale, 2.5 * scale);
-          }
-          u.name = 'The Strongest ' + u.name;
-          u.setField(
-            UNIT_IF_DEFENSE_TYPE,
-            defenseTypeIndex(levelInfo.defenseType)
-          );
-          group.addUnit(u);
-          this.tracker.addCreep(creep(u, 10, spawnInfo.moveTarget));
-        },
-        () => spawnFinishedEvent.fire()
-      );
-    } else if (levelInfo.format == WaveFormat.Mass) {
-      doPeriodicallyCounted(
-        0.4,
-        20,
-        () => {
-          this.spawns.forEach((spawnInfo, idx) => {
-            const u = new Unit(
-              playerEnemies[idx % 2],
-              uid,
-              spawnInfo.spawn.center,
-              spawnInfo.spawn.center.angleTo(spawnInfo.moveTarget.center)
-            );
-            u.removeGuardPosition();
-            u.issueOrderAt('move', spawnInfo.moveTarget.center);
-            u.maxLife = Math.round(maxLife / 2);
-            u.life = Math.round(maxLife / 2);
-            u.armor = armor;
-            u.moveSpeed = Math.round(movespeed * 0.9);
-            const scale = u.getField(UNIT_RF_SCALING_VALUE);
-            if (typeof scale == 'number') {
-              u.setScale(0.8 * scale, 0.8 * scale, 0.8 * scale);
-            }
-            u.name = u.name + ' Mass';
-            u.setField(
-              UNIT_IF_DEFENSE_TYPE,
-              defenseTypeIndex(levelInfo.defenseType)
-            );
-            group.addUnit(u);
-            this.tracker.addCreep(creep(u, 0.5, spawnInfo.moveTarget));
-          });
-        },
-        () => spawnFinishedEvent.fire()
-      );
-    } else if (levelInfo.format == WaveFormat.Challenge) {
-      doPeriodicallyCounted(
-        1.2,
-        7,
-        (_cancel, creepIndex) => {
-          this.spawns.forEach((spawnInfo, idx) => {
-            const u = new Unit(
-              playerEnemies[idx % 2],
-              uid,
-              spawnInfo.spawn.center,
-              spawnInfo.spawn.center.angleTo(spawnInfo.moveTarget.center)
-            );
-            u.removeGuardPosition();
-            u.issueOrderAt('move', spawnInfo.moveTarget.center);
-            let value = 1;
-            u.maxLife = maxLife;
-            u.life = maxLife;
-            u.armor = armor;
-            u.moveSpeed = Math.round(movespeed * 0.9);
-            if (creepIndex === 1 || creepIndex === 3 || creepIndex === 5) {
-              u.maxLife = Math.round(maxLife * 2.5);
-              u.life = Math.round(maxLife * 2.5);
-              u.armor = armor * 2;
-              const scale = u.getField(UNIT_RF_SCALING_VALUE);
-              if (typeof scale == 'number') {
-                u.setScale(1.5 * scale, 1.5 * scale, 1.5 * scale);
-              }
-              u.name = '|cffffcc00Champion|r ' + u.name;
-              value = 2;
-            }
-            u.setField(
-              UNIT_IF_DEFENSE_TYPE,
-              defenseTypeIndex(levelInfo.defenseType)
-            );
-            group.addUnit(u);
-            this.tracker.addCreep(creep(u, value, spawnInfo.moveTarget));
-          });
-        },
-        () => spawnFinishedEvent.fire()
-      );
+    switch (waveInfo.format) {
+      case WaveFormat.Standard:
+        return this.standardLevel(difficulty, waveInfo, group, uid);
+      case WaveFormat.Boss:
+        return this.bossLevel(difficulty, waveInfo, group, uid);
+      case WaveFormat.Mass:
+        return this.massLevel(difficulty, waveInfo, group, uid);
+      case WaveFormat.Challenge:
+        return this.challengeLevel(difficulty, waveInfo, group, uid);
+      default:
+        const _checkExhaustive: never = waveInfo.format;
+        throw new Error('should not happen');
     }
-    return spawnFinishedEvent;
+  }
+
+  private spawnSet(
+    waveGroup: Group,
+    uid: UnitId,
+    life: number,
+    armor: number,
+    movespeed: number,
+    defense: DefenseType,
+    value: number,
+    visualScale: number = 1.0,
+    nameChanger?: (name: string) => string
+  ) {
+    this.spawns.forEach((spawnInfo, idx) => {
+      const u = new Unit(
+        playerEnemies[idx % 2],
+        uid,
+        spawnInfo.spawn.center,
+        spawnInfo.spawn.center.angleTo(spawnInfo.moveTarget.center)
+      );
+      u.removeGuardPosition();
+      u.issueOrderAt('move', spawnInfo.moveTarget.center);
+      u.maxLife = life;
+      u.life = life;
+      u.armor = armor;
+      u.moveSpeed = movespeed;
+      u.setField(UNIT_IF_DEFENSE_TYPE, defenseTypeIndex(defense));
+      const scale = u.getField(UNIT_RF_SCALING_VALUE);
+      if (typeof scale == 'number') {
+        u.setScale(
+          visualScale * scale,
+          visualScale * scale,
+          visualScale * scale
+        );
+      }
+      if (nameChanger) {
+        u.name = nameChanger(u.name);
+      }
+      waveGroup.addUnit(u);
+      this.tracker.addCreep(creep(u, value, spawnInfo.moveTarget));
+    });
+  }
+
+  private standardLevel(
+    difficulty: number,
+    waveInfo: WaveInfo,
+    waveGroup: Group,
+    uid: UnitId
+  ): Event<[]> {
+    const event = new Event<[]>();
+    const life = maxLife(difficulty);
+    const arm = armor(difficulty);
+    const speed = movespeed(difficulty);
+    const interval = standardIntervalDistance / speed;
+    doPeriodicallyCounted(
+      interval,
+      standardCount,
+      () => {
+        this.spawnSet(
+          waveGroup,
+          uid,
+          life,
+          arm,
+          speed,
+          waveInfo.defenseType,
+          standardValue
+        );
+      },
+      () => event.fire()
+    );
+    return event;
+  }
+
+  private bossLevel(
+    difficulty: number,
+    waveInfo: WaveInfo,
+    waveGroup: Group,
+    uid: UnitId
+  ): Event<[]> {
+    const event = new Event<[]>();
+    this.spawnSet(
+      waveGroup,
+      uid,
+      Math.round(maxLife(difficulty) * bossLifeFactor),
+      Math.round(armor(difficulty) * bossArmorFactor),
+      Math.round(movespeed(difficulty) * bossMovespeedFactor),
+      waveInfo.defenseType,
+      bossValue,
+      bossVisualScale,
+      name => `The Strongest ${name}`
+    );
+    // Delay event firing so that subscribers can sub.
+    doAfter(0.5, () => event.fire());
+    return event;
+  }
+
+  private massLevel(
+    difficulty: number,
+    waveInfo: WaveInfo,
+    waveGroup: Group,
+    uid: UnitId
+  ): Event<[]> {
+    const event = new Event<[]>();
+    const life = Math.round(maxLife(difficulty) * massLifeFactor);
+    const arm = Math.round(armor(difficulty) * massArmorFactor);
+    const speed = Math.round(movespeed(difficulty) * massMovespeedFactor);
+    const interval = massIntervalDistance / speed;
+    doPeriodicallyCounted(
+      interval,
+      massCount,
+      () => {
+        this.spawnSet(
+          waveGroup,
+          uid,
+          life,
+          arm,
+          speed,
+          waveInfo.defenseType,
+          massValue,
+          massVisualScale,
+          name => `${name} Mass`
+        );
+      },
+      () => event.fire()
+    );
+    return event;
+  }
+
+  private challengeLevel(
+    difficulty: number,
+    waveInfo: WaveInfo,
+    waveGroup: Group,
+    uid: UnitId
+  ): Event<[]> {
+    const event = new Event<[]>();
+    const life = maxLife(difficulty);
+    const arm = armor(difficulty);
+    const speed = movespeed(difficulty);
+    const interval = challengeIntervalDistance / speed;
+
+    doPeriodicallyCounted(
+      interval,
+      7,
+      (_cancel, creepIndex) => {
+        if (creepIndex === 1 || creepIndex === 3 || creepIndex === 5) {
+          this.spawnSet(
+            waveGroup,
+            uid,
+            Math.round(life * challengeLifeFactor),
+            Math.round(arm * challengeArmorFactor),
+            speed,
+            waveInfo.defenseType,
+            challengeValue,
+            challengeVisualScale,
+            name => `|cffffcc00Champion|r ${name}`
+          );
+        } else {
+          this.spawnSet(
+            waveGroup,
+            uid,
+            life,
+            arm,
+            speed,
+            waveInfo.defenseType,
+            standardValue
+          );
+        }
+      },
+      () => event.fire()
+    );
+    return event;
   }
 }
