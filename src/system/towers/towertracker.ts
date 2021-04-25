@@ -1,6 +1,6 @@
 import {AttackType} from 'combattypes';
 import {
-  Event,
+  Subject,
   onAnyUnitConstructionFinish,
   onAnyUnitDeath,
   onAnyUnitUpgradeFinish,
@@ -11,10 +11,10 @@ import {TowerInfo} from './towerinfo';
 
 // TowerTracker tracks the association of TowerInfos with a given unit
 export class TowerTracker {
-  readonly eventNewTower: Event<[info: TowerInfo]>;
+  readonly eventNewTower: Subject<[info: TowerInfo]>;
   private towers: {[key: number]: TowerInfo} = {};
   constructor() {
-    this.eventNewTower = new Event<[info: TowerInfo]>();
+    this.eventNewTower = new Subject<[info: TowerInfo]>();
 
     onAnyUnitDeath(dying => {
       this.removeTower(dying);

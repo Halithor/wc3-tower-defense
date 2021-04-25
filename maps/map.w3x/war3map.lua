@@ -1,4 +1,5 @@
 udg_damage = 0
+udg_u = nil
 gg_rct_Spawn0 = nil
 gg_rct_Spawn1 = nil
 gg_rct_Check0 = nil
@@ -11,6 +12,7 @@ gg_rct_PlayArea = nil
 gg_rct_Spawn2 = nil
 gg_rct_Spawn3 = nil
 gg_rct_ClassSelection = nil
+gg_rct_Region_012 = nil
 gg_trg_Untitled_Trigger_001 = nil
 gg_trg_Untitled_Trigger_002 = nil
 function InitGlobals()
@@ -79,6 +81,7 @@ function CreateNeutralPassiveBuildings()
     local life
     u = BlzCreateUnitWithSkin(p, FourCC("n008"), 4608.0, -4800.0, 270.000, FourCC("n008"))
     SetUnitColor(u, ConvertPlayerColor(0))
+    u = BlzCreateUnitWithSkin(p, FourCC("n009"), -3072.0, 64.0, 270.000, FourCC("n009"))
 end
 
 function CreateNeutralPassive()
@@ -124,6 +127,7 @@ function CreateRegions()
     gg_rct_Spawn2 = Rect(-1312.0, -3072.0, -1248.0, -3008.0)
     gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
     gg_rct_ClassSelection = Rect(4192.0, -5280.0, 5024.0, -4448.0)
+    gg_rct_Region_012 = Rect(-3456.0, -384.0, -2688.0, 512.0)
 end
 
 function Trig_Untitled_Trigger_001_Actions()
@@ -131,6 +135,7 @@ end
 
 function InitTrig_Untitled_Trigger_001()
     gg_trg_Untitled_Trigger_001 = CreateTrigger()
+    TriggerRegisterAnyUnitEventBJ(gg_trg_Untitled_Trigger_001, EVENT_PLAYER_UNIT_PICKUP_ITEM)
     TriggerAddAction(gg_trg_Untitled_Trigger_001, Trig_Untitled_Trigger_001_Actions)
 end
 

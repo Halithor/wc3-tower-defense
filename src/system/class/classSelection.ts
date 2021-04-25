@@ -3,7 +3,7 @@ import {PlayerSystem} from 'system/players/playerSystem';
 import {
   degrees,
   doAfter,
-  Event,
+  Subject,
   FogModifier,
   forUnitsInRect,
   Group,
@@ -26,16 +26,16 @@ const builderOptions = [
 ];
 
 export class ClassSelection {
-  eventComplete: Event<[]>;
-  eventPlayerSelect: Event<[]>;
+  eventComplete: Subject<[]>;
+  eventPlayerSelect: Subject<[]>;
   private visions: FogModifier[] = [];
   timerDialog: TimerDialog;
   private hasSelected: {[key: number]: boolean} = {};
   timeLimit: {cancel: () => void; timer: Timer};
 
   constructor(playerSystem: PlayerSystem) {
-    this.eventComplete = new Event<[]>();
-    this.eventPlayerSelect = new Event<[]>();
+    this.eventComplete = new Subject<[]>();
+    this.eventPlayerSelect = new Subject<[]>();
 
     const selectionArea = Rectangle.fromHandle(gg_rct_ClassSelection);
     const playArea = Rectangle.fromHandle(gg_rct_PlayArea);

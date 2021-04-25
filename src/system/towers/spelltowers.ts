@@ -136,7 +136,7 @@ export class SpellTowerEffects {
           !u.isUnitType(UNIT_TYPE_FLYING)
       );
       projectile.fx.scale = 0.8;
-      projectile.onEnd.listen(() => alreadyHit.destroy());
+      projectile.onEnd.subscribe(() => alreadyHit.destroy());
     });
   }
 

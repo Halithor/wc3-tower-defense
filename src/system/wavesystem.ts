@@ -94,7 +94,7 @@ export class WaveSystem {
       g
     );
     const wave = new ActiveWave(level, g);
-    onSpawnFinish.listen(() => (wave.spawnFinished = true));
+    onSpawnFinish.subscribe(() => (wave.spawnFinished = true));
     this.waves.push(wave);
   }
 

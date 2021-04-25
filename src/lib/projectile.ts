@@ -1,7 +1,7 @@
 /** @noSelfInFile **/
 import {
   doPeriodically,
-  Event,
+  Subject,
   forDestructablesInCircle,
   forUnitsInRange,
   vec3,
@@ -21,7 +21,7 @@ export class Projectile {
   private destFilter?: (d: Destructable) => boolean;
   private unitFilter?: (u: Unit) => boolean;
   vertSpeed: number;
-  readonly onEnd: Event<[]>;
+  readonly onEnd: Subject<[]>;
 
   constructor(
     private pos: Vec3,
@@ -31,7 +31,7 @@ export class Projectile {
     effectPath: string,
     private onImpact: (target: Vec3 | Unit | Destructable, pos: Vec2) => void
   ) {
-    this.onEnd = new Event<[]>();
+    this.onEnd = new Subject<[]>();
     this.fx = new Effect(effectPath, pos.withoutZ());
     this.fx.pos = pos;
     let targetPos: Vec3;

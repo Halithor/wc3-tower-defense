@@ -33,7 +33,7 @@ export class Game {
       const classApplication = new ClassApplication(players, towerTracker);
 
       const classSelection = new ClassSelection(players);
-      classSelection.eventComplete.listen(() => {
+      classSelection.eventComplete.subscribe(() => {
         // Will start the game
         const waves = new WaveSystem(creeps.spawning, players);
       });

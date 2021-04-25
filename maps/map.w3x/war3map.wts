@@ -103,250 +103,10 @@ STRING 25
 Type: |Cffffcc00Nature|r
 }
 
-STRING 27
-// Items: I000 (Card 5), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
 STRING 28
 // Abilities: A000 (Channel Cleaned), Name (Name)
 {
 Channel Cleaned
-}
-
-STRING 30
-// Items: I000 (Card 5), Name (Name)
-{
-Card 5
-}
-
-STRING 32
-// Items: I000 (Card 5), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 33
-// Items: I000 (Card 5), Description (Description)
-{
-Card description
-}
-
-STRING 35
-// Items: I001 (Summon Footmen), Description (Description)
-{
-Card description
-}
-
-STRING 36
-// Items: I001 (Summon Footmen), Name (Name)
-{
-Summon Footmen
-}
-
-STRING 37
-// Items: I001 (Summon Footmen), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 38
-// Items: I001 (Summon Footmen), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 39
-// Items: I002 (Summon Treants), Description (Description)
-{
-Card description
-}
-
-STRING 40
-// Items: I002 (Summon Treants), Name (Name)
-{
-Summon Treants
-}
-
-STRING 41
-// Items: I002 (Summon Treants), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 42
-// Items: I002 (Summon Treants), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 47
-// Items: I003 (Summon Knight), Description (Description)
-{
-Card description
-}
-
-STRING 49
-// Items: I003 (Summon Knight), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 50
-// Items: I003 (Summon Knight), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 51
-// Items: I004 (Summon Druid), Description (Description)
-{
-Card description
-}
-
-STRING 52
-// Items: I004 (Summon Druid), Name (Name)
-{
-Summon Druid
-}
-
-STRING 53
-// Items: I004 (Summon Druid), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 54
-// Items: I004 (Summon Druid), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 55
-// Items: I003 (Summon Knight), Name (Name)
-{
-Summon Knight
-}
-
-STRING 59
-// Items: I005 (Fireblast), Description (Description)
-{
-Card description
-}
-
-STRING 60
-// Items: I005 (Fireblast), Name (Name)
-{
-Fireblast
-}
-
-STRING 61
-// Items: I005 (Fireblast), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 62
-// Items: I005 (Fireblast), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 63
-// Items: I006 (Enliven), Description (Description)
-{
-Card description
-}
-
-STRING 65
-// Items: I006 (Enliven), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 66
-// Items: I006 (Enliven), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 67
-// Items: I006 (Enliven), Name (Name)
-{
-Enliven
-}
-
-STRING 76
-// Items: I007 (Summon Bear), Description (Description)
-{
-Card description
-}
-
-STRING 77
-// Items: I007 (Summon Bear), Name (Name)
-{
-Summon Bear
-}
-
-STRING 78
-// Items: I007 (Summon Bear), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 79
-// Items: I007 (Summon Bear), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 84
-// Items: I008 (Summon Priests), Description (Description)
-{
-Card description
-}
-
-STRING 85
-// Items: I008 (Summon Priests), Name (Name)
-{
-Summon Priests
-}
-
-STRING 86
-// Items: I008 (Summon Priests), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 87
-// Items: I008 (Summon Priests), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 88
-// Items: I009 (Gold Coins), Description (Description)
-{
-Card description
-}
-
-STRING 89
-// Items: I009 (Gold Coins), Name (Name)
-{
-Gold Coins
-}
-
-STRING 90
-// Items: I009 (Gold Coins), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 91
-// Items: I009 (Gold Coins), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
 }
 
 STRING 92
@@ -372,102 +132,6 @@ Player 6
 STRING 96
 {
 Enemies
-}
-
-STRING 97
-// Items: I00A (Recipe), Description (Description)
-{
-Card description
-}
-
-STRING 98
-// Items: I00A (Recipe), Name (Name)
-{
-Recipe
-}
-
-STRING 99
-// Items: I00A (Recipe), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 100
-// Items: I00A (Recipe), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 101
-// Items: I00B (Ingredient1), Description (Description)
-{
-Card description
-}
-
-STRING 102
-// Items: I00B (Ingredient1), Name (Name)
-{
-Ingredient1
-}
-
-STRING 103
-// Items: I00B (Ingredient1), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 104
-// Items: I00B (Ingredient1), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 105
-// Items: I00C (Ingredient2), Description (Description)
-{
-Card description
-}
-
-STRING 106
-// Items: I00C (Ingredient2), Name (Name)
-{
-Ingredient2
-}
-
-STRING 107
-// Items: I00C (Ingredient2), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 108
-// Items: I00C (Ingredient2), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
-}
-
-STRING 109
-// Items: I00D (Ingredient3), Description (Description)
-{
-Card description
-}
-
-STRING 110
-// Items: I00D (Ingredient3), Name (Name)
-{
-Ingredient3
-}
-
-STRING 111
-// Items: I00D (Ingredient3), Tip (Tooltip - Basic)
-{
-Purchase Card
-}
-
-STRING 112
-// Items: I00D (Ingredient3), Ubertip (Tooltip - Extended)
-{
-Purchase a new card.
 }
 
 STRING 113
@@ -1571,5 +1235,59 @@ STRING 408
 // Units: u000 (Warrior), Ubertip (Tooltip - Extended)
 {
 Master of melee combat.|n|n|cffffcc00Damage Type:|r Physical|n|cffffcc00Bonuses:|r|n+2 Damage for melee towers|n|n|cffffcc00Available Towers:|r|n-TODO
+}
+
+STRING 409
+// Units: n009 (Module Dealer), Name (Name)
+{
+Module Dealer
+}
+
+STRING 410
+// Items: I000 (Scrying Stone), Description (Description)
+{
+Increases attack range by 200.
+}
+
+STRING 411
+// Items: I000 (Scrying Stone), Name (Name)
+{
+Scrying Stone
+}
+
+STRING 412
+// Items: I000 (Scrying Stone), Tip (Tooltip - Basic)
+{
+Purchase Scrying Stone
+}
+
+STRING 413
+// Items: I000 (Scrying Stone), Ubertip (Tooltip - Extended)
+{
+Increases tower range by 200 and deals 2 Arcane damage to every unit hit by a spell or attack.
+}
+
+STRING 414
+// Items: I001 (Mana Stone), Description (Description)
+{
+Increases attack range by 200.
+}
+
+STRING 415
+// Items: I001 (Mana Stone), Name (Name)
+{
+Mana Stone
+}
+
+STRING 416
+// Items: I001 (Mana Stone), Tip (Tooltip - Basic)
+{
+Purchase Mana Stone
+}
+
+STRING 418
+// Items: I001 (Mana Stone), Ubertip (Tooltip - Extended)
+{
+Increases tower max mana by 5 and increases mana regen by 0.25 per second.
 }
 

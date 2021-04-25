@@ -10,7 +10,7 @@ import {
   doAfter,
   doPeriodically,
   Group,
-  Event,
+  Subject,
   UnitId,
   Rectangle,
 } from 'w3lib/src/index';
@@ -54,7 +54,7 @@ export class CreepSpawning {
     private spawns: SpawnInfo[]
   ) {}
 
-  spawnLevel(difficulty: number, waveInfo: WaveInfo, group: Group): Event<[]> {
+  spawnLevel(difficulty: number, waveInfo: WaveInfo, group: Group): Subject<[]> {
     const uid = CreepIds.list[Math.floor(Math.random() * CreepIds.list.length)];
     switch (waveInfo.format) {
       case WaveFormat.Standard:
@@ -117,8 +117,8 @@ export class CreepSpawning {
     waveInfo: WaveInfo,
     waveGroup: Group,
     uid: UnitId
-  ): Event<[]> {
-    const event = new Event<[]>();
+  ): Subject<[]> {
+    const event = new Subject<[]>();
     const life = maxLife(difficulty);
     const arm = armor(difficulty);
     const speed = movespeed(difficulty);
@@ -147,8 +147,8 @@ export class CreepSpawning {
     waveInfo: WaveInfo,
     waveGroup: Group,
     uid: UnitId
-  ): Event<[]> {
-    const event = new Event<[]>();
+  ): Subject<[]> {
+    const event = new Subject<[]>();
     this.spawnSet(
       waveGroup,
       uid,
@@ -170,8 +170,8 @@ export class CreepSpawning {
     waveInfo: WaveInfo,
     waveGroup: Group,
     uid: UnitId
-  ): Event<[]> {
-    const event = new Event<[]>();
+  ): Subject<[]> {
+    const event = new Subject<[]>();
     const life = Math.round(maxLife(difficulty) * massLifeFactor);
     const arm = Math.round(armor(difficulty) * massArmorFactor);
     const speed = Math.round(movespeed(difficulty) * massMovespeedFactor);
@@ -202,8 +202,8 @@ export class CreepSpawning {
     waveInfo: WaveInfo,
     waveGroup: Group,
     uid: UnitId
-  ): Event<[]> {
-    const event = new Event<[]>();
+  ): Subject<[]> {
+    const event = new Subject<[]>();
     const life = maxLife(difficulty);
     const arm = armor(difficulty);
     const speed = movespeed(difficulty);
