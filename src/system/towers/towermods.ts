@@ -19,7 +19,7 @@ export class TowerModules {
     }, TowerStats.empty());
   }
 
-  modules(): Module[] {
+  get modules(): Module[] {
     const mods: Module[] = [];
     this.tower.items.forEach(val => {
       const module = moduleTracker.get(val);

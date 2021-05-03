@@ -48,7 +48,7 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
-      towerInfo.mods.modules().forEach(mod => {
+      towerInfo.mods.modules.forEach(mod => {
         mod.onAttackDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
@@ -58,7 +58,7 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
-      towerInfo.mods.modules().forEach(mod => {
+      towerInfo.mods.modules.forEach(mod => {
         mod.onSpellDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
@@ -68,7 +68,7 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
-      towerInfo.mods.modules().forEach(mod => {
+      towerInfo.mods.modules.forEach(mod => {
         mod.onSpellOrAttackDamage(
           creepInfo,
           towerInfo,
@@ -82,7 +82,7 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
-      towerInfo.mods.modules().forEach(mod => {
+      towerInfo.mods.modules.forEach(mod => {
         mod.onOnHitDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
@@ -92,7 +92,7 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
-      towerInfo.mods.modules().forEach(mod => {
+      towerInfo.mods.modules.forEach(mod => {
         mod.onAnyDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
@@ -100,22 +100,29 @@ export class ModuleSystem {
 
   private setupItemChanges() {
     eventUnitAcquiresItem.subscribe((u, i) => {
-      this.onItemChange(u, i);
+      this.onItemChange(u, i, true);
     });
     eventUnitLosesItem.subscribe((u, i) => {
-      doAfter(0, () => this.onItemChange(u, i));
+      doAfter(0, () => this.onItemChange(u, i, false));
     });
     eventUnitSellsItemFromShop.subscribe((shop, purchaser, i) => {
       this.onItemSoldShop(i);
     });
   }
 
-  private onItemChange(u: Unit, i: Item) {
+  private onItemChange(u: Unit, i: Item, acquisition: boolean) {
     const info = this.towerTracker.getTower(u);
     if (!info) {
       return;
     }
     info.mods.change.fire();
+    info.mods.modules.forEach(mod => {
+      if (acquisition) {
+        mod.onAdd(info);
+      } else {
+        mod.onRemove(info);
+      }
+    });
   }
 
   private onItemSoldShop(i: Item) {
