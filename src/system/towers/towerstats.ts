@@ -1,9 +1,4 @@
-import {
-  AttackType,
-  attackTypeColor,
-  attackTypeIndex,
-  attackTypeString,
-} from 'combattypes';
+import {AttackType} from 'combattypes';
 import {Unit} from 'w3lib/src/index';
 
 const minimumCooldown = 0.1;
@@ -46,11 +41,7 @@ export class TowerStats {
   express(tower: Unit) {
     const {atkType, dmg, range, cd, manaMax, manaRegen} = this.calcExpressed();
 
-    tower.setWeaponField(
-      UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE,
-      0,
-      attackTypeIndex(atkType)
-    );
+    tower.setWeaponField(UNIT_WEAPON_IF_ATTACK_ATTACK_TYPE, 0, atkType.index);
     // For some reason, this only works with index +1
     tower.setBaseDamage(Math.round(dmg) - 1, 0);
     // This just works, it's dumb but it works. The setter needs to be idx + 1, the getter needs as
@@ -105,9 +96,7 @@ export class TowerStats {
   toString(): string {
     const {atkType, dmg, range, cd, manaMax, manaRegen} = this.calcExpressed();
 
-    let str = `|cff6699ffAttack Type:|r ${
-      attackTypeColor(atkType).code
-    } ${attackTypeString(atkType)}|r
+    let str = `|cff6699ffAttack Type:|r ${atkType.nameColored}
 |cff6699ffDamage:|r ${this.damage} + ${this.damagePerc}% = ${Math.round(dmg)}
 |cff6699ffRange:|r ${this.range} + ${this.rangePerc}% = ${Math.round(range)}
 |cff6699ffCooldown:|r ${string.format('%.2f', this.cooldown)} - ${

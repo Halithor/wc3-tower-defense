@@ -1,3 +1,5 @@
+import {AttackType, DefenseType} from 'combattypes';
+import {CreepTracker} from 'system/creeps/creeptracker';
 import {
   eventAnyDamaging,
   eventAttackDamaging,
@@ -5,19 +7,36 @@ import {
   eventSpellDamaging,
   eventSpellOrAttackDamaging,
 } from 'system/damage';
-import {isUnitTower} from 'system/towers/towerconstants';
-import {TowerInfo} from 'system/towers/towerinfo';
+import {TowerStats} from 'system/towers/towerstats';
 import {TowerTracker} from 'system/towers/towertracker';
 import {
+  DamageInfo,
   doAfter,
   eventUnitAcquiresItem,
   eventUnitLosesItem,
+  eventUnitSellsItemFromShop,
   Item,
   Unit,
 } from 'w3lib/src/index';
+import {Arcane} from './arcane';
+import {ModDamageInfo, Module} from './module';
+import {moduleTracker} from './moduleTracker';
+
+function convertInfo(info: DamageInfo, target: Unit): ModDamageInfo {
+  return {
+    ...info,
+    attackType: AttackType.invert(info.attackType),
+    targetDefenseType: DefenseType.invert(
+      ConvertDefenseType(target.getIntegerField(UNIT_IF_DEFENSE_TYPE))
+    ),
+  };
+}
 
 export class ModuleSystem {
-  constructor(private readonly towerTracker: TowerTracker) {
+  constructor(
+    private readonly towerTracker: TowerTracker,
+    private readonly creepTracker: CreepTracker
+  ) {
     this.setupItemChanges();
     this.setupDamageEvents();
   }
@@ -25,57 +44,56 @@ export class ModuleSystem {
   private setupDamageEvents() {
     eventAttackDamaging.subscribe((target, attacker, info) => {
       const towerInfo = this.towerTracker.getTower(attacker);
-      if (!towerInfo) {
+      const creepInfo = this.creepTracker.getCreep(target);
+      if (!towerInfo || !creepInfo) {
         return;
       }
       towerInfo.mods.modules().forEach(mod => {
-        if (mod.handlers.onAttackDamage) {
-          mod.handlers.onAttackDamage(target, towerInfo, info);
-        }
+        mod.onAttackDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
     eventSpellDamaging.subscribe((target, attacker, info) => {
       const towerInfo = this.towerTracker.getTower(attacker);
-      if (!towerInfo) {
+      const creepInfo = this.creepTracker.getCreep(target);
+      if (!towerInfo || !creepInfo) {
         return;
       }
       towerInfo.mods.modules().forEach(mod => {
-        if (mod.handlers.onSpellDamage) {
-          mod.handlers.onSpellDamage(target, towerInfo, info);
-        }
+        mod.onSpellDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
     eventSpellOrAttackDamaging.subscribe((target, attacker, info) => {
       const towerInfo = this.towerTracker.getTower(attacker);
-      if (!towerInfo) {
+      const creepInfo = this.creepTracker.getCreep(target);
+      if (!towerInfo || !creepInfo) {
         return;
       }
       towerInfo.mods.modules().forEach(mod => {
-        if (mod.handlers.onSpellOrAttackDamage) {
-          mod.handlers.onSpellOrAttackDamage(target, towerInfo, info);
-        }
+        mod.onSpellOrAttackDamage(
+          creepInfo,
+          towerInfo,
+          convertInfo(info, target)
+        );
       });
     });
     eventOnHitDamaging.subscribe((target, attacker, info) => {
       const towerInfo = this.towerTracker.getTower(attacker);
-      if (!towerInfo) {
+      const creepInfo = this.creepTracker.getCreep(target);
+      if (!towerInfo || !creepInfo) {
         return;
       }
       towerInfo.mods.modules().forEach(mod => {
-        if (mod.handlers.onOnHitDamage) {
-          mod.handlers.onOnHitDamage(target, towerInfo, info);
-        }
+        mod.onOnHitDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
     eventAnyDamaging.subscribe((target, attacker, info) => {
       const towerInfo = this.towerTracker.getTower(attacker);
-      if (!towerInfo) {
+      const creepInfo = this.creepTracker.getCreep(target);
+      if (!towerInfo || !creepInfo) {
         return;
       }
       towerInfo.mods.modules().forEach(mod => {
-        if (mod.handlers.onAnyDamage) {
-          mod.handlers.onAnyDamage(target, towerInfo, info);
-        }
+        mod.onAnyDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
   }
@@ -87,6 +105,9 @@ export class ModuleSystem {
     eventUnitLosesItem.subscribe((u, i) => {
       doAfter(0, () => this.onItemChange(u, i));
     });
+    eventUnitSellsItemFromShop.subscribe((shop, purchaser, i) => {
+      this.onItemSoldShop(i);
+    });
   }
 
   private onItemChange(u: Unit, i: Item) {
@@ -96,4 +117,25 @@ export class ModuleSystem {
     }
     info.mods.change.fire();
   }
+
+  private onItemSoldShop(i: Item) {
+    const mod = makeModule(i);
+    moduleTracker.addModule(mod);
+  }
+}
+
+export function makeModule(item: Item): Module {
+  switch (item.typeId.value) {
+    case Arcane.ScryingStone.itemId.value:
+      return new Arcane.ScryingStone(item);
+    case Arcane.ManaStone.itemId.value:
+      return new Arcane.ManaStone(item);
+  }
+  return new NullModule(item);
+}
+
+class NullModule extends Module {
+  name = 'Null Module';
+  description = '';
+  stats = TowerStats.empty();
 }

@@ -1,4 +1,4 @@
-import {attackTypeColor, attackTypeInvert, attackTypeString} from 'combattypes';
+import {AttackType} from 'combattypes';
 import {playerHumans, SpellIds} from 'constants';
 import {CircleIndicator} from 'lib/indicator';
 import {eventAnyDamaging} from 'system/damage';
@@ -99,9 +99,9 @@ ${info.stats.toString()}`
       .subscribe((target, attacker, info) => {
         const tt = standardTextTag(
           target.pos.polarOffset(degrees(0), Math.random() * 16 - 8),
-          `${
-            attackTypeColor(attackTypeInvert(info.attackType)).code
-          }${Math.round(info.damage)}|r`
+          `${AttackType.invert(info.attackType).color.code}${Math.round(
+            info.damage
+          )}|r`
         );
         tt.velocity = degrees(Math.random() * 60 + 60).asDirection.scale(0.05);
         tt.size = 8;

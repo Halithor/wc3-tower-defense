@@ -1,18 +1,14 @@
-import {DefenseType, defenseTypeIndex, defenseTypeString} from 'combattypes';
+import {DefenseType} from 'combattypes';
 import {getPlayerCount, playerEnemies} from 'constants';
 import {SpawnInfo} from 'system/pathinfo';
-import {WaveFormat, waveFormatString, WaveInfo} from 'system/wavesystem';
+import {WaveFormat, WaveInfo} from 'system/wavesystem';
 import {
-  unitId,
   Unit,
-  degrees,
   doPeriodicallyCounted,
   doAfter,
-  doPeriodically,
   Group,
   Subject,
   UnitId,
-  Rectangle,
 } from 'w3lib/src/index';
 import {creep} from './creep';
 import {CreepIds} from './creepids';
@@ -54,7 +50,11 @@ export class CreepSpawning {
     private spawns: SpawnInfo[]
   ) {}
 
-  spawnLevel(difficulty: number, waveInfo: WaveInfo, group: Group): Subject<[]> {
+  spawnLevel(
+    difficulty: number,
+    waveInfo: WaveInfo,
+    group: Group
+  ): Subject<[]> {
     const uid = CreepIds.list[Math.floor(Math.random() * CreepIds.list.length)];
     switch (waveInfo.format) {
       case WaveFormat.Standard:
@@ -95,7 +95,7 @@ export class CreepSpawning {
       u.life = life;
       u.armor = armor;
       u.moveSpeed = movespeed;
-      u.setField(UNIT_IF_DEFENSE_TYPE, defenseTypeIndex(defense));
+      u.setField(UNIT_IF_DEFENSE_TYPE, defense.index);
       const scale = u.getField(UNIT_RF_SCALING_VALUE);
       if (typeof scale == 'number') {
         u.setScale(

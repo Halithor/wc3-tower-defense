@@ -1,19 +1,17 @@
-import {moduleMap} from 'system/mods/moddata';
-import {ModType} from 'system/mods/modtype';
-import {Subject, Unit, eventUnitAcquiresItem} from 'w3lib/src/index';
-import {isUnitTower} from './towerconstants';
+import {Module} from 'system/mods/module';
+import {Subject, Unit} from 'w3lib/src/index';
+import {moduleTracker} from '../mods/moduleTracker';
 import {TowerStats} from './towerstats';
-import {TowerTracker} from './towertracker';
 
 // Tower mods encapsulates the mods that are available on a given tower.
-export class TowerMods {
+export class TowerModules {
   readonly change: Subject<[]> = new Subject<[]>();
 
   constructor(private tower: Unit) {}
 
   stats(): TowerStats {
     return this.tower.items.reduce((acc, val) => {
-      const moduleType = moduleMap.get(val.typeId);
+      const moduleType = moduleTracker.get(val);
       if (moduleType) {
         return acc.merge(moduleType.stats);
       }
@@ -21,12 +19,12 @@ export class TowerMods {
     }, TowerStats.empty());
   }
 
-  modules(): ModType[] {
-    const mods: ModType[] = [];
+  modules(): Module[] {
+    const mods: Module[] = [];
     this.tower.items.forEach(val => {
-      const moduleType = moduleMap.get(val.typeId);
-      if (moduleType) {
-        mods.push(moduleType);
+      const module = moduleTracker.get(val);
+      if (module) {
+        mods.push(module);
       }
     });
     return mods;

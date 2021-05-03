@@ -1,6 +1,6 @@
 import {Unit} from 'w3lib/src/index';
 import {towerCategories, TowerCategories} from './towerconstants';
-import {TowerMods} from './towermods';
+import {TowerModules} from './towermods';
 import {TowerStats} from './towerstats';
 
 // TowerInfo contains the statistics for a give tower.
@@ -10,14 +10,14 @@ export class TowerInfo {
   private upgradeGoldValue = 0;
   private _damageDealt = 0;
 
-  readonly mods: TowerMods;
+  readonly mods: TowerModules;
 
   constructor(
     readonly tower: Unit,
     readonly baseStats: TowerStats,
     private _goldValue: number
   ) {
-    this.mods = new TowerMods(tower);
+    this.mods = new TowerModules(tower);
     this.mods.change.subscribe(() => this.expressStats());
 
     this.expressStats();

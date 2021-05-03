@@ -81,7 +81,13 @@ function CreateNeutralPassiveBuildings()
     local life
     u = BlzCreateUnitWithSkin(p, FourCC("n008"), 4608.0, -4800.0, 270.000, FourCC("n008"))
     SetUnitColor(u, ConvertPlayerColor(0))
-    u = BlzCreateUnitWithSkin(p, FourCC("n009"), -3072.0, 64.0, 270.000, FourCC("n009"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n00C"), -3328.0, 192.0, 270.000, FourCC("n00C"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n00A"), -3520.0, -768.0, 270.000, FourCC("n00A"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n00B"), -3776.0, -384.0, 270.000, FourCC("n00B"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n009"), -2880.0, -384.0, 270.000, FourCC("n009"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n00D"), -3712.0, 0.0, 270.000, FourCC("n00D"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n00E"), -3136.0, -768.0, 270.000, FourCC("n00E"))
+    u = BlzCreateUnitWithSkin(p, FourCC("n00F"), -2944.0, 0.0, 270.000, FourCC("n00F"))
 end
 
 function CreateNeutralPassive()
@@ -127,7 +133,7 @@ function CreateRegions()
     gg_rct_Spawn2 = Rect(-1312.0, -3072.0, -1248.0, -3008.0)
     gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
     gg_rct_ClassSelection = Rect(4192.0, -5280.0, 5024.0, -4448.0)
-    gg_rct_ModShops = Rect(-3456.0, -384.0, -2688.0, 512.0)
+    gg_rct_ModShops = Rect(-3968.0, -1152.0, -2688.0, 512.0)
 end
 
 function Trig_Untitled_Trigger_001_Actions()

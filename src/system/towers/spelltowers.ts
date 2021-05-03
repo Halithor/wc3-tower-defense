@@ -1,4 +1,4 @@
-import {AttackType, attackTypeInvert} from 'combattypes';
+import {AttackType} from 'combattypes';
 import {isUnitCreep, SpellIds} from 'constants';
 import {Projectile} from 'lib/projectile';
 import {dealDamageSpell, onAttackDamage, onSpellDamage} from 'system/damage';
@@ -64,7 +64,7 @@ export class SpellTowerEffects {
 
   private setupChainLightning() {
     this.setupSpell(SpellIds.chainLightning, 10, (target, attacker, info) => {
-      const atkType = attackTypeInvert(info.attackType);
+      const atkType = AttackType.invert(info.attackType);
       let source = attacker;
       let targ = target;
       let damage = info.damage * lightningDamage;
@@ -106,7 +106,7 @@ export class SpellTowerEffects {
 
   private setupShockwave() {
     this.setupSpell(SpellIds.shockwave, 10, (target, attacker, info) => {
-      const atkType = attackTypeInvert(info.attackType);
+      const atkType = AttackType.invert(info.attackType);
       const travelDistance =
         (attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) + 64) *
         shockwaveRangeFactor;
@@ -142,7 +142,7 @@ export class SpellTowerEffects {
 
   private setupWarstomp() {
     this.setupSpell(SpellIds.warstomp, 10, (target, attacker, info) => {
-      const atkType = attackTypeInvert(info.attackType);
+      const atkType = AttackType.invert(info.attackType);
       const range =
         attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) + 64;
       const dmg = info.damage * warstompDamageFactor;
@@ -157,7 +157,7 @@ export class SpellTowerEffects {
 
   private setupNova() {
     this.setupSpell(SpellIds.energyNova, 10, (target, attacker, info) => {
-      const atkType = attackTypeInvert(info.attackType);
+      const atkType = AttackType.invert(info.attackType);
       const aoe =
         (attacker.getWeaponRealField(UNIT_WEAPON_RF_ATTACK_RANGE, 0) + 64) *
         novaAoEFactor;
@@ -175,7 +175,7 @@ export class SpellTowerEffects {
 
   private setupStormbolt() {
     this.setupSpell(SpellIds.stormbolt, 10, (target, attacker, info) => {
-      const atkType = attackTypeInvert(info.attackType);
+      const atkType = AttackType.invert(info.attackType);
       const dmg = info.damage * stormhammerDamageFactor;
       const projectile = new Projectile(
         attacker.pos.withZ(60),

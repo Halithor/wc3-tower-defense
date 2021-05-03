@@ -1,7 +1,6 @@
-import {AttackType, attackTypeConvert} from 'combattypes';
+import {AttackType} from 'combattypes';
 import {
   DamageInfo,
-  eventAnyUnitDamaged,
   eventAnyUnitDamaging,
   onAnyUnitDamaged,
   onAnyUnitDamaging,
@@ -25,7 +24,7 @@ export function dealDamageAttack(
     amount,
     true,
     ranged,
-    attackTypeConvert(attackType),
+    attackType.attackType,
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
@@ -44,7 +43,7 @@ export function dealDamageSpell(
     amount,
     false,
     ranged,
-    attackTypeConvert(attackType),
+    attackType.attackType,
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
@@ -64,7 +63,7 @@ export function dealDamageOnHit(
     amount,
     false,
     ranged,
-    attackTypeConvert(attackType),
+    attackType.attackType,
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
@@ -84,7 +83,7 @@ export function dealDamageNontriggering(
     amount,
     false,
     ranged,
-    attackTypeConvert(attackType),
+    attackType.attackType,
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );

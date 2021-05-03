@@ -1,171 +1,151 @@
 import {color, Color} from 'w3lib/src/index';
 
-export enum AttackType {
-  Physical,
-  Cursed,
-  Fire,
-  Frost,
-  Natural,
-  Arcane,
-  Whoknows,
-}
+export class AttackType {
+  static Physical = new AttackType(
+    'Physical',
+    color(99, 66, 0),
+    1,
+    ATTACK_TYPE_MELEE
+  );
+  static Cursed = new AttackType(
+    'Cursed',
+    color(0, 66, 66),
+    2,
+    ATTACK_TYPE_PIERCE
+  );
+  static Fire = new AttackType(
+    'Fire',
+    color(0xff, 66, 0),
+    3,
+    ATTACK_TYPE_SIEGE
+  );
+  static Frost = new AttackType(
+    'Frost',
+    color(0, 0xcc, 0xcc),
+    6,
+    ATTACK_TYPE_HERO
+  );
+  static Natural = new AttackType(
+    'Natural',
+    color(33, 0xcc, 33),
+    5,
+    ATTACK_TYPE_CHAOS
+  );
+  static Arcane = new AttackType(
+    'Arcane',
+    color(0xcc, 33, 0xff),
+    4,
+    ATTACK_TYPE_MAGIC
+  );
+  static Whoknows = new AttackType(
+    'WhoKnows',
+    color(0, 0, 0),
+    1,
+    ATTACK_TYPE_MELEE
+  );
 
-export function attackTypeString(val: AttackType): string {
-  switch (val) {
-    case AttackType.Physical:
-      return 'Physical';
-    case AttackType.Cursed:
-      return 'Cursed';
-    case AttackType.Fire:
-      return 'Fire';
-    case AttackType.Frost:
-      return 'Frost';
-    case AttackType.Natural:
-      return 'Natural';
-    case AttackType.Arcane:
-      return 'Arcane';
-    case AttackType.Whoknows:
-      return 'Who Knows?';
-    default:
-      const _checkExhaustive: never = val;
-      throw new Error('should not happen');
+  private constructor(
+    readonly name: string,
+    readonly color: Color,
+    readonly index: number,
+    readonly attackType: attacktype
+  ) {}
+
+  get nameColored(): string {
+    return `${this.color.code}${this.name}|r`;
+  }
+
+  static invert(val: attacktype): AttackType {
+    switch (val) {
+      case ATTACK_TYPE_MELEE:
+        return AttackType.Physical;
+      case ATTACK_TYPE_PIERCE:
+        return AttackType.Cursed;
+      case ATTACK_TYPE_SIEGE:
+        return AttackType.Fire;
+      case ATTACK_TYPE_HERO:
+        return AttackType.Frost;
+      case ATTACK_TYPE_CHAOS:
+        return AttackType.Natural;
+      case ATTACK_TYPE_MAGIC:
+        return AttackType.Arcane;
+    }
+    return AttackType.Whoknows;
   }
 }
 
-export function attackTypeColor(val: AttackType): Color {
-  switch (val) {
-    case AttackType.Physical:
-      return color(99, 66, 0);
-    case AttackType.Cursed:
-      return color(0, 66, 66);
-    case AttackType.Fire:
-      return color(0xff, 66, 0);
-    case AttackType.Frost:
-      return color(0, 0xcc, 0xcc);
-    case AttackType.Natural:
-      return color(33, 0xcc, 33);
-    case AttackType.Arcane:
-      return color(0xcc, 33, 0xff);
-    case AttackType.Whoknows:
-      return color(0, 0, 0);
-    default:
-      const _checkExhaustive: never = val;
-      throw new Error('should not happen');
+export class DefenseType {
+  static readonly Flesh = new DefenseType(
+    'Flesh',
+    color(0, 0, 0),
+    0,
+    DEFENSE_TYPE_LIGHT
+  );
+  static readonly Unclean = new DefenseType(
+    'Unclean',
+    color(0, 0, 0),
+    1,
+    DEFENSE_TYPE_MEDIUM
+  );
+  static readonly Elemental = new DefenseType(
+    'Elemental',
+    color(0, 0, 0),
+    2,
+    DEFENSE_TYPE_LARGE
+  );
+  static readonly Natural = new DefenseType(
+    'Natural',
+    color(0, 0, 0),
+    4,
+    DEFENSE_TYPE_NORMAL
+  );
+  static readonly Construct = new DefenseType(
+    'Construct',
+    color(0, 0, 0),
+    5,
+    DEFENSE_TYPE_HERO
+  );
+  static readonly Demonic = new DefenseType(
+    'Demonic',
+    color(0, 0, 0),
+    6,
+    DEFENSE_TYPE_DIVINE
+  );
+  static readonly Mystical = new DefenseType(
+    'Mystical',
+    color(0, 0, 0),
+    7,
+    DEFENSE_TYPE_NONE
+  );
+
+  constructor(
+    readonly name: string,
+    readonly color: Color,
+    readonly index: number,
+    readonly type: defensetype
+  ) {}
+
+  get nameColored(): string {
+    return `${this.color.code}${this.name}|r`;
   }
-}
 
-export function attackTypeIndex(val: AttackType): number {
-  switch (val) {
-    case AttackType.Physical:
-      return 1;
-    case AttackType.Cursed:
-      return 2;
-    case AttackType.Fire:
-      return 3;
-    case AttackType.Frost:
-      return 6;
-    case AttackType.Natural:
-      return 5;
-    case AttackType.Arcane:
-      return 4;
-    case AttackType.Whoknows:
-      return 1;
-    default:
-      const _checkExhaustive: never = val;
-      throw new Error('should not happen');
-  }
-}
-
-export function attackTypeConvert(val: AttackType): attacktype {
-  switch (val) {
-    case AttackType.Physical:
-      return ATTACK_TYPE_MELEE;
-    case AttackType.Cursed:
-      return ATTACK_TYPE_PIERCE;
-    case AttackType.Fire:
-      return ATTACK_TYPE_SIEGE;
-    case AttackType.Frost:
-      return ATTACK_TYPE_HERO;
-    case AttackType.Natural:
-      return ATTACK_TYPE_CHAOS;
-    case AttackType.Arcane:
-      return ATTACK_TYPE_MAGIC;
-    case AttackType.Whoknows:
-      return ATTACK_TYPE_MELEE;
-    default:
-      const _checkExhaustive: never = val;
-      throw new Error('should not happen');
-  }
-}
-
-export function attackTypeInvert(val: attacktype): AttackType {
-  switch (val) {
-    case ATTACK_TYPE_MELEE:
-      return AttackType.Physical;
-    case ATTACK_TYPE_PIERCE:
-      return AttackType.Cursed;
-    case ATTACK_TYPE_SIEGE:
-      return AttackType.Fire;
-    case ATTACK_TYPE_HERO:
-      return AttackType.Frost;
-    case ATTACK_TYPE_CHAOS:
-      return AttackType.Natural;
-    case ATTACK_TYPE_MAGIC:
-      return AttackType.Arcane;
-  }
-  return AttackType.Physical;
-}
-
-export enum DefenseType {
-  Flesh,
-  Unclean,
-  Elemental,
-  Natural,
-  Construct,
-  Demonic,
-  Mystical,
-}
-
-export function defenseTypeString(val: DefenseType): string {
-  switch (val) {
-    case DefenseType.Flesh:
-      return 'Flesh';
-    case DefenseType.Unclean:
-      return 'Unclean';
-    case DefenseType.Elemental:
-      return 'Elemental';
-    case DefenseType.Natural:
-      return 'Natural';
-    case DefenseType.Construct:
-      return 'Construct';
-    case DefenseType.Demonic:
-      return 'Demonic';
-    case DefenseType.Mystical:
-      return 'Mystical';
-    default:
-      const _checkExhaustive: never = val;
-      throw new Error('should not happen');
-  }
-}
-
-export function defenseTypeIndex(val: DefenseType): number {
-  switch (val) {
-    case DefenseType.Flesh:
-      return 0;
-    case DefenseType.Unclean:
-      return 1;
-    case DefenseType.Elemental:
-      return 2;
-    case DefenseType.Natural:
-      return 4;
-    case DefenseType.Construct:
-      return 5;
-    case DefenseType.Demonic:
-      return 6;
-    case DefenseType.Mystical:
-      return 7;
-    default:
-      const _checkExhaustive: never = val;
-      throw new Error('should not happen');
+  static invert(val: defensetype): DefenseType {
+    switch (val) {
+      case DEFENSE_TYPE_LIGHT:
+        return DefenseType.Flesh;
+      case DEFENSE_TYPE_MEDIUM:
+        return DefenseType.Unclean;
+      case DEFENSE_TYPE_LARGE:
+        return DefenseType.Elemental;
+      case DEFENSE_TYPE_NORMAL:
+        return DefenseType.Natural;
+      case DEFENSE_TYPE_HERO:
+        return DefenseType.Construct;
+      case DEFENSE_TYPE_DIVINE:
+        return DefenseType.Demonic;
+      case DEFENSE_TYPE_NONE:
+        return DefenseType.Mystical;
+    }
+    return DefenseType.Flesh;
   }
 }

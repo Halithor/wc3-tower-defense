@@ -1237,12 +1237,6 @@ STRING 408
 Master of melee combat.|n|n|cffffcc00Damage Type:|r Physical|n|cffffcc00Bonuses:|r|n+2 Damage for melee towers|n|n|cffffcc00Available Towers:|r|n-TODO
 }
 
-STRING 409
-// Units: n009 (Module Dealer), Name (Name)
-{
-Module Dealer
-}
-
 STRING 410
 // Items: I000 (Scrying Stone), Description (Description)
 {
@@ -1289,5 +1283,47 @@ STRING 418
 // Items: I001 (Mana Stone), Ubertip (Tooltip - Extended)
 {
 Increases tower max mana by 5 and increases mana regen by 0.25 per second.
+}
+
+STRING 419
+// Units: n00C (School of Arcane Exploration), Name (Name)
+{
+School of Arcane Exploration
+}
+
+STRING 420
+// Units: n00A (Cult of Demonism), Name (Name)
+{
+Cult of Demonism
+}
+
+STRING 422
+// Units: n009 (Temple of the Damned), Name (Name)
+{
+Temple of the Damned
+}
+
+STRING 423
+// Units: n00B (Ancient of Natural Beasts), Name (Name)
+{
+Ancient of Natural Beasts
+}
+
+STRING 424
+// Units: n00D (Church of the Holy Light), Name (Name)
+{
+Church of the Holy Light
+}
+
+STRING 425
+// Units: n00E (Altar of Blood), Name (Name)
+{
+Altar of Blood
+}
+
+STRING 426
+// Units: n00F (Workshop of Technomancy), Name (Name)
+{
+Workshop of Technomancy
 }
 
