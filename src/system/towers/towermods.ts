@@ -1,4 +1,5 @@
 import {moduleMap} from 'system/mods/moddata';
+import {ModType} from 'system/mods/modtype';
 import {Subject, Unit, eventUnitAcquiresItem} from 'w3lib/src/index';
 import {isUnitTower} from './towerconstants';
 import {TowerStats} from './towerstats';
@@ -18,5 +19,16 @@ export class TowerMods {
       }
       return acc;
     }, TowerStats.empty());
+  }
+
+  modules(): ModType[] {
+    const mods: ModType[] = [];
+    this.tower.items.forEach(val => {
+      const moduleType = moduleMap.get(val.typeId);
+      if (moduleType) {
+        mods.push(moduleType);
+      }
+    });
+    return mods;
   }
 }

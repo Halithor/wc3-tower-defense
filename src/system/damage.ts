@@ -1,6 +1,8 @@
 import {AttackType, attackTypeConvert} from 'combattypes';
 import {
   DamageInfo,
+  eventAnyUnitDamaged,
+  eventAnyUnitDamaging,
   onAnyUnitDamaged,
   onAnyUnitDamaging,
   Unit,
@@ -88,6 +90,16 @@ export function dealDamageNontriggering(
   );
   isNontriggerDmg = false;
 }
+
+export const eventAttackDamaging = eventAnyUnitDamaging.filter(
+  () => !isNontriggerDmg && !isSpellDmg && !isOnHitDmg
+);
+export const eventSpellDamaging = eventAnyUnitDamaging.filter(() => isSpellDmg);
+export const eventSpellOrAttackDamaging = eventAnyUnitDamaging.filter(
+  () => !isNontriggerDmg && !isOnHitDmg
+);
+export const eventOnHitDamaging = eventAnyUnitDamaging.filter(() => isOnHitDmg);
+export const eventAnyDamaging = eventAnyUnitDamaging;
 
 export function onAttackDamage(
   cb: (

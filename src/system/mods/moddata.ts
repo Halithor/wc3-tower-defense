@@ -1,12 +1,27 @@
+import {AttackType} from 'combattypes';
+import {dealDamageOnHit} from 'system/damage';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId, ItemId} from 'w3lib/src/common';
 import {ModType as ModuleType} from './modtype';
 
 export class ModuleItemIds {
+  static readonly scryingStone = itemId('I000');
   static readonly manaStone = itemId('I001');
 }
 
 export class Modules {
+  static readonly scryingStone = new ModuleType(
+    itemId('I000'),
+    'Scrying Stone',
+    '',
+    TowerStats.range(200, 0),
+    {
+      onAttackDamage: (creep, tower, damageInfo) => {
+        dealDamageOnHit(tower.tower, creep, 2, true, AttackType.Arcane);
+      },
+    }
+  );
+
   static readonly manaStone = new ModuleType(
     ModuleItemIds.manaStone,
     'Mana Stone',
@@ -18,8 +33,8 @@ export class Modules {
 class ModuleMap {
   private map: {[key: string]: ModuleType} = {};
 
-  set(itemId: ItemId, module: ModuleType) {
-    this.map[itemId.value] = module;
+  add(module: ModuleType) {
+    this.map[module.itemId.value] = module;
   }
 
   get(itemId: ItemId): ModuleType | undefined {
@@ -28,5 +43,5 @@ class ModuleMap {
 }
 
 export const moduleMap = new ModuleMap();
-moduleMap.set(ModuleItemIds.manaStone, Modules.manaStone);
-// moduleMap.set()
+moduleMap.add(Modules.manaStone);
+moduleMap.add(Modules.scryingStone);

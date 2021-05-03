@@ -1,3 +1,5 @@
+import {color, Color} from 'w3lib/src/index';
+
 export enum AttackType {
   Physical,
   Cursed,
@@ -24,6 +26,28 @@ export function attackTypeString(val: AttackType): string {
       return 'Arcane';
     case AttackType.Whoknows:
       return 'Who Knows?';
+    default:
+      const _checkExhaustive: never = val;
+      throw new Error('should not happen');
+  }
+}
+
+export function attackTypeColor(val: AttackType): Color {
+  switch (val) {
+    case AttackType.Physical:
+      return color(99, 66, 0);
+    case AttackType.Cursed:
+      return color(0, 66, 66);
+    case AttackType.Fire:
+      return color(0xff, 66, 0);
+    case AttackType.Frost:
+      return color(0, 0xcc, 0xcc);
+    case AttackType.Natural:
+      return color(33, 0xcc, 33);
+    case AttackType.Arcane:
+      return color(0xcc, 33, 0xff);
+    case AttackType.Whoknows:
+      return color(0, 0, 0);
     default:
       const _checkExhaustive: never = val;
       throw new Error('should not happen');
