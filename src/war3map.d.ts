@@ -9,6 +9,7 @@ declare var gg_rct_Check5: rect;
 declare var gg_rct_PlayArea: rect;
 declare var gg_rct_Spawn2: rect;
 declare var gg_rct_Spawn3: rect;
+declare var gg_rct_ClassSelection: rect;
+declare var gg_rct_ModShops: rect;
 declare var gg_trg_Untitled_Trigger_001: trigger;
 declare var gg_trg_Untitled_Trigger_002: trigger;
-declare var gg_rct_ClassSelection: rect;

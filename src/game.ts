@@ -11,6 +11,7 @@ import {TowerTracker} from 'system/towers/towertracker';
 import {Quests} from 'quests';
 import {ClassSelection} from 'system/class/classSelection';
 import {ClassApplication} from 'system/class/classApplication';
+import {ModuleSystem} from 'system/mods/modulesystem';
 
 export class Game {
   constructor() {}
@@ -31,6 +32,7 @@ export class Game {
       const economics = new EconomicSystem(creepTracker, players);
       const creeps = new CreepSystem(creepTracker, pathInfo);
       const classApplication = new ClassApplication(players, towerTracker);
+      const modules = new ModuleSystem(towerTracker);
 
       const classSelection = new ClassSelection(players);
       classSelection.eventComplete.subscribe(() => {

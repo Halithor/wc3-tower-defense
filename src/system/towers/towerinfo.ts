@@ -18,6 +18,8 @@ export class TowerInfo {
     private _goldValue: number
   ) {
     this.mods = new TowerMods(tower);
+    this.mods.change.subscribe(() => this.expressStats());
+
     this.expressStats();
   }
 
@@ -52,7 +54,7 @@ export class TowerInfo {
       .integratePercentages()
       .merge(this.upgradeStats)
       .integratePercentages();
-    merged.merge(this.mods.stats());
+    merged = merged.merge(this.mods.stats());
     return merged;
   }
 

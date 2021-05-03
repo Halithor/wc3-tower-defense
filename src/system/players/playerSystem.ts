@@ -83,6 +83,15 @@ export class PlayerSystem {
       true
     );
     fog.start();
+
+    const shopFog = FogModifier.fromRect(
+      player,
+      FOG_OF_WAR_VISIBLE,
+      Rectangle.fromHandle(gg_rct_ModShops),
+      true,
+      true
+    );
+    shopFog.start()
     const info = this.getInfo(player);
     if (!info) {
       return;
