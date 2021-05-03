@@ -1,4 +1,9 @@
-import {AttackType, attackTypeIndex, attackTypeString} from 'combattypes';
+import {
+  AttackType,
+  attackTypeColor,
+  attackTypeIndex,
+  attackTypeString,
+} from 'combattypes';
 import {Unit} from 'w3lib/src/index';
 
 const minimumCooldown = 0.1;
@@ -100,7 +105,9 @@ export class TowerStats {
   toString(): string {
     const {atkType, dmg, range, cd, manaMax, manaRegen} = this.calcExpressed();
 
-    let str = `|cff6699ffAttack Type:|r ${attackTypeString(atkType)}
+    let str = `|cff6699ffAttack Type:|r ${
+      attackTypeColor(atkType).code
+    } ${attackTypeString(atkType)}|r
 |cff6699ffDamage:|r ${this.damage} + ${this.damagePerc}% = ${Math.round(dmg)}
 |cff6699ffRange:|r ${this.range} + ${this.rangePerc}% = ${Math.round(range)}
 |cff6699ffCooldown:|r ${string.format('%.2f', this.cooldown)} - ${
