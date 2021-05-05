@@ -1399,3 +1399,27 @@ STRING 441
 Attacks deal bonus frost damage equal to 20% of base damage.
 }
 
+STRING 443
+// Items: I005 (Pack Hunter), Name (Name)
+{
+Pack Hunter
+}
+
+STRING 444
+// Items: I005 (Pack Hunter), Tip (Tooltip - Basic)
+{
+Purchase Pack Hunter
+}
+
+STRING 445
+// Items: I005 (Pack Hunter), Description (Description)
+{
+Gain +1 damage for every tower with this module.
+}
+
+STRING 446
+// Items: I005 (Pack Hunter), Ubertip (Tooltip - Extended)
+{
+Gain +1 damage for every tower with this module.
+}
+

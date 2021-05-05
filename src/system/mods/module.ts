@@ -18,7 +18,7 @@ export type ModDamageInfo = {
 export abstract class Module {
   abstract readonly name: string;
   abstract readonly description: string;
-  abstract readonly stats: TowerStats;
+  abstract stats: TowerStats;
 
   constructor(readonly item: Item) {}
 

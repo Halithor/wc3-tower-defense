@@ -20,6 +20,7 @@ import {
   Unit,
 } from 'w3lib/src/index';
 import {Arcane} from './arcane';
+import {Beast} from './beast';
 import {Demon} from './demon';
 import {ModDamageInfo, Module} from './module';
 import {moduleTracker} from './moduleTracker';
@@ -150,6 +151,8 @@ export function makeModule(item: Item): Module {
       return new Demon.DemonFire(item);
     case Demon.DemonFrost.itemId.value:
       return new Demon.DemonFire(item);
+    case Beast.PackHunter.itemId.value:
+      return new Beast.PackHunter(item);
   }
   return new NullModule(item);
 }
