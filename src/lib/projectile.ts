@@ -136,6 +136,6 @@ export class Projectile {
   private destroyProjectile() {
     this.fx.destroy();
     this.releaseTimer();
-    this.onEnd.fire();
+    this.onEnd.emit();
   }
 }

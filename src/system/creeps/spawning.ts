@@ -137,7 +137,7 @@ export class CreepSpawning {
           standardValue
         );
       },
-      () => event.fire()
+      () => event.emit()
     );
     return event;
   }
@@ -161,7 +161,7 @@ export class CreepSpawning {
       name => `The Strongest ${name}`
     );
     // Delay event firing so that subscribers can sub.
-    doAfter(0.5, () => event.fire());
+    doAfter(0.5, () => event.emit());
     return event;
   }
 
@@ -192,7 +192,7 @@ export class CreepSpawning {
           name => `${name} Mass`
         );
       },
-      () => event.fire()
+      () => event.emit()
     );
     return event;
   }
@@ -237,7 +237,7 @@ export class CreepSpawning {
           );
         }
       },
-      () => event.fire()
+      () => event.emit()
     );
     return event;
   }

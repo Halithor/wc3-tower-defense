@@ -1,18 +1,23 @@
 import {AttackType} from 'combattypes';
 import {isUnitCreep, SpellIds} from 'constants';
 import {Projectile} from 'lib/projectile';
+import {Creep} from 'system/creeps/creep';
 import {dealDamageSpell, onAttackDamage, onSpellDamage} from 'system/damage';
 import {
   AbilId,
   DamageInfo,
   doAfter,
   doPeriodicallyCounted,
+  Event,
   findNearestUnit,
   flashEffect,
   forUnitsInRange,
   Group,
+  Subject,
   Unit,
 } from 'w3lib/src/index';
+import {TowerInfo} from './towerinfo';
+import {TowerTracker} from './towertracker';
 
 const shockwavePath = 'Abilities\\Spells\\Orc\\Shockwave\\ShockwaveMissile.mdl';
 const warstompPath = 'Abilities\\Spells\\Orc\\WarStomp\\WarStompCaster.mdl';
@@ -34,8 +39,11 @@ const novaAoEFactor = 0.33;
 
 const stormhammerDamageFactor = 5;
 
+const subjectTowerSpell = new Subject<[tower: TowerInfo]>();
+export const eventTowerSpell: Event<[tower: TowerInfo]> = subjectTowerSpell;
+
 export class SpellTowerEffects {
-  constructor() {
+  constructor(private readonly towerTracker: TowerTracker) {
     this.setupChainLightning();
     this.setupShockwave();
     this.setupWarstomp();
@@ -59,7 +67,16 @@ export class SpellTowerEffects {
       attacker.startAbilityCooldown(spellId, 0.5);
       attacker.setAnimation('spell');
       cb(target, attacker, info);
+      this.emitSpellEvent(attacker);
     });
+  }
+
+  private emitSpellEvent(tower: Unit) {
+    const towerInfo = this.towerTracker.getTower(tower);
+    if (!towerInfo) {
+      return;
+    }
+    subjectTowerSpell.emit(towerInfo);
   }
 
   private setupChainLightning() {

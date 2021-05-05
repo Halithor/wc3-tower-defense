@@ -7,10 +7,8 @@ import {
   doAfter,
   onAnyUnitConstructionFinish,
   onAnyUnitDamaged,
-  onAnyUnitDamaging,
   onAnyUnitSpellEffect,
   onAnyUnitUpgradeFinish,
-  randomAngle,
   standardTextTag,
 } from 'w3lib/src/index';
 import {SpellTowerEffects} from './spelltowers';
@@ -23,7 +21,7 @@ export class TowerSystem {
     this.removeRallyAbilityOnTowers();
 
     const towerSelling = new TowerSellingSystem(towerTracker);
-    const spellTowerEffects = new SpellTowerEffects();
+    const spellTowerEffects = new SpellTowerEffects(towerTracker);
     const towerUpgrades = new TowerUpgrades(towerTracker);
 
     this.setupStatisticsAbility();

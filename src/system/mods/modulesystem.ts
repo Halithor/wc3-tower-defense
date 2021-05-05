@@ -7,6 +7,7 @@ import {
   eventSpellDamaging,
   eventSpellOrAttackDamaging,
 } from 'system/damage';
+import {eventTowerSpell} from 'system/towers/spelltowers';
 import {TowerStats} from 'system/towers/towerstats';
 import {TowerTracker} from 'system/towers/towertracker';
 import {
@@ -96,6 +97,11 @@ export class ModuleSystem {
         mod.onAnyDamage(creepInfo, towerInfo, convertInfo(info, target));
       });
     });
+    eventTowerSpell.subscribe(towerInfo => {
+      towerInfo.mods.modules.forEach(mod => {
+        mod.onSpell(towerInfo);
+      });
+    });
   }
 
   private setupItemChanges() {
@@ -115,7 +121,7 @@ export class ModuleSystem {
     if (!info) {
       return;
     }
-    info.mods.change.fire();
+    info.mods.change.emit();
     info.mods.modules.forEach(mod => {
       if (acquisition) {
         mod.onAdd(info);
@@ -137,6 +143,8 @@ export function makeModule(item: Item): Module {
       return new Arcane.ScryingStone(item);
     case Arcane.ManaStone.itemId.value:
       return new Arcane.ManaStone(item);
+    case Arcane.DiviningRod.itemId.value:
+      return new Arcane.DiviningRod(item);
   }
   return new NullModule(item);
 }

@@ -147,7 +147,7 @@ export class ClassSelection {
     forUnitsInRect(selectionArea, u => {
       u.destroy();
     });
-    this.eventComplete.fire();
+    this.eventComplete.emit();
     this.visions.forEach(v => {
       v.destroy();
     });

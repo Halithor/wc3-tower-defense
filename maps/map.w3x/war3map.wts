@@ -1327,3 +1327,27 @@ STRING 426
 Workshop of Technomancy
 }
 
+STRING 427
+// Items: I002 (Divining Rod), Description (Description)
+{
+After casting a spell, restore 2 mana.
+}
+
+STRING 430
+// Items: I002 (Divining Rod), Ubertip (Tooltip - Extended)
+{
+Restore 2 mana on each spell cast.
+}
+
+STRING 431
+// Items: I002 (Divining Rod), Name (Name)
+{
+Divining Rod
+}
+
+STRING 432
+// Items: I002 (Divining Rod), Tip (Tooltip - Basic)
+{
+Purchase Divining Rod
+}
+

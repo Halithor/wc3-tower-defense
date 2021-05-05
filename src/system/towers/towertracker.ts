@@ -37,7 +37,7 @@ export class TowerTracker {
     const baseStats = baseTowerStats(tower.typeId);
     const info = new TowerInfo(tower, baseStats, towerGoldValue(tower.typeId));
     this.addTower(info);
-    this.eventNewTower.fire(info);
+    this.eventNewTower.emit(info);
   }
 
   private onUpgrade(tower: Unit) {
@@ -49,7 +49,7 @@ export class TowerTracker {
       prevInfo.moveInfoTo(info);
     }
     this.addTower(info);
-    this.eventNewTower.fire(info);
+    this.eventNewTower.emit(info);
   }
 
   addTower(info: TowerInfo) {

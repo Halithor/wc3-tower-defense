@@ -2,7 +2,6 @@ import {AttackType, DefenseType} from 'combattypes';
 import {Creep} from 'system/creeps/creep';
 import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
-import {ItemId} from 'w3lib/src/common';
 import {Item} from 'w3lib/src/index';
 
 export type ModDamageInfo = {
@@ -29,6 +28,8 @@ export abstract class Module {
   onAttack(target: Creep, tower: TowerInfo) {}
 
   onKill(target: Creep, tower: TowerInfo) {}
+
+  onSpell(tower: TowerInfo) {}
 
   onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {}
   onSpellDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {}
