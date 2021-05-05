@@ -153,6 +153,8 @@ export function makeModule(item: Item): Module {
       return new Demon.DemonFire(item);
     case Beast.PackHunter.itemId.value:
       return new Beast.PackHunter(item);
+    case Beast.Enrage.itemId.value:
+      return new Beast.Enrage(item);
   }
   return new NullModule(item);
 }

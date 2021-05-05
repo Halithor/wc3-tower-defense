@@ -6,6 +6,8 @@ import {Module} from './module';
 
 const packHunterBonusDamage = 1;
 
+const enrageCooldownReduction = 0.5;
+
 let packHunterTowers = 0;
 const packHunterChangeSubject = new Subject<[]>();
 
@@ -57,5 +59,12 @@ export namespace Beast {
 
       packHunterChangeSubject.emit();
     }
+  }
+
+  export class Enrage extends Module {
+    static readonly itemId = itemId('I006');
+    name = 'Enrage';
+    description = `Reduce attack cooldown by ${enrageCooldownReduction} (minimum 0.1).`;
+    stats = TowerStats.attackSpeed(-enrageCooldownReduction, 0);
   }
 }

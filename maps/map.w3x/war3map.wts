@@ -1423,3 +1423,27 @@ STRING 446
 Gain +1 damage for every tower with this module.
 }
 
+STRING 448
+// Items: I006 (Enrage), Name (Name)
+{
+Enrage
+}
+
+STRING 449
+// Items: I006 (Enrage), Tip (Tooltip - Basic)
+{
+Enrage
+}
+
+STRING 450
+// Items: I006 (Enrage), Description (Description)
+{
+Reduce attack cooldown by 0.5 (minimum 0.1).
+}
+
+STRING 451
+// Items: I006 (Enrage), Ubertip (Tooltip - Extended)
+{
+Reduce attack cooldown by 0.5 (minimum 0.1).
+}
+

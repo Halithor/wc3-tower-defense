@@ -23,7 +23,10 @@ export class TowerStats {
     const atkType = this.attackType;
     const dmg = Math.round(this.damage * ((100 + this.damagePerc) * 0.01));
     const range = Math.round(this.range * ((100 + this.rangePerc) * 0.01));
-    const cd = this.cooldown / ((100 + this.cooldownPerc) * 0.01);
+    const cd = Math.max(
+      this.cooldown / ((100 + this.cooldownPerc) * 0.01),
+      0.1
+    );
     const manaMax = Math.round(
       this.manaMax * ((100 + this.manaMaxPerc) * 0.01)
     );
