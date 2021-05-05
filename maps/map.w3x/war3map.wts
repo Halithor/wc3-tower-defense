@@ -1351,3 +1351,51 @@ STRING 432
 Purchase Divining Rod
 }
 
+STRING 433
+// Items: I003 (Demon Fire), Description (Description)
+{
+Attacks deal bonus fire damage equal to 20% of base damage.
+}
+
+STRING 434
+// Items: I003 (Demon Fire), Name (Name)
+{
+Demon Fire
+}
+
+STRING 435
+// Items: I003 (Demon Fire), Tip (Tooltip - Basic)
+{
+Purchase Demon Fire
+}
+
+STRING 436
+// Items: I003 (Demon Fire), Ubertip (Tooltip - Extended)
+{
+Attacks deal bonus fire damage equal to 20% of base damage.
+}
+
+STRING 438
+// Items: I004 (Demon Frost), Name (Name)
+{
+Demon Frost
+}
+
+STRING 439
+// Items: I004 (Demon Frost), Tip (Tooltip - Basic)
+{
+Purchase Demon Frost
+}
+
+STRING 440
+// Items: I004 (Demon Frost), Description (Description)
+{
+Attacks deal bonus frost damage equal to 20% of base damage.
+}
+
+STRING 441
+// Items: I004 (Demon Frost), Ubertip (Tooltip - Extended)
+{
+Attacks deal bonus frost damage equal to 20% of base damage.
+}
+
