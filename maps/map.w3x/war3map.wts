@@ -1447,3 +1447,27 @@ STRING 451
 Reduce attack cooldown by 0.5 (minimum 0.1).
 }
 
+STRING 452
+// Items: I007 (Channel Ferocity), Description (Description)
+{
+Reduce attack cooldown by 0.5 (minimum 0.1).
+}
+
+STRING 453
+// Items: I007 (Channel Ferocity), Name (Name)
+{
+Channel Ferocity
+}
+
+STRING 454
+// Items: I007 (Channel Ferocity), Tip (Tooltip - Basic)
+{
+Channel Ferocity
+}
+
+STRING 455
+// Items: I007 (Channel Ferocity), Ubertip (Tooltip - Extended)
+{
+Channel Feriocity: Spells do an bonus nature damage equal to 20% of base spell damage
+}
+

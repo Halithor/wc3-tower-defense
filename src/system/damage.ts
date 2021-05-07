@@ -7,10 +7,13 @@ import {
   Unit,
 } from 'w3lib/src/index';
 
-// If all of these are false, it is attack damage.
-let isSpellDmg = false;
-let isOnHitDmg = false;
-let isNontriggerDmg = false;
+enum DamageSource {
+  Attack,
+  Spell,
+  OnHit,
+  NonTriggering,
+}
+const currentDamageSource: DamageSource[] = [];
 
 export function dealDamageAttack(
   source: Unit,
@@ -19,6 +22,7 @@ export function dealDamageAttack(
   ranged: boolean,
   attackType: AttackType
 ) {
+  currentDamageSource.push(DamageSource.Attack);
   source.damageTarget(
     target.handle,
     amount,
@@ -28,6 +32,7 @@ export function dealDamageAttack(
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
+  currentDamageSource.pop();
 }
 
 export function dealDamageSpell(
@@ -37,7 +42,7 @@ export function dealDamageSpell(
   ranged: boolean,
   attackType: AttackType
 ) {
-  isSpellDmg = true;
+  currentDamageSource.push(DamageSource.Spell);
   source.damageTarget(
     target.handle,
     amount,
@@ -47,7 +52,7 @@ export function dealDamageSpell(
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
-  isSpellDmg = false;
+  currentDamageSource.pop();
 }
 
 export function dealDamageOnHit(
@@ -57,7 +62,7 @@ export function dealDamageOnHit(
   ranged: boolean,
   attackType: AttackType
 ) {
-  isOnHitDmg = true;
+  currentDamageSource.push(DamageSource.OnHit);
   source.damageTarget(
     target.handle,
     amount,
@@ -67,7 +72,7 @@ export function dealDamageOnHit(
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
-  isOnHitDmg = false;
+  currentDamageSource.pop();
 }
 
 export function dealDamageNontriggering(
@@ -77,7 +82,7 @@ export function dealDamageNontriggering(
   ranged: boolean,
   attackType: AttackType
 ) {
-  isNontriggerDmg = true;
+  currentDamageSource.push(DamageSource.NonTriggering);
   source.damageTarget(
     target.handle,
     amount,
@@ -87,88 +92,35 @@ export function dealDamageNontriggering(
     DAMAGE_TYPE_NORMAL,
     WEAPON_TYPE_WHOKNOWS
   );
-  isNontriggerDmg = false;
+  currentDamageSource.pop();
 }
 
-export const eventAttackDamaging = eventAnyUnitDamaging.filter(
-  () => !isNontriggerDmg && !isSpellDmg && !isOnHitDmg
-);
-export const eventSpellDamaging = eventAnyUnitDamaging.filter(() => isSpellDmg);
-export const eventSpellOrAttackDamaging = eventAnyUnitDamaging.filter(
-  () => !isNontriggerDmg && !isOnHitDmg
-);
-export const eventOnHitDamaging = eventAnyUnitDamaging.filter(() => isOnHitDmg);
+export const eventAttackDamaging = eventAnyUnitDamaging.filter(() => {
+  if (currentDamageSource.length == 0) {
+    return true;
+  }
+  const source = currentDamageSource[currentDamageSource.length - 1];
+  return source == DamageSource.Attack;
+});
+export const eventSpellDamaging = eventAnyUnitDamaging.filter(() => {
+  if (currentDamageSource.length == 0) {
+    return false;
+  }
+  const source = currentDamageSource[currentDamageSource.length - 1];
+  return source == DamageSource.Spell;
+});
+export const eventSpellOrAttackDamaging = eventAnyUnitDamaging.filter(() => {
+  if (currentDamageSource.length == 0) {
+    return true;
+  }
+  const source = currentDamageSource[currentDamageSource.length - 1];
+  return source == DamageSource.Attack || source == DamageSource.Spell;
+});
+export const eventOnHitDamaging = eventAnyUnitDamaging.filter(() => {
+  if (currentDamageSource.length == 0) {
+    return false;
+  }
+  const source = currentDamageSource[currentDamageSource.length - 1];
+  return source == DamageSource.OnHit;
+});
 export const eventAnyDamaging = eventAnyUnitDamaging;
-
-export function onAttackDamage(
-  cb: (
-    target: Unit,
-    attacker: Unit,
-    damageInfo: DamageInfo
-  ) => DamageInfo | void
-) {
-  onAnyUnitDamaging((target, attacker, info) => {
-    if (isNontriggerDmg || isSpellDmg || isOnHitDmg) {
-      return;
-    }
-    return cb(target, attacker, info);
-  });
-}
-
-export function onSpellDamage(
-  cb: (
-    target: Unit,
-    attacker: Unit,
-    damageInfo: DamageInfo
-  ) => DamageInfo | void
-) {
-  onAnyUnitDamaging((target, attacker, info) => {
-    if (!isSpellDmg) {
-      return;
-    }
-    return cb(target, attacker, info);
-  });
-}
-
-export function onSpellOrAttackDamage(
-  cb: (
-    target: Unit,
-    attacker: Unit,
-    damageInfo: DamageInfo
-  ) => DamageInfo | void
-) {
-  onAnyUnitDamaging((target, attacker, info) => {
-    if (isNontriggerDmg || isOnHitDmg) {
-      return;
-    }
-    return cb(target, attacker, info);
-  });
-}
-
-export function onOnHitDamage(
-  cb: (
-    target: Unit,
-    attacker: Unit,
-    damageInfo: DamageInfo
-  ) => DamageInfo | void
-) {
-  onAnyUnitDamaging((target, attacker, info) => {
-    if (!isOnHitDmg) {
-      return;
-    }
-    return cb(target, attacker, info);
-  });
-}
-
-// WARNING: Do not cause any damage in this event
-export function onAnyDamage(
-  cb: (
-    target: Unit,
-    attacker: Unit,
-    damageInfo: DamageInfo
-  ) => DamageInfo | void
-) {
-  onAnyUnitDamaged((target, attacker, info) => {
-    return cb(target, attacker, info);
-  });
-}

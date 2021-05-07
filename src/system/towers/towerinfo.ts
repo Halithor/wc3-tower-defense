@@ -25,6 +25,7 @@ export class TowerInfo {
 
   private expressStats() {
     this.stats.express(this.tower);
+    this.mods.expressTowerStats()
   }
 
   addUpgradeStats(stats: TowerStats, goldValue: number) {

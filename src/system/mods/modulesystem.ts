@@ -120,17 +120,18 @@ export class ModuleSystem {
 
   private onItemChange(u: Unit, i: Item, acquisition: boolean) {
     const info = this.towerTracker.getTower(u);
-    if (!info) {
-      return;
-    }
-    info.mods.change.emit();
-    info.mods.modules.forEach(mod => {
+    const mod = moduleTracker.get(i);
+    if (mod && info) {
       if (acquisition) {
         mod.onAdd(info);
       } else {
         mod.onRemove(info);
       }
-    });
+      mod.item.tooltipExtended = mod.description;
+    }
+    if (info) {
+      info.mods.change.emit();
+    }
   }
 
   private onItemSoldShop(i: Item) {
@@ -155,6 +156,8 @@ export function makeModule(item: Item): Module {
       return new Beast.PackHunter(item);
     case Beast.Enrage.itemId.value:
       return new Beast.Enrage(item);
+    case Beast.ChannelFeriocity.itemId.value:
+      return new Beast.ChannelFeriocity(item);
   }
   return new NullModule(item);
 }

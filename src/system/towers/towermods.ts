@@ -29,4 +29,10 @@ export class TowerModules {
     });
     return mods;
   }
+
+  expressTowerStats(): void {
+    this.modules.forEach(mod => {
+      mod.updateTooltip();
+    });
+  }
 }

@@ -2,7 +2,7 @@ import {AttackType} from 'combattypes';
 import {isUnitCreep, SpellIds} from 'constants';
 import {Projectile} from 'lib/projectile';
 import {Creep} from 'system/creeps/creep';
-import {dealDamageSpell, onAttackDamage, onSpellDamage} from 'system/damage';
+import {dealDamageSpell, eventAttackDamaging} from 'system/damage';
 import {
   AbilId,
   DamageInfo,
@@ -56,7 +56,7 @@ export class SpellTowerEffects {
     manaCost: number,
     cb: (target: Unit, attacker: Unit, damageInfo: DamageInfo) => void
   ) {
-    onAttackDamage((target, attacker, info) => {
+    eventAttackDamaging.subscribe((target, attacker, info) => {
       if (attacker.getAbilityLevel(spellId) == 0) {
         return;
       }

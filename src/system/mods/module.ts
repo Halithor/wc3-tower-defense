@@ -17,10 +17,13 @@ export type ModDamageInfo = {
 
 export abstract class Module {
   abstract readonly name: string;
-  abstract readonly description: string;
-  abstract stats: TowerStats;
 
-  constructor(readonly item: Item) {}
+  abstract get stats(): TowerStats;
+  abstract get description(): string;
+
+  constructor(readonly item: Item) {
+    this.updateTooltip();
+  }
 
   onAdd(tower: TowerInfo) {}
   onRemove(tower: TowerInfo) {}
@@ -40,4 +43,8 @@ export abstract class Module {
   ) {}
   onOnHitDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {}
   onAnyDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {}
+
+  updateTooltip() {
+    this.item.tooltipExtended = this.description;
+  }
 }

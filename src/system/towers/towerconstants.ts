@@ -103,7 +103,7 @@ export function isUnitTower(u: Unit) {
 export function baseTowerStats(towerId: UnitId): TowerStats {
   switch (towerId.value) {
     case TowerIds.basicArrowTower.value:
-      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 8, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.basicMeleeTower.value:
       return new TowerStats(defaultAtkType, 10, 0, 128, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.basicMagicTower.value:
@@ -119,23 +119,23 @@ export function baseTowerStats(towerId: UnitId): TowerStats {
       return new TowerStats(defaultAtkType, 40, 0, 128, 0, 4.0, 0, 0, 0, 1.0);
     // === Single Target ===
     case TowerIds.rpdSpearTower.value:
-      return new TowerStats(defaultAtkType, 6, 0, 400, 0, 0.8, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 9, 0, 400, 0, 0.8, 0, 0, 0, 1.0);
     case TowerIds.stdSpearTower.value:
-      return new TowerStats(defaultAtkType, 12, 0, 400, 0, 1.6, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 18, 0, 400, 0, 1.6, 0, 0, 0, 1.0);
     case TowerIds.hvySpearTower.value:
-      return new TowerStats(defaultAtkType, 24, 0, 400, 0, 3.2, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 36, 0, 400, 0, 3.2, 0, 0, 0, 1.0);
     case TowerIds.rpdArrowTower.value:
-      return new TowerStats(defaultAtkType, 5, 0, 700, 0, 1.0, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 8, 0, 700, 0, 1.0, 0, 0, 0, 1.0);
     case TowerIds.stdArrowTower.value:
-      return new TowerStats(defaultAtkType, 10, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 15, 0, 700, 0, 2.0, 0, 0, 0, 1.0);
     case TowerIds.hvyArrowTower.value:
-      return new TowerStats(defaultAtkType, 20, 0, 700, 0, 4.0, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 30, 0, 700, 0, 4.0, 0, 0, 0, 1.0);
     case TowerIds.rpdSniperTower.value:
-      return new TowerStats(defaultAtkType, 4, 0, 1000, 0, 1.2, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 6, 0, 1000, 0, 1.2, 0, 0, 0, 1.0);
     case TowerIds.stdSniperTower.value:
-      return new TowerStats(defaultAtkType, 8, 0, 1000, 0, 2.2, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 12, 0, 1000, 0, 2.2, 0, 0, 0, 1.0);
     case TowerIds.hvySniperTower.value:
-      return new TowerStats(defaultAtkType, 16, 0, 1000, 0, 4.4, 0, 0, 0, 1.0);
+      return new TowerStats(defaultAtkType, 24, 0, 1000, 0, 4.4, 0, 0, 0, 1.0);
     // === AoE ===
     case TowerIds.rpdSplashTower.value:
       return new TowerStats(defaultAtkType, 6, 0, 400, 0, 0.8, 0, 0, 0, 1.0);
