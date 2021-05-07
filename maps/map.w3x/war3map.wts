@@ -1471,3 +1471,27 @@ STRING 455
 Channel Feriocity: Spells do an bonus nature damage equal to 20% of base spell damage
 }
 
+STRING 457
+// Items: I008 (Necromancy Training), Name (Name)
+{
+Necromancy Training
+}
+
+STRING 458
+// Items: I008 (Necromancy Training), Tip (Tooltip - Basic)
+{
+Necromancy Training
+}
+
+STRING 459
+// Items: I008 (Necromancy Training), Description (Description)
+{
+This mods starts as incomplete training, but after 10 kills transforms into an item that grants 5 bonus mana and deals 20% bonus curse damage on spells.
+}
+
+STRING 460
+// Items: I008 (Necromancy Training), Ubertip (Tooltip - Extended)
+{
+This mods starts as incomplete training, but after 10 kills transforms into an item that grants 5 bonus mana and deals 20% bonus curse damage on spells.
+}
+

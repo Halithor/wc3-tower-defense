@@ -2,7 +2,7 @@ import {AttackType, DefenseType} from 'combattypes';
 import {Creep} from 'system/creeps/creep';
 import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
-import {Item} from 'w3lib/src/index';
+import {doAfter, Item} from 'w3lib/src/index';
 
 export type ModDamageInfo = {
   damage: number;
@@ -22,7 +22,7 @@ export abstract class Module {
   abstract get description(): string;
 
   constructor(readonly item: Item) {
-    this.updateTooltip();
+    doAfter(0, () => this.updateTooltip());
   }
 
   onAdd(tower: TowerInfo) {}

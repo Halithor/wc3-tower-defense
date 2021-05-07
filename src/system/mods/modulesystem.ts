@@ -13,6 +13,7 @@ import {TowerTracker} from 'system/towers/towertracker';
 import {
   DamageInfo,
   doAfter,
+  eventAnyUnitDeath,
   eventUnitAcquiresItem,
   eventUnitLosesItem,
   eventUnitSellsItemFromShop,
@@ -24,6 +25,7 @@ import {Beast} from './beast';
 import {Demon} from './demon';
 import {ModDamageInfo, Module} from './module';
 import {moduleTracker} from './moduleTracker';
+import {Necro} from './necro';
 
 function convertInfo(info: DamageInfo, target: Unit): ModDamageInfo {
   return {
@@ -104,6 +106,19 @@ export class ModuleSystem {
         mod.onSpell(towerInfo);
       });
     });
+    eventAnyUnitDeath.subscribe((dying, killer) => {
+      if (!killer) {
+        return;
+      }
+      const towerInfo = this.towerTracker.getTower(killer);
+      const creepInfo = this.creepTracker.getCreep(dying);
+      if (!towerInfo || !creepInfo) {
+        return;
+      }
+      towerInfo.mods.modules.forEach(mod => {
+        mod.onKill(creepInfo, towerInfo);
+      });
+    });
   }
 
   private setupItemChanges() {
@@ -158,6 +173,8 @@ export function makeModule(item: Item): Module {
       return new Beast.Enrage(item);
     case Beast.ChannelFeriocity.itemId.value:
       return new Beast.ChannelFeriocity(item);
+    case Necro.Necromancer.itemId.value:
+      return new Necro.Necromancer(item);
   }
   return new NullModule(item);
 }
