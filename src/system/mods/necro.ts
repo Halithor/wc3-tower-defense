@@ -4,12 +4,16 @@ import {dealDamageOnHit} from 'system/damage';
 import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId} from 'w3lib/src/common';
+import {eventAnyUnitDeath, Item} from 'w3lib/src/index';
 import {ModDamageInfo, Module} from './module';
 
 const necromancyKillsNeeded = 20;
 const necromancyBonusMana = 5;
 const necromancyBonusDamagePerc = 0.2;
 const necromancyAttackType = AttackType.Cursed;
+
+const soulBatteryRangeSq = 300 * 300;
+const soulBatteryMaxBonus = 300;
 
 export namespace Necro {
   export class Necromancer extends Module {
@@ -20,7 +24,6 @@ export namespace Necro {
     private kills = 0;
 
     get description(): string {
-      print('get description');
       if (this.completed) {
         return `|cff3399CCStatus:|r Training Completed\n|cff3399CCBonuses:|r|n+${necromancyBonusMana} max mana|n+${Math.round(
           100 * necromancyBonusDamagePerc
@@ -63,6 +66,51 @@ export namespace Necro {
           necromancyAttackType
         );
       }
+    }
+  }
+
+  export class SoulBattery extends Module {
+    static readonly itemId = itemId('I009');
+    name = 'Soul Battery';
+
+    private charges = 0;
+    private tower: TowerInfo | undefined;
+
+    get description(): string {
+      return `Increases damage by 1% for every creep that dies within 300 range of this tower.|n|cff3399ccBonuses:|r|n+${
+        this.charges
+      }% damage ${this.charges == soulBatteryMaxBonus ? '(MAX)' : ''}.`;
+    }
+
+    get stats(): TowerStats {
+      return TowerStats.damage(0, this.charges);
+    }
+
+    constructor(item: Item) {
+      super(item);
+
+      eventAnyUnitDeath.subscribe(dying => {
+        if (!this.tower) {
+          return;
+        }
+        if (this.charges >= soulBatteryMaxBonus) {
+          return;
+        }
+        const distSq = dying.pos.distanceToSq(this.tower.tower.pos);
+        if (distSq > soulBatteryRangeSq) {
+          return;
+        }
+        this.charges++;
+        this.tower.mods.change.emit();
+      });
+    }
+
+    onAdd(tower: TowerInfo) {
+      this.tower = tower;
+    }
+
+    onRemove(_tower: TowerInfo) {
+      this.tower = undefined;
     }
   }
 }

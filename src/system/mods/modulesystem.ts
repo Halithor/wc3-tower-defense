@@ -175,6 +175,8 @@ export function makeModule(item: Item): Module {
       return new Beast.ChannelFeriocity(item);
     case Necro.Necromancer.itemId.value:
       return new Necro.Necromancer(item);
+    case Necro.SoulBattery.itemId.value:
+      return new Necro.SoulBattery(item);
   }
   return new NullModule(item);
 }

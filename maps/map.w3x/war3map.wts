@@ -1495,3 +1495,27 @@ STRING 460
 This mods starts as incomplete training, but after 10 kills transforms into an item that grants 5 bonus mana and deals 20% bonus curse damage on spells.
 }
 
+STRING 461
+// Items: I009 (Soul Battery), Description (Description)
+{
+Increases damage by 1% for each enemy that dies within 300 range.
+}
+
+STRING 462
+// Items: I009 (Soul Battery), Name (Name)
+{
+Soul Battery
+}
+
+STRING 463
+// Items: I009 (Soul Battery), Tip (Tooltip - Basic)
+{
+Soul Battery
+}
+
+STRING 464
+// Items: I009 (Soul Battery), Ubertip (Tooltip - Extended)
+{
+Increases damage by 1% for each enemy that dies within 300 range.
+}
+

@@ -69,7 +69,6 @@ export class WaveSystem {
     });
 
     onAnyUnitDeath(dying => {
-      
       for (let i = 0; i < this.waves.length; i++) {
         const w = this.waves[i];
         if (w.group.hasUnit(dying)) {
