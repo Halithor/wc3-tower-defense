@@ -59,7 +59,7 @@ export namespace Necro {
       if (this.completed) {
         const dmg = damageInfo.damage * necromancyBonusDamagePerc;
         dealDamageOnHit(
-          tower.tower,
+          tower.unit,
           target.unit,
           dmg,
           true,
@@ -96,7 +96,7 @@ export namespace Necro {
         if (this.charges >= soulBatteryMaxBonus) {
           return;
         }
-        const distSq = dying.pos.distanceToSq(this.tower.tower.pos);
+        const distSq = dying.pos.distanceToSq(this.tower.unit.pos);
         if (distSq > soulBatteryRangeSq) {
           return;
         }

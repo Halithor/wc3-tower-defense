@@ -30,7 +30,7 @@ export namespace Arcane {
       _damageInfo: ModDamageInfo
     ) {
       dealDamageOnHit(
-        tower.tower,
+        tower.unit,
         target.unit,
         scryingStoneDamage,
         true,
@@ -57,9 +57,9 @@ export namespace Arcane {
     stats = TowerStats.empty();
 
     onSpell(towerInfo: TowerInfo) {
-      towerInfo.tower.mana += diviningRodManaRestored;
-      flashEffect(diviningRodEffectPath, towerInfo.tower.pos);
-      const tt = standardTextTag(towerInfo.tower.pos, '+2');
+      towerInfo.unit.mana += diviningRodManaRestored;
+      flashEffect(diviningRodEffectPath, towerInfo.unit.pos);
+      const tt = standardTextTag(towerInfo.unit.pos, '+2');
       tt.color = color(0, 99, 0xff);
     }
   }

@@ -5,7 +5,7 @@ import {TowerTracker} from 'system/towers/towertracker';
 export class ClassApplication {
   constructor(players: PlayerSystem, towers: TowerTracker) {
     towers.eventNewTower.subscribe(towerInfo => {
-      const playerInfo = players.getInfo(towerInfo.tower.owner);
+      const playerInfo = players.getInfo(towerInfo.unit.owner);
       if (!playerInfo) {
         return;
       }

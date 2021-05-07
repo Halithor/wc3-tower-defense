@@ -53,7 +53,7 @@ export class TowerTracker {
   }
 
   addTower(info: TowerInfo) {
-    this.towers[info.tower.id] = info;
+    this.towers[info.unit.id] = info;
   }
 
   getTower(unit: Unit): TowerInfo | undefined {

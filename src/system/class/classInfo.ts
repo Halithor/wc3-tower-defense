@@ -88,7 +88,7 @@ export const classNorthern = new ClassInfo(
         TowerStats.damage(1, 0)
       );
     }
-    if (tower.tower.typeId.equals(TowerIds.stormbolt)) {
+    if (tower.unit.typeId.equals(TowerIds.stormbolt)) {
       tower.classStats = TowerStats.attackType(AttackType.Frost).merge(
         TowerStats.manaRegen(0, 50)
       );

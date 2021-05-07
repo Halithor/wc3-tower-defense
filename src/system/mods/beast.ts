@@ -84,7 +84,7 @@ export namespace Beast {
 
     onSpellDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
       const dmg = damageInfo.damage * channelFeriocityDamagePerc;
-      dealDamageOnHit(tower.tower, target.unit, dmg, true, AttackType.Natural);
+      dealDamageOnHit(tower.unit, target.unit, dmg, true, AttackType.Natural);
     }
   }
 }

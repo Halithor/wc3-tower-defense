@@ -25,7 +25,7 @@ export namespace Demon {
 
     onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
       dealDamageOnHit(
-        tower.tower,
+        tower.unit,
         target.unit,
         demonFireDamageBonusPerc * damageInfo.damage,
         true,
@@ -45,7 +45,7 @@ export namespace Demon {
 
     onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
       dealDamageOnHit(
-        tower.tower,
+        tower.unit,
         target.unit,
         demonFrostDamageBonusPerc * damageInfo.damage,
         true,

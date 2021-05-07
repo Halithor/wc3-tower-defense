@@ -13,19 +13,19 @@ export class TowerInfo {
   readonly mods: TowerModules;
 
   constructor(
-    readonly tower: Unit,
+    readonly unit: Unit,
     readonly baseStats: TowerStats,
     private _goldValue: number
   ) {
-    this.mods = new TowerModules(tower);
+    this.mods = new TowerModules(unit);
     this.mods.change.subscribe(() => this.expressStats());
 
     this.expressStats();
   }
 
   private expressStats() {
-    this.stats.express(this.tower);
-    this.mods.expressTowerStats()
+    this.stats.express(this.unit);
+    this.mods.expressTowerStats();
   }
 
   addUpgradeStats(stats: TowerStats, goldValue: number) {
@@ -68,6 +68,6 @@ export class TowerInfo {
   }
 
   get categories(): TowerCategories[] {
-    return towerCategories(this.tower.typeId);
+    return towerCategories(this.unit.typeId);
   }
 }
