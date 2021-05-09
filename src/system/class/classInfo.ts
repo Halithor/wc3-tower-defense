@@ -2,7 +2,6 @@ import {AttackType} from 'combattypes';
 import {UnitIds} from 'constants';
 import {
   TowerCategories,
-  towerCategories,
   TowerIds,
 } from 'system/towers/towerconstants';
 import {TowerInfo} from 'system/towers/towerinfo';

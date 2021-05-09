@@ -16,8 +16,10 @@ export type ModDamageInfo = {
 };
 
 export abstract class Module {
-  abstract readonly name: string;
+  // The tower that currently holds this module. Can be undefined if not held.
+  tower?: TowerInfo;
 
+  abstract readonly name: string;
   abstract get stats(): TowerStats;
   abstract get description(): string;
 

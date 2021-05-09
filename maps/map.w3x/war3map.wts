@@ -1549,3 +1549,27 @@ STRING 469
  (upgradable)
 }
 
+STRING 471
+// Items: I00A (Sharpened Claws), Name (Name)
+{
+Sharpened Claws
+}
+
+STRING 472
+// Items: I00A (Sharpened Claws), Tip (Tooltip - Basic)
+{
+Purchase Sharpened Claws
+}
+
+STRING 473
+// Items: I00A (Sharpened Claws), Description (Description)
+{
+|cffaaaaaaMelee only|r|n|cff6699ffBonuses:|r|n+50% damage
+}
+
+STRING 474
+// Items: I00A (Sharpened Claws), Ubertip (Tooltip - Extended)
+{
+|cffaaaaaaMelee only|r|n|cff6699ffBonuses:|r|n+50% damage
+}
+

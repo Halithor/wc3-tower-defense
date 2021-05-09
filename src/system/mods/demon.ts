@@ -21,7 +21,7 @@ export namespace Demon {
         demonFireAttackType.nameColored
       } damage equal to ${Math.round(
         demonFireDamageBonusPerc * 100
-      )}% of base damage.`;
+      )}% of the dealt damage.`;
     }
     get stats() {
       return TowerStats.empty();
@@ -45,7 +45,7 @@ export namespace Demon {
         demonFrostAttackType.nameColored
       } damage equal to ${Math.round(
         demonFrostDamageBonusPerc * 100
-      )}% of base damage.`;
+      )}% of the dealt damage.`;
     }
     get stats() {
       return TowerStats.empty();

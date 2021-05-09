@@ -74,7 +74,6 @@ export namespace Necro {
     name = 'Soul Battery';
 
     private charges = 0;
-    private tower: TowerInfo | undefined;
 
     get description(): string {
       return `Increases damage by 1% for every creep that dies within 300 range of this tower.|n|cff3399ccBonuses:|r|n+${
@@ -103,14 +102,6 @@ export namespace Necro {
         this.charges++;
         this.tower.mods.change.emit();
       });
-    }
-
-    onAdd(tower: TowerInfo) {
-      this.tower = tower;
-    }
-
-    onRemove(_tower: TowerInfo) {
-      this.tower = undefined;
     }
   }
 }

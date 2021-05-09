@@ -134,18 +134,24 @@ export class ModuleSystem {
   }
 
   private onItemChange(u: Unit, i: Item, acquisition: boolean) {
-    const info = this.towerTracker.getTower(u);
+    const tower = this.towerTracker.getTower(u);
     const mod = moduleTracker.get(i);
-    if (mod && info) {
+    if (mod && tower) {
       if (acquisition) {
-        mod.onAdd(info);
+        mod.tower = tower;
+        mod.onAdd(tower);
       } else {
-        mod.onRemove(info);
+        if (mod.tower == tower) {
+          // if equivalent, it means that an add event hasn't overwritten and
+          // is therefore not in another tower.
+          mod.tower = undefined;
+        }
+        mod.onRemove(tower);
       }
-      mod.item.tooltipExtended = mod.description;
+      mod.updateTooltip();
     }
-    if (info) {
-      info.mods.change.emit();
+    if (tower) {
+      tower.mods.change.emit();
     }
   }
 
@@ -173,6 +179,8 @@ export function makeModule(item: Item): Module {
       return new Beast.Enrage(item);
     case Beast.ChannelFeriocity.itemId.value:
       return new Beast.ChannelFeriocity(item);
+    case Beast.SharpenedClaws.itemId.value:
+      return new Beast.SharpenedClaws(item);
     case Necro.Necromancer.itemId.value:
       return new Necro.Necromancer(item);
     case Necro.SoulBattery.itemId.value:

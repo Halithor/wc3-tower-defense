@@ -1,6 +1,11 @@
 import {AttackType} from 'combattypes';
 import {Creep} from 'system/creeps/creep';
 import {dealDamageOnHit, dealDamageSpell} from 'system/damage';
+import {
+  isUnitTower,
+  TowerCategories,
+  towerCategories,
+} from 'system/towers/towerconstants';
 import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId} from 'w3lib/src/common';
@@ -13,6 +18,8 @@ const enrageCooldownReduction = 0.5;
 
 const channelFeriocityDamagePerc = 0.2;
 
+const sharpenedClawsDamageBonus = 50;
+
 let packHunterTowers = 0;
 const packHunterChangeSubject = new Subject<[]>();
 
@@ -21,7 +28,7 @@ export namespace Beast {
     static readonly itemId = itemId('I005');
     name = 'Pack Hunter';
     get description() {
-      return `Gain +${packHunterBonusDamage} (${this.stats.damage}) damage for every other tower with this mod.`;
+      return `Gain +${packHunterBonusDamage} damage for every tower with this mod.|n|cff6699ffBonuses:|r|n+${this.stats.damage} damage`;
     }
     get stats(): TowerStats {
       return TowerStats.damage(
@@ -29,8 +36,6 @@ export namespace Beast {
         0
       );
     }
-
-    tower?: TowerInfo;
 
     constructor(item: Item) {
       super(item);
@@ -50,14 +55,11 @@ export namespace Beast {
 
     onAdd(tower: TowerInfo) {
       packHunterTowers += 1;
-      this.tower = tower;
 
       packHunterChangeSubject.emit();
     }
 
     onRemove(_tower: TowerInfo) {
-      print('remove pack hunter');
-      this.tower = undefined;
       packHunterTowers -= 1;
 
       packHunterChangeSubject.emit();
@@ -91,6 +93,34 @@ export namespace Beast {
     onSpellDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
       const dmg = damageInfo.damage * channelFeriocityDamagePerc;
       dealDamageOnHit(tower.unit, target.unit, dmg, true, AttackType.Natural);
+    }
+  }
+
+  export class SharpenedClaws extends Module {
+    static readonly itemId = itemId('I00A');
+    name = 'Sharpened Claws';
+
+    get description() {
+      if (!this.tower) {
+        return `|cffaaaaaaMelee only|r|n|cff6699ffBonuses:|r|n+ ${sharpenedClawsDamageBonus}% damage`;
+      }
+      const isMelee = this.tower.categories.indexOf(TowerCategories.Melee) >= 0;
+      return `${
+        !isMelee
+          ? '|cffcc0000DISABLED: Melee only|r|n'
+          : '|cffaaaaaaMelee only|r|n'
+      }|cff6699ffBonuses:|r|n+${sharpenedClawsDamageBonus}% damage`;
+    }
+
+    get stats() {
+      if (!this.tower) {
+        return TowerStats.empty();
+      }
+      const cats = this.tower.categories;
+      if (cats.indexOf(TowerCategories.Melee) >= 0) {
+        return TowerStats.damage(0, sharpenedClawsDamageBonus);
+      }
+      return TowerStats.empty();
     }
   }
 }
