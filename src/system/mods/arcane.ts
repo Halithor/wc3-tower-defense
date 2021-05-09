@@ -21,8 +21,12 @@ export namespace Arcane {
   export class ScryingStone extends Module {
     static readonly itemId = itemId('I000');
     name = 'Scrying Stone';
-    description = `Bonuses:|n+ ${scryingStoneRange} range|n+ ${scryingStoneDamage}  on spell or attacks`;
-    stats = TowerStats.range(scryingStoneRange, 0);
+    get description() {
+      return `Bonuses:|n+ ${scryingStoneRange} range|n+ ${scryingStoneDamage}  on spell or attacks`;
+    }
+    get stats() {
+      return TowerStats.range(scryingStoneRange, 0);
+    }
 
     onAttackDamage(
       target: Creep,
@@ -42,19 +46,27 @@ export namespace Arcane {
   export class ManaStone extends Module {
     static readonly itemId = itemId('I001');
     name = 'Mana Stone';
-    description = `Bonuses:|n+ ${manaStoneFlatBonus} mana|n+ ${Math.round(
-      100 * manaStoneRegenBonus
-    )}% mana regen`;
-    stats = TowerStats.mana(manaStoneFlatBonus, 0).merge(
-      TowerStats.manaRegen(0.25, 0)
-    );
+    get description() {
+      return `Bonuses:|n+ ${manaStoneFlatBonus} mana|n+ ${Math.round(
+        100 * manaStoneRegenBonus
+      )}% mana regen`;
+    }
+    get stats() {
+      return TowerStats.mana(manaStoneFlatBonus, 0).merge(
+        TowerStats.manaRegen(0.25, 0)
+      );
+    }
   }
 
   export class DiviningRod extends Module {
     static readonly itemId = itemId('I002');
     name = 'Divining Rod';
-    description = `Restore ${diviningRodManaRestored} mana after each spell cast.`;
-    stats = TowerStats.empty();
+    get description() {
+      return `Restore ${diviningRodManaRestored} mana after each spell cast.`;
+    }
+    get stats() {
+      return TowerStats.empty();
+    }
 
     onSpell(towerInfo: TowerInfo) {
       towerInfo.unit.mana += diviningRodManaRestored;

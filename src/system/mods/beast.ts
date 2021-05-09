@@ -67,14 +67,20 @@ export namespace Beast {
   export class Enrage extends Module {
     static readonly itemId = itemId('I006');
     name = 'Enrage';
-    description = `Reduce attack cooldown by ${enrageCooldownReduction} (minimum 0.1).`;
-    stats = TowerStats.attackSpeed(-enrageCooldownReduction, 0);
+    get description() {
+      return `Reduce attack cooldown by ${enrageCooldownReduction} (minimum 0.1).`;
+    }
+    get stats() {
+      return TowerStats.attackSpeed(-enrageCooldownReduction, 0);
+    }
   }
 
   export class ChannelFeriocity extends Module {
     static readonly itemId = itemId('I007');
     name = 'Channel Ferocity';
-    stats = TowerStats.empty();
+    get stats() {
+      return TowerStats.empty();
+    }
 
     get description(): string {
       return `Deal an additional ${Math.round(

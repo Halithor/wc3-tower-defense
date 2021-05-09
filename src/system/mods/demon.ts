@@ -16,12 +16,16 @@ export namespace Demon {
   export class DemonFire extends Module {
     static readonly itemId = itemId('I003');
     name = 'Demon Fire';
-    description = `On attack, deals bonus ${
-      demonFireAttackType.nameColored
-    } damage equal to ${Math.round(
-      demonFireDamageBonusPerc * 100
-    )}% of base damage.`;
-    stats = TowerStats.empty();
+    get description() {
+      return `On attack, deals bonus ${
+        demonFireAttackType.nameColored
+      } damage equal to ${Math.round(
+        demonFireDamageBonusPerc * 100
+      )}% of base damage.`;
+    }
+    get stats() {
+      return TowerStats.empty();
+    }
 
     onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
       dealDamageOnHit(
@@ -36,12 +40,16 @@ export namespace Demon {
   export class DemonFrost extends Module {
     static readonly itemId = itemId('I004');
     name = 'Demon Frost';
-    description = `On attack, deals bonus ${
-      demonFrostAttackType.nameColored
-    } damage equal to ${Math.round(
-      demonFrostDamageBonusPerc * 100
-    )}% of base damage.`;
-    stats = TowerStats.empty();
+    get description(): string {
+      return `On attack, deals bonus ${
+        demonFrostAttackType.nameColored
+      } damage equal to ${Math.round(
+        demonFrostDamageBonusPerc * 100
+      )}% of base damage.`;
+    }
+    get stats() {
+      return TowerStats.empty();
+    }
 
     onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
       dealDamageOnHit(

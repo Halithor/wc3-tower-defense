@@ -1519,3 +1519,33 @@ STRING 464
 Increases damage by 1% for each enemy that dies within 300 range.
 }
 
+STRING 465
+// Units: h00Z (Increase Module Slots), Ubertip (Tooltip - Extended)
+{
+Increase the |cff6699ffmodule slots (inventory)|r of this tower by |cffffcc001|r. |n|n|cffaaaaaaMaximum 6 slots.
+}
+
+STRING 466
+// Units: h00Z (Increase Module Slots), Tip (Tooltip - Basic)
+{
+Increase Module Slots (|cffffcc00C|r)
+}
+
+STRING 467
+// Units: h00Z (Increase Module Slots), Name (Name)
+{
+Increase Module Slots
+}
+
+STRING 468
+// Units: h00Z (Increase Module Slots), Hotkey (Hotkey)
+{
+C
+}
+
+STRING 469
+// Abilities: A00F (Inventory), EditorSuffix (Editor Suffix)
+{
+ (upgradable)
+}
+

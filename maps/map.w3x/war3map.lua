@@ -19,6 +19,22 @@ function InitGlobals()
     udg_damage = 0
 end
 
+function CreateAllItems()
+    local itemID
+    BlzCreateItemWithSkin(FourCC("gold"), -3240.3, 4202.1, FourCC("gold"))
+end
+
+function CreateBuildingsForPlayer0()
+    local p = Player(0)
+    local u
+    local unitID
+    local t
+    local life
+    u = BlzCreateUnitWithSkin(p, FourCC("h007"), -3328.0, 4096.0, 270.000, FourCC("h007"))
+    u = BlzCreateUnitWithSkin(p, FourCC("hwtw"), -3328.0, 4608.0, 270.000, FourCC("hwtw"))
+    u = BlzCreateUnitWithSkin(p, FourCC("h006"), -3328.0, 4224.0, 270.000, FourCC("h006"))
+end
+
 function CreateNeutralHostileBuildings()
     local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
     local u
@@ -105,6 +121,7 @@ function CreateNeutralPassive()
 end
 
 function CreatePlayerBuildings()
+    CreateBuildingsForPlayer0()
 end
 
 function CreatePlayerUnits()
@@ -353,6 +370,7 @@ function main()
     SetAmbientNightSound("DalaranNight")
     SetMapMusic("Music", true, 0)
     CreateRegions()
+    CreateAllItems()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()

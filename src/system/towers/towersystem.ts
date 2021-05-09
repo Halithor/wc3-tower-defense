@@ -1,5 +1,5 @@
 import {AttackType} from 'combattypes';
-import {playerHumans, SpellIds} from 'constants';
+import {playerHumans, SpellIds, UnitIds} from 'constants';
 import {CircleIndicator} from 'lib/indicator';
 import {eventAnyDamaging} from 'system/damage';
 import {
@@ -10,6 +10,8 @@ import {
   onAnyUnitSpellEffect,
   onAnyUnitUpgradeFinish,
   standardTextTag,
+  Unit,
+  vec2,
 } from 'w3lib/src/index';
 import {SpellTowerEffects} from './spelltowers';
 import {TowerSellingSystem} from './towerselling';
@@ -38,6 +40,20 @@ export class TowerSystem {
     onAnyUnitUpgradeFinish(upgraded => {
       if (upgraded.isUnitType(UNIT_TYPE_STRUCTURE)) {
         upgraded.removeAbility(SpellIds.setRally);
+        upgraded.addUnitToStock(UnitIds.upgradeDamage, 1, 1);
+        upgraded.addUnitToStock(UnitIds.upgradeSpeed, 1, 1);
+        upgraded.addUnitToStock(UnitIds.upgradeModules, 1, 1);
+
+        // const u = new Unit(
+        //   upgraded.owner,
+        //   upgraded.typeId,
+        //   vec2(0, 0),
+        //   upgraded.facing
+        // );
+        // u.removeAbility(SpellIds.setRally);
+        // const pos = upgraded.pos;
+        // upgraded.destroy();
+        // u.pos = pos;
       }
     });
   }

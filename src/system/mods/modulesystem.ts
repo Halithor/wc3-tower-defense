@@ -166,7 +166,7 @@ export function makeModule(item: Item): Module {
     case Demon.DemonFire.itemId.value:
       return new Demon.DemonFire(item);
     case Demon.DemonFrost.itemId.value:
-      return new Demon.DemonFire(item);
+      return new Demon.DemonFrost(item);
     case Beast.PackHunter.itemId.value:
       return new Beast.PackHunter(item);
     case Beast.Enrage.itemId.value:
