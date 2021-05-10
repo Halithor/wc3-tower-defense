@@ -25,6 +25,7 @@ import {
 import {Arcane} from './arcane';
 import {Beast} from './beast';
 import {Blood} from './blood';
+import {Holy} from './church';
 import {Demon} from './demon';
 import {ModDamageInfo, Module} from './module';
 import {moduleTracker} from './moduleTracker';
@@ -203,6 +204,12 @@ export function makeModule(item: Item): Module {
       return new Blood.BloodFrenzy(item);
     case Blood.DarkRitual.itemId.value:
       return new Blood.DarkRitual(item);
+    case Holy.Priesthood.itemId.value:
+      return new Holy.Priesthood(item);
+    case Holy.Bishop.itemId.value:
+      return new Holy.Bishop(item);
+    case Holy.Archbishop.itemId.value:
+      return new Holy.Archbishop(item);
   }
   return new NullModule(item);
 }

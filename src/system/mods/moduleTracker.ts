@@ -20,9 +20,10 @@ class ModuleTracker {
   }
 
   private removeModule(item: Item) {
-    if (item.id in this.modules) {
+    const id = item.id;
+    if (id in this.modules) {
       // delay by a second to allow for eol events to happen for the mod.
-      doAfter(1, () => delete this.modules[item.id]);
+      doAfter(1, () => delete this.modules[id]);
     }
   }
 

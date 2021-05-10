@@ -1621,3 +1621,75 @@ STRING 484
 |cff6699ffBonuses:|r|n+2 seconds attack cooldown|n+100% damage
 }
 
+STRING 486
+// Items: I00D (Priesthood), Name (Name)
+{
+Priesthood
+}
+
+STRING 487
+// Items: I00D (Priesthood), Tip (Tooltip - Basic)
+{
+Purchase Priesthood
+}
+
+STRING 489
+// Items: I00D (Priesthood), Description (Description)
+{
+|cff6699ffBonuses:|r|n• On attack, deal |cffffcc0015%|r of the damage dealt as Cursed damage|n• |cffffcc00+10%|r damage per tower with |cffffcc00Archbishop|r.|n|n|cffaaaaaaMultiple Archbishops on a tower do not stack for bonuses.|r
+}
+
+STRING 490
+// Items: I00D (Priesthood), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n• On attack, deal |cffffcc0015%|r of the damage dealt as Cursed damage|n• |cffffcc00+10%|r damage per tower with |cffffcc00Archbishop|r.|n|n|cffaaaaaaMultiple Archbishops on a tower do not stack for bonuses.|r
+}
+
+STRING 495
+// Items: I00E (Bishop), Name (Name)
+{
+Bishop
+}
+
+STRING 496
+// Items: I00E (Bishop), Tip (Tooltip - Basic)
+{
+Purchase Bishop
+}
+
+STRING 497
+// Items: I00E (Bishop), Description (Description)
+{
+|cff6699ffBonuses:|r|n• On attack, deal |cffffcc0010%|r of the damage dealt as Cursed damage, multiplied by the number of towers with |cffffcc00Priesthood|r.|n• |cffffcc00+10%|r damage per tower with |cffffcc00Archbishop|r.|n|n|cffaaaaaaMultiple Priesthoods or Archbishops on a tower do not stack for bonuses.|r
+}
+
+STRING 498
+// Items: I00E (Bishop), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n• On attack, deal |cffffcc0010%|r of the damage dealt as Cursed damage, multiplied by the number of towers with |cffffcc00Priesthood|r.|n• |cffffcc00+10%|r damage per tower with |cffffcc00Archbishop|r.|n|n|cffaaaaaaMultiple Priesthoods or Archbishops on a tower do not stack for bonuses.|r
+}
+
+STRING 499
+// Items: I00F (Archbishop), Description (Description)
+{
+|cff6699ffBonuses:|r|n• On attack, deal |cffffcc0010%|r of the damage dealt as Cursed damage, multiplied by the number of towers with |cffffcc00Priesthood|r.|n• |cffffcc00+10%|r damage per tower with |cffffcc00Archbishop|r.|n|n|cffaaaaaaMultiple Priesthoods or Archbishops on a tower do not stack for bonuses.|r
+}
+
+STRING 500
+// Items: I00F (Archbishop), Name (Name)
+{
+Archbishop
+}
+
+STRING 501
+// Items: I00F (Archbishop), Tip (Tooltip - Basic)
+{
+Purchase Archbishop
+}
+
+STRING 502
+// Items: I00F (Archbishop), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n•Increases the bonus damage provided by |cffffcc00Priesthood|r and |cffffcc00Bishop|r modules by |cffffcc0020%|r.
+}
+

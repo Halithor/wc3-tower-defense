@@ -17,8 +17,10 @@ export class TowerSellingSystem {
         trainer.owner.gold += goldValue;
 
         info.mods.modules.forEach(mod => {
-          mod.onRemove(info);
+          info.unit.removeItem(mod.item);
+          // mod.onRemove(info);
           moduleTracker.eventModuleDestruction.emit(mod);
+          mod.item.destroy();
         });
 
         trainer.destroy();
