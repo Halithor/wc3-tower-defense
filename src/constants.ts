@@ -1,10 +1,14 @@
 import {
   abilId,
   destId,
+  findNearestUnit,
+  getRandomPosInRect,
+  getRandomUnitInRange,
   itemId,
   MapPlayer,
   Players,
   Rectangle,
+  Region,
   Unit,
   unitId,
 } from 'w3lib/src/index';

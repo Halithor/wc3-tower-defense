@@ -8,6 +8,7 @@ import {
   eventSpellOrAttackDamaging,
 } from 'system/damage';
 import {eventTowerSpell} from 'system/towers/spelltowers';
+import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
 import {TowerTracker} from 'system/towers/towertracker';
 import {
@@ -16,6 +17,7 @@ import {
   eventAnyUnitDeath,
   eventUnitAcquiresItem,
   eventUnitLosesItem,
+  eventUnitPawnsItemToShop,
   eventUnitSellsItemFromShop,
   Item,
   Unit,
@@ -124,19 +126,31 @@ export class ModuleSystem {
 
   private setupItemChanges() {
     eventUnitAcquiresItem.subscribe((u, i) => {
-      this.onItemChange(u, i, true);
+      const tower = this.towerTracker.getTower(u);
+      const mod = moduleTracker.get(i);
+      this.onItemChange(tower, mod, true);
     });
     eventUnitLosesItem.subscribe((u, i) => {
-      doAfter(0, () => this.onItemChange(u, i, false));
+      const tower = this.towerTracker.getTower(u);
+      const mod = moduleTracker.get(i);
+      doAfter(0, () => this.onItemChange(tower, mod, false));
     });
     eventUnitSellsItemFromShop.subscribe((shop, purchaser, i) => {
       this.onItemSoldShop(i);
     });
+    // eventUnitPawnsItemToShop.subscribe((seller, _shop, i) => {
+    //   const tower = this.towerTracker.getTower(seller);
+    //   const mod = moduleTracker.get(i);
+    //   doAfter(0, () => this.onItemChange(tower, mod, false));
+    // });
   }
 
-  private onItemChange(u: Unit, i: Item, acquisition: boolean) {
-    const tower = this.towerTracker.getTower(u);
-    const mod = moduleTracker.get(i);
+  private onItemChange(
+    tower: TowerInfo | undefined,
+    mod: Module | undefined,
+    acquisition: boolean
+  ) {
+    print(`item change: aquired is ${acquisition}`);
     if (mod && tower) {
       if (acquisition) {
         mod.tower = tower;

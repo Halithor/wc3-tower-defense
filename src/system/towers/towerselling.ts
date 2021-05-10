@@ -1,4 +1,5 @@
 import {UnitIds} from 'constants';
+import {moduleTracker} from 'system/mods/moduleTracker';
 import {onAnyUnitTrainingFinish} from 'w3lib/src/index';
 import {isUnitTower} from './towerconstants';
 import {TowerTracker} from './towertracker';
@@ -14,6 +15,12 @@ export class TowerSellingSystem {
 
         const goldValue = info.goldValue;
         trainer.owner.gold += goldValue;
+
+        info.mods.modules.forEach(mod => {
+          mod.onRemove(info);
+          moduleTracker.eventModuleDestruction.emit(mod);
+        });
+
         trainer.destroy();
         trained.destroy();
         towerTracker.removeTower(trainer);
