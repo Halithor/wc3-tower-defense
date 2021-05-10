@@ -150,7 +150,6 @@ export class ModuleSystem {
     mod: Module | undefined,
     acquisition: boolean
   ) {
-    print(`item change: aquired is ${acquisition}`);
     if (mod && tower) {
       if (acquisition) {
         mod.tower = tower;
@@ -202,6 +201,8 @@ export function makeModule(item: Item): Module {
       return new Necro.SoulBattery(item);
     case Blood.BloodFrenzy.itemId.value:
       return new Blood.BloodFrenzy(item);
+    case Blood.DarkRitual.itemId.value:
+      return new Blood.DarkRitual(item);
   }
   return new NullModule(item);
 }

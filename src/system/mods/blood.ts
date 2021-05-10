@@ -9,6 +9,9 @@ import {ModDamageInfo, Module} from './module';
 
 const bloodFrenzyBonusPerAttack = 2;
 
+const darkRitualSpeedDecrease = 2.0;
+const darkRitualBonusDamagePerc = 100;
+
 export namespace Blood {
   export class BloodFrenzy extends Module {
     static readonly itemId = itemId('I00B');
@@ -53,6 +56,21 @@ export namespace Blood {
     onRemove() {
       this.target = undefined;
       this.attacks = 0;
+    }
+  }
+
+  export class DarkRitual extends Module {
+    static readonly itemId = itemId('I00C');
+    name = 'Dark Ritual';
+
+    get description() {
+      return `|cff6699ffBonuses:|r|n+${darkRitualSpeedDecrease} attack cooldown|n+${darkRitualBonusDamagePerc}% damage`;
+    }
+
+    get stats() {
+      return TowerStats.damage(0, darkRitualBonusDamagePerc).merge(
+        TowerStats.attackSpeed(darkRitualSpeedDecrease, 0)
+      );
     }
   }
 }

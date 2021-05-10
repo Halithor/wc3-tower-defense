@@ -1597,3 +1597,27 @@ STRING 479
 |cffaaaaaaSingle target only|r|nEvery consecutive attack on a creep does +2 additional curse damage.
 }
 
+STRING 481
+// Items: I00C (Dark Ritual), Name (Name)
+{
+Dark Ritual
+}
+
+STRING 482
+// Items: I00C (Dark Ritual), Tip (Tooltip - Basic)
+{
+Purchase Dark Ritual
+}
+
+STRING 483
+// Items: I00C (Dark Ritual), Description (Description)
+{
+|cff6699ffBonuses:|r|n+2 seconds attack cooldown|n+100% damage
+}
+
+STRING 484
+// Items: I00C (Dark Ritual), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n+2 seconds attack cooldown|n+100% damage
+}
+
