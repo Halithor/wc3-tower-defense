@@ -1573,3 +1573,27 @@ STRING 474
 |cffaaaaaaMelee only|r|n|cff6699ffBonuses:|r|n+50% damage
 }
 
+STRING 476
+// Items: I00B (Blood Frenzy), Name (Name)
+{
+Blood Frenzy
+}
+
+STRING 477
+// Items: I00B (Blood Frenzy), Tip (Tooltip - Basic)
+{
+Purchase Blood Frenzy
+}
+
+STRING 478
+// Items: I00B (Blood Frenzy), Description (Description)
+{
+|cffaaaaaaSingle target only|r|nEvery consecutive attack on a creep does +2 additional curse damage.
+}
+
+STRING 479
+// Items: I00B (Blood Frenzy), Ubertip (Tooltip - Extended)
+{
+|cffaaaaaaSingle target only|r|nEvery consecutive attack on a creep does +2 additional curse damage.
+}
+

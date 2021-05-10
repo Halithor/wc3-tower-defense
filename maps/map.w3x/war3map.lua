@@ -1,5 +1,3 @@
-udg_damage = 0
-udg_u = nil
 gg_rct_Spawn0 = nil
 gg_rct_Spawn1 = nil
 gg_rct_Check0 = nil
@@ -13,10 +11,7 @@ gg_rct_Spawn2 = nil
 gg_rct_Spawn3 = nil
 gg_rct_ClassSelection = nil
 gg_rct_ModShops = nil
-gg_trg_Untitled_Trigger_001 = nil
-gg_trg_Untitled_Trigger_002 = nil
 function InitGlobals()
-    udg_damage = 0
 end
 
 function CreateAllItems()
@@ -151,37 +146,6 @@ function CreateRegions()
     gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
     gg_rct_ClassSelection = Rect(4192.0, -5280.0, 5024.0, -4448.0)
     gg_rct_ModShops = Rect(-3968.0, -1152.0, -2688.0, 512.0)
-end
-
-function Trig_Untitled_Trigger_001_Actions()
-end
-
-function InitTrig_Untitled_Trigger_001()
-    gg_trg_Untitled_Trigger_001 = CreateTrigger()
-    TriggerRegisterAnyUnitEventBJ(gg_trg_Untitled_Trigger_001, EVENT_PLAYER_UNIT_PICKUP_ITEM)
-    TriggerAddAction(gg_trg_Untitled_Trigger_001, Trig_Untitled_Trigger_001_Actions)
-end
-
-function Trig_Untitled_Trigger_002_Conditions()
-    if (not (IsUnitType(GetTriggerUnit(), UNIT_TYPE_STRUCTURE) == true)) then
-        return false
-    end
-    return true
-end
-
-function Trig_Untitled_Trigger_002_Actions()
-end
-
-function InitTrig_Untitled_Trigger_002()
-    gg_trg_Untitled_Trigger_002 = CreateTrigger()
-    TriggerRegisterAnyUnitEventBJ(gg_trg_Untitled_Trigger_002, EVENT_PLAYER_UNIT_DEATH)
-    TriggerAddCondition(gg_trg_Untitled_Trigger_002, Condition(Trig_Untitled_Trigger_002_Conditions))
-    TriggerAddAction(gg_trg_Untitled_Trigger_002, Trig_Untitled_Trigger_002_Actions)
-end
-
-function InitCustomTriggers()
-    InitTrig_Untitled_Trigger_001()
-    InitTrig_Untitled_Trigger_002()
 end
 
 function InitCustomPlayerSlots()
@@ -374,7 +338,6 @@ function main()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
-    InitCustomTriggers()
 end
 
 function config()

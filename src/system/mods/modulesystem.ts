@@ -22,6 +22,7 @@ import {
 } from 'w3lib/src/index';
 import {Arcane} from './arcane';
 import {Beast} from './beast';
+import {Blood} from './blood';
 import {Demon} from './demon';
 import {ModDamageInfo, Module} from './module';
 import {moduleTracker} from './moduleTracker';
@@ -185,6 +186,8 @@ export function makeModule(item: Item): Module {
       return new Necro.Necromancer(item);
     case Necro.SoulBattery.itemId.value:
       return new Necro.SoulBattery(item);
+    case Blood.BloodFrenzy.itemId.value:
+      return new Blood.BloodFrenzy(item);
   }
   return new NullModule(item);
 }
