@@ -21,8 +21,9 @@ export namespace Arcane {
   export class ScryingStone extends Module {
     static readonly itemId = itemId('I000');
     name = 'Scrying Stone';
+    components = [];
     get description() {
-      return `Bonuses:|n+ ${scryingStoneRange} range|n+ ${scryingStoneDamage}  on spell or attacks`;
+      return `Bonuses:|n+ ${scryingStoneRange} range|n+ ${scryingStoneDamage} on spell or attacks`;
     }
     get stats() {
       return TowerStats.range(scryingStoneRange, 0);
@@ -46,6 +47,7 @@ export namespace Arcane {
   export class ManaStone extends Module {
     static readonly itemId = itemId('I001');
     name = 'Mana Stone';
+    components = [];
     get description() {
       return `Bonuses:|n+ ${manaStoneFlatBonus} mana|n+ ${Math.round(
         100 * manaStoneRegenBonus
@@ -61,6 +63,7 @@ export namespace Arcane {
   export class DiviningRod extends Module {
     static readonly itemId = itemId('I002');
     name = 'Divining Rod';
+    components = [];
     get description() {
       return `Restore ${diviningRodManaRestored} mana after each spell cast.`;
     }

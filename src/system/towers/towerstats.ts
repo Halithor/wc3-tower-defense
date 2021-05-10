@@ -116,8 +116,17 @@ export class TowerStats {
     return str;
   }
 
+  private static readonly _empty = new TowerStats(
+    AttackType.Whoknows,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  );
   static empty(): TowerStats {
-    return new TowerStats(AttackType.Whoknows, 0, 0, 0, 0, 0, 0);
+    return TowerStats._empty;
   }
 
   static attackType(atkType: AttackType) {

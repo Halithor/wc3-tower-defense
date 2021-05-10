@@ -19,6 +19,7 @@ export namespace Necro {
   export class Necromancer extends Module {
     static readonly itemId = itemId('I008');
     name = 'Necromancy';
+    components = [];
 
     private completed = false;
     private kills = 0;
@@ -72,6 +73,7 @@ export namespace Necro {
   export class SoulBattery extends Module {
     static readonly itemId = itemId('I009');
     name = 'Soul Battery';
+    components = [];
 
     private charges = 0;
 

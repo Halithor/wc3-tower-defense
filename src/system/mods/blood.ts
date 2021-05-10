@@ -16,6 +16,7 @@ export namespace Blood {
   export class BloodFrenzy extends Module {
     static readonly itemId = itemId('I00B');
     name = 'Blood Frenzy';
+    components = [];
     get description() {
       return `${
         this.tower && this.tower.categories.indexOf(TowerCategories.AoE) > -1
@@ -62,6 +63,7 @@ export namespace Blood {
   export class DarkRitual extends Module {
     static readonly itemId = itemId('I00C');
     name = 'Dark Ritual';
+    components = [];
 
     get description() {
       return `|cff6699ffBonuses:|r|n+${darkRitualSpeedDecrease} attack cooldown|n+${darkRitualBonusDamagePerc}% damage`;

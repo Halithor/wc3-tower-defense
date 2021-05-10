@@ -1,10 +1,8 @@
 import {AttackType} from 'combattypes';
-import {Creep} from 'system/creeps/creep';
-import {dealDamageOnHit} from 'system/damage';
-import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
-import {itemId, ItemId} from 'w3lib/src/common';
-import {ModDamageInfo, Module} from './module';
+import {itemId} from 'w3lib/src/common';
+import {Module} from './module';
+import {DealDamageOnAttackComponent} from './standardComponents';
 
 const demonFireDamageBonusPerc = 0.2;
 const demonFireAttackType = AttackType.Fire;
@@ -13,52 +11,23 @@ const demonFrostDamageBonusPerc = 0.2;
 const demonFrostAttackType = AttackType.Frost;
 
 export namespace Demon {
+  const fireDamageComponent = new DealDamageOnAttackComponent(
+    demonFireDamageBonusPerc,
+    demonFireAttackType
+  );
   export class DemonFire extends Module {
     static readonly itemId = itemId('I003');
     name = 'Demon Fire';
-    get description() {
-      return `On attack, deals bonus ${
-        demonFireAttackType.nameColored
-      } damage equal to ${Math.round(
-        demonFireDamageBonusPerc * 100
-      )}% of the dealt damage.`;
-    }
-    get stats() {
-      return TowerStats.empty();
-    }
-
-    onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
-      dealDamageOnHit(
-        tower.unit,
-        target.unit,
-        demonFireDamageBonusPerc * damageInfo.damage,
-        true,
-        demonFireAttackType
-      );
-    }
+    components = [fireDamageComponent];
   }
+
+  const frostDamageComponent = new DealDamageOnAttackComponent(
+    demonFrostDamageBonusPerc,
+    demonFrostAttackType
+  );
   export class DemonFrost extends Module {
     static readonly itemId = itemId('I004');
     name = 'Demon Frost';
-    get description(): string {
-      return `On attack, deals bonus ${
-        demonFrostAttackType.nameColored
-      } damage equal to ${Math.round(
-        demonFrostDamageBonusPerc * 100
-      )}% of the dealt damage.`;
-    }
-    get stats() {
-      return TowerStats.empty();
-    }
-
-    onAttackDamage(target: Creep, tower: TowerInfo, damageInfo: ModDamageInfo) {
-      dealDamageOnHit(
-        tower.unit,
-        target.unit,
-        demonFrostDamageBonusPerc * damageInfo.damage,
-        true,
-        demonFrostAttackType
-      );
-    }
+    components = [frostDamageComponent];
   }
 }

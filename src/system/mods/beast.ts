@@ -27,6 +27,7 @@ export namespace Beast {
   export class PackHunter extends Module {
     static readonly itemId = itemId('I005');
     name = 'Pack Hunter';
+    components = [];
     get description() {
       return `Gain +${packHunterBonusDamage} damage for every tower with this mod.|n|cff6699ffBonuses:|r|n+${this.stats.damage} damage`;
     }
@@ -69,6 +70,7 @@ export namespace Beast {
   export class Enrage extends Module {
     static readonly itemId = itemId('I006');
     name = 'Enrage';
+    components = [];
     get description() {
       return `Reduce attack cooldown by ${enrageCooldownReduction} (minimum 0.1).`;
     }
@@ -80,6 +82,7 @@ export namespace Beast {
   export class ChannelFeriocity extends Module {
     static readonly itemId = itemId('I007');
     name = 'Channel Ferocity';
+    components = [];
     get stats() {
       return TowerStats.empty();
     }
@@ -99,6 +102,7 @@ export namespace Beast {
   export class SharpenedClaws extends Module {
     static readonly itemId = itemId('I00A');
     name = 'Sharpened Claws';
+    components = [];
 
     get description() {
       if (!this.tower) {

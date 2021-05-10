@@ -57,8 +57,10 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
+      const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onAttackDamage(creepInfo, towerInfo, convertInfo(info, target));
+        mod.onAttackDamage(creepInfo, towerInfo, converted);
+        mod.subjectAttackDamage.emit(creepInfo, towerInfo, converted);
       });
     });
     eventSpellDamaging.subscribe((target, attacker, info) => {
@@ -67,8 +69,10 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
+      const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onSpellDamage(creepInfo, towerInfo, convertInfo(info, target));
+        mod.onSpellDamage(creepInfo, towerInfo, converted);
+        mod.subjectSpellDamage.emit(creepInfo, towerInfo, converted);
       });
     });
     eventSpellOrAttackDamaging.subscribe((target, attacker, info) => {
@@ -77,12 +81,10 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
+      const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onSpellOrAttackDamage(
-          creepInfo,
-          towerInfo,
-          convertInfo(info, target)
-        );
+        mod.onSpellOrAttackDamage(creepInfo, towerInfo, converted);
+        mod.subjectAttackOrSpellDamage.emit(creepInfo, towerInfo, converted);
       });
     });
     eventOnHitDamaging.subscribe((target, attacker, info) => {
@@ -91,8 +93,10 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
+      const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onOnHitDamage(creepInfo, towerInfo, convertInfo(info, target));
+        mod.onOnHitDamage(creepInfo, towerInfo, converted);
+        mod.subjectOnHitDamage.emit(creepInfo, towerInfo, converted);
       });
     });
     eventAnyDamaging.subscribe((target, attacker, info) => {
@@ -101,13 +105,16 @@ export class ModuleSystem {
       if (!towerInfo || !creepInfo) {
         return;
       }
+      const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onAnyDamage(creepInfo, towerInfo, convertInfo(info, target));
+        mod.onAnyDamage(creepInfo, towerInfo, converted);
+        mod.subjectAnyDamage.emit(creepInfo, towerInfo, converted);
       });
     });
     eventTowerSpell.subscribe(towerInfo => {
       towerInfo.mods.modules.forEach(mod => {
         mod.onSpell(towerInfo);
+        mod.subjectOnSpell.emit(towerInfo);
       });
     });
     eventAnyUnitDeath.subscribe((dying, killer) => {
@@ -121,6 +128,7 @@ export class ModuleSystem {
       }
       towerInfo.mods.modules.forEach(mod => {
         mod.onKill(creepInfo, towerInfo);
+        mod.subjectOnKill.emit(creepInfo, towerInfo);
       });
     });
   }
@@ -139,11 +147,6 @@ export class ModuleSystem {
     eventUnitSellsItemFromShop.subscribe((shop, purchaser, i) => {
       this.onItemSoldShop(i);
     });
-    // eventUnitPawnsItemToShop.subscribe((seller, _shop, i) => {
-    //   const tower = this.towerTracker.getTower(seller);
-    //   const mod = moduleTracker.get(i);
-    //   doAfter(0, () => this.onItemChange(tower, mod, false));
-    // });
   }
 
   private onItemChange(
@@ -155,6 +158,7 @@ export class ModuleSystem {
       if (acquisition) {
         mod.tower = tower;
         mod.onAdd(tower);
+        mod.subjectOnAdd.emit(tower);
       } else {
         if (mod.tower == tower) {
           // if equivalent, it means that an add event hasn't overwritten and
@@ -162,6 +166,7 @@ export class ModuleSystem {
           mod.tower = undefined;
         }
         mod.onRemove(tower);
+        mod.subjectOnRemove.emit(tower);
       }
       mod.updateTooltip();
     }
@@ -172,6 +177,7 @@ export class ModuleSystem {
 
   private onItemSoldShop(i: Item) {
     const mod = makeModule(i);
+    mod.registerComponents();
     moduleTracker.addModule(mod);
   }
 }
@@ -216,6 +222,5 @@ export function makeModule(item: Item): Module {
 
 class NullModule extends Module {
   name = 'Null Module';
-  description = '';
-  stats = TowerStats.empty();
+  components = [];
 }
