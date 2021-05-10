@@ -1,6 +1,6 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
 import {CreepSystem} from 'system/creeps/creepsystem';
-import {doAfter, Rectangle} from 'w3lib/src/index';
+import {doAfter, eventAnyPlayerChat, Rectangle} from 'w3lib/src/index';
 import {TowerSystem} from 'system/towers/towersystem';
 import {PathInfo, SpawnInfo} from 'system/pathinfo';
 import {CreepTracker} from 'system/creeps/creeptracker';
@@ -13,11 +13,13 @@ import {ClassSelection} from 'system/class/classSelection';
 import {ClassApplication} from 'system/class/classApplication';
 import {ModuleSystem} from 'system/mods/modulesystem';
 import {moduleTracker} from 'system/mods/moduleTracker';
+import {getPlayerCount} from 'constants';
 
 export class Game {
   constructor() {}
 
   start() {
+    this.setupCheats();
     const pathInfo = this.setupPathInfo();
     doAfter(1, () => {
       const players = new PlayerSystem();
@@ -65,5 +67,26 @@ export class Game {
         new SpawnInfo(spawn3, check2),
       ]
     );
+  }
+
+  setupCheats() {
+    if (getPlayerCount() > 1) {
+      return;
+    }
+    eventAnyPlayerChat.subscribe((p, msg) => {
+      if (msg.indexOf('cheat') != 0) {
+        return;
+      }
+      const trimmed = msg.substr('cheat'.length).trim();
+      if (trimmed.indexOf('gold') > -1) {
+        p.gold += 1000;
+      }
+      if (trimmed.indexOf('wood') > -1 || trimmed.indexOf('lumber') > -1) {
+        p.lumber += 1000;
+      }
+      if (trimmed.indexOf('food') > -1) {
+        p.foodCap += 100;
+      }
+    });
   }
 }

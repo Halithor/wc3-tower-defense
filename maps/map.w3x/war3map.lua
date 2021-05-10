@@ -11,23 +11,8 @@ gg_rct_Spawn2 = nil
 gg_rct_Spawn3 = nil
 gg_rct_ClassSelection = nil
 gg_rct_ModShops = nil
+gg_trg_Untitled_Trigger_001 = nil
 function InitGlobals()
-end
-
-function CreateAllItems()
-    local itemID
-    BlzCreateItemWithSkin(FourCC("gold"), -3240.3, 4202.1, FourCC("gold"))
-end
-
-function CreateBuildingsForPlayer0()
-    local p = Player(0)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("h007"), -3328.0, 4096.0, 270.000, FourCC("h007"))
-    u = BlzCreateUnitWithSkin(p, FourCC("hwtw"), -3328.0, 4608.0, 270.000, FourCC("hwtw"))
-    u = BlzCreateUnitWithSkin(p, FourCC("h006"), -3328.0, 4224.0, 270.000, FourCC("h006"))
 end
 
 function CreateNeutralHostileBuildings()
@@ -116,7 +101,6 @@ function CreateNeutralPassive()
 end
 
 function CreatePlayerBuildings()
-    CreateBuildingsForPlayer0()
 end
 
 function CreatePlayerUnits()
@@ -146,6 +130,18 @@ function CreateRegions()
     gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
     gg_rct_ClassSelection = Rect(4192.0, -5280.0, 5024.0, -4448.0)
     gg_rct_ModShops = Rect(-3968.0, -1152.0, -2688.0, 512.0)
+end
+
+function Trig_Untitled_Trigger_001_Actions()
+end
+
+function InitTrig_Untitled_Trigger_001()
+    gg_trg_Untitled_Trigger_001 = CreateTrigger()
+    TriggerAddAction(gg_trg_Untitled_Trigger_001, Trig_Untitled_Trigger_001_Actions)
+end
+
+function InitCustomTriggers()
+    InitTrig_Untitled_Trigger_001()
 end
 
 function InitCustomPlayerSlots()
@@ -334,10 +330,10 @@ function main()
     SetAmbientNightSound("DalaranNight")
     SetMapMusic("Music", true, 0)
     CreateRegions()
-    CreateAllItems()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
+    InitCustomTriggers()
 end
 
 function config()
