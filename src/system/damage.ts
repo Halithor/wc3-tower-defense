@@ -7,7 +7,7 @@ import {
   Unit,
 } from 'w3lib/src/index';
 
-enum DamageSource {
+export enum DamageSource {
   Attack,
   Spell,
   OnHit,

@@ -1,16 +1,13 @@
 import {AttackType} from 'combattypes';
-import {Creep} from 'system/creeps/creep';
-import {dealDamageOnHit} from 'system/damage';
-import {TowerInfo} from 'system/towers/towerinfo';
+import {DamageSource} from 'system/damage';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId} from 'w3lib/src/common';
-import {Item, Subject} from 'w3lib/src/index';
-import {ModDamageInfo, Module} from './module';
+import {Module} from './module';
 import {
   CountTowersWithModuleComponent,
-  DealDamageOnAttackComponent,
-  TowerStatsComponet,
-  UpdateTooltipOnEvent,
+  DamageMultComponent,
+  TowerStatsComponent,
+  UpdateOnEventComponent,
 } from './standardComponents';
 
 const priesthoodDamageMult = 0.15;
@@ -35,7 +32,7 @@ export namespace Holy {
     archbishopItemId,
     `Increases the bonus damage provided by |cffffcc00Priesthood|r and |cffffcc00Bishop|r modules by ${archbishopDamageBonusPerc}%.`
   );
-  const damageBonusFromArchbishopComponent = new TowerStatsComponet(
+  const damageBonusFromArchbishopComponent = new TowerStatsComponent(
     () =>
       TowerStats.damage(
         0,
@@ -45,7 +42,8 @@ export namespace Holy {
       `|cffffcc00+${stats.damagePerc}%|r damage, ${archbishopDamageBonusPerc}% per tower with |cffffcc00Archbishop|r.`
   );
 
-  const priestDamageComponent = new DealDamageOnAttackComponent(
+  const priestDamageComponent = new DamageMultComponent(
+    [DamageSource.Attack],
     priesthoodDamageMult,
     priesthoodAttackType
   );
@@ -56,11 +54,12 @@ export namespace Holy {
       priestDamageComponent,
       damageBonusFromArchbishopComponent,
       priestCounterComponent,
-      new UpdateTooltipOnEvent(archBishopCounterComponent.eventChange),
+      new UpdateOnEventComponent(archBishopCounterComponent.event),
     ];
   }
 
-  const bishopDamageComponent = new DealDamageOnAttackComponent(
+  const bishopDamageComponent = new DamageMultComponent(
+    [DamageSource.Attack],
     () => bishopDamagePerPriestMult * priestCounterComponent.count,
     bishopAttackType,
     `An additional ${Math.round(
@@ -73,9 +72,9 @@ export namespace Holy {
     components = [
       bishopDamageComponent,
       damageBonusFromArchbishopComponent,
-      new UpdateTooltipOnEvent(
-        archBishopCounterComponent.eventChange,
-        priestCounterComponent.eventChange
+      new UpdateOnEventComponent(
+        archBishopCounterComponent.event,
+        priestCounterComponent.event
       ),
     ];
   }

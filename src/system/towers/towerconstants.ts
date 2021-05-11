@@ -5,19 +5,19 @@ import {TowerStats} from './towerstats';
 const defaultAtkType = AttackType.Physical;
 
 export enum TowerCategories {
-  Melee,
-  Ranged,
-  AoE,
-  Magic,
-  Spear,
-  Arrow,
-  Sniper,
-  Splash,
-  Rock,
-  Siege,
-  Rapid,
-  Standard,
-  Heavy,
+  Melee = 'Melee',
+  Ranged = 'Ranged',
+  AoE = 'AoE',
+  Magic = 'Magic',
+  Spear = 'Spear',
+  Arrow = 'Arrow',
+  Sniper = 'Sniper',
+  Splash = 'Splash',
+  Rock = 'Rock',
+  Siege = 'Siege',
+  Rapid = 'Rapid',
+  Standard = 'Standard',
+  Heavy = 'Heavy',
 }
 
 export class TowerIds {

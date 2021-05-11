@@ -16,6 +16,7 @@ import {
   doAfter,
   eventAnyUnitDeath,
   eventUnitAcquiresItem,
+  eventUnitAttacked,
   eventUnitLosesItem,
   eventUnitPawnsItemToShop,
   eventUnitSellsItemFromShop,
@@ -59,7 +60,6 @@ export class ModuleSystem {
       }
       const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onAttackDamage(creepInfo, towerInfo, converted);
         mod.subjectAttackDamage.emit(creepInfo, towerInfo, converted);
       });
     });
@@ -71,7 +71,6 @@ export class ModuleSystem {
       }
       const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onSpellDamage(creepInfo, towerInfo, converted);
         mod.subjectSpellDamage.emit(creepInfo, towerInfo, converted);
       });
     });
@@ -83,7 +82,6 @@ export class ModuleSystem {
       }
       const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onSpellOrAttackDamage(creepInfo, towerInfo, converted);
         mod.subjectAttackOrSpellDamage.emit(creepInfo, towerInfo, converted);
       });
     });
@@ -95,7 +93,6 @@ export class ModuleSystem {
       }
       const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onOnHitDamage(creepInfo, towerInfo, converted);
         mod.subjectOnHitDamage.emit(creepInfo, towerInfo, converted);
       });
     });
@@ -107,14 +104,22 @@ export class ModuleSystem {
       }
       const converted = convertInfo(info, target);
       towerInfo.mods.modules.forEach(mod => {
-        mod.onAnyDamage(creepInfo, towerInfo, converted);
         mod.subjectAnyDamage.emit(creepInfo, towerInfo, converted);
       });
     });
     eventTowerSpell.subscribe(towerInfo => {
       towerInfo.mods.modules.forEach(mod => {
-        mod.onSpell(towerInfo);
         mod.subjectOnSpell.emit(towerInfo);
+      });
+    });
+    eventUnitAttacked.subscribe((target, attacker) => {
+      const towerInfo = this.towerTracker.getTower(attacker);
+      const creepInfo = this.creepTracker.getCreep(target);
+      if (!towerInfo || !creepInfo) {
+        return;
+      }
+      towerInfo.mods.modules.forEach(mod => {
+        mod.subjectOnAttack.emit(creepInfo, towerInfo);
       });
     });
     eventAnyUnitDeath.subscribe((dying, killer) => {
@@ -127,7 +132,6 @@ export class ModuleSystem {
         return;
       }
       towerInfo.mods.modules.forEach(mod => {
-        mod.onKill(creepInfo, towerInfo);
         mod.subjectOnKill.emit(creepInfo, towerInfo);
       });
     });
@@ -157,7 +161,6 @@ export class ModuleSystem {
     if (mod && tower) {
       if (acquisition) {
         mod.tower = tower;
-        mod.onAdd(tower);
         mod.subjectOnAdd.emit(tower);
       } else {
         if (mod.tower == tower) {
@@ -165,7 +168,6 @@ export class ModuleSystem {
           // is therefore not in another tower.
           mod.tower = undefined;
         }
-        mod.onRemove(tower);
         mod.subjectOnRemove.emit(tower);
       }
       mod.updateTooltip();
@@ -198,8 +200,8 @@ export function makeModule(item: Item): Module {
       return new Beast.PackHunter(item);
     case Beast.Enrage.itemId.value:
       return new Beast.Enrage(item);
-    case Beast.ChannelFeriocity.itemId.value:
-      return new Beast.ChannelFeriocity(item);
+    case Beast.ChannelFerocity.itemId.value:
+      return new Beast.ChannelFerocity(item);
     case Beast.SharpenedClaws.itemId.value:
       return new Beast.SharpenedClaws(item);
     case Necro.Necromancer.itemId.value:

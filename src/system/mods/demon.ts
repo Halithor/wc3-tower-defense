@@ -1,17 +1,19 @@
 import {AttackType} from 'combattypes';
+import {DamageSource} from 'system/damage';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId} from 'w3lib/src/common';
 import {Module} from './module';
-import {DealDamageOnAttackComponent} from './standardComponents';
+import {DamageMultComponent} from './standardComponents';
 
-const demonFireDamageBonusPerc = 0.2;
+const demonFireDamageBonusPerc = 0.25;
 const demonFireAttackType = AttackType.Fire;
 
-const demonFrostDamageBonusPerc = 0.2;
+const demonFrostDamageBonusPerc = 0.25;
 const demonFrostAttackType = AttackType.Frost;
 
 export namespace Demon {
-  const fireDamageComponent = new DealDamageOnAttackComponent(
+  const fireDamageComponent = new DamageMultComponent(
+    [DamageSource.Attack],
     demonFireDamageBonusPerc,
     demonFireAttackType
   );
@@ -21,7 +23,8 @@ export namespace Demon {
     components = [fireDamageComponent];
   }
 
-  const frostDamageComponent = new DealDamageOnAttackComponent(
+  const frostDamageComponent = new DamageMultComponent(
+    [DamageSource.Attack],
     demonFrostDamageBonusPerc,
     demonFrostAttackType
   );
