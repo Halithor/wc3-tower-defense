@@ -1,3 +1,4 @@
+import {maxCreepsDefeat} from 'constants';
 import {GameState} from 'system/gamestate';
 import {doAfter, Unit} from 'w3lib/src/index';
 
@@ -16,9 +17,15 @@ export class MultiboardUpdater {
   }
 
   private updateTitle() {
+    let color = '|cffffcc00';
+    if (this.gameState.creepCount / maxCreepsDefeat > 0.8) {
+      color = '|cffcc0000';
+    }
     MultiboardSetTitleText(
       this.board,
-      `${Math.round(this.gameState.creepCount)} / 120`
+      `${color}Creeps: ${Math.round(
+        this.gameState.creepCount
+      )} / ${maxCreepsDefeat}`
     );
   }
 }

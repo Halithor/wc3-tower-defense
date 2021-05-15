@@ -1,5 +1,6 @@
 import {DefenseType} from 'combattypes';
 import {getPlayerCount, playerEnemies} from 'constants';
+import {GameState} from 'system/gamestate';
 import {SpawnInfo} from 'system/pathinfo';
 import {WaveFormat, WaveInfo} from 'system/wavesystem';
 import {
@@ -9,6 +10,7 @@ import {
   Group,
   Subject,
   UnitId,
+  Timer,
 } from 'w3lib/src/index';
 import {creep} from './creep';
 import {CreepIds} from './creepids';
@@ -45,7 +47,14 @@ const challengeArmorFactor = 2.0;
 const challengeVisualScale = 1.5;
 
 export class CreepSpawning {
-  constructor(private spawns: SpawnInfo[]) {}
+  private currentSpawning?: {cancel: () => void; timer: Timer};
+  constructor(private spawns: SpawnInfo[], readonly gameState: GameState) {
+    gameState.eventDefeat.subscribe(() => {
+      if (this.currentSpawning) {
+        this.currentSpawning.cancel();
+      }
+    });
+  }
 
   spawnLevel(
     difficulty: number,
@@ -120,7 +129,7 @@ export class CreepSpawning {
     const arm = armor(difficulty);
     const speed = movespeed(difficulty);
     const interval = standardIntervalDistance / speed;
-    doPeriodicallyCounted(
+    this.currentSpawning = doPeriodicallyCounted(
       interval,
       standardCount,
       () => {
@@ -173,7 +182,7 @@ export class CreepSpawning {
     const arm = Math.round(armor(difficulty) * massArmorFactor);
     const speed = Math.round(movespeed(difficulty) * massMovespeedFactor);
     const interval = massIntervalDistance / speed;
-    doPeriodicallyCounted(
+    this.currentSpawning = doPeriodicallyCounted(
       interval,
       massCount,
       () => {
@@ -206,7 +215,7 @@ export class CreepSpawning {
     const speed = movespeed(difficulty);
     const interval = challengeIntervalDistance / speed;
 
-    doPeriodicallyCounted(
+    this.currentSpawning = doPeriodicallyCounted(
       interval,
       7,
       (_cancel, creepIndex) => {

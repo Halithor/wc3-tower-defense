@@ -1,17 +1,6 @@
-import {
-  abilId,
-  destId,
-  findNearestUnit,
-  getRandomPosInRect,
-  getRandomUnitInRange,
-  itemId,
-  MapPlayer,
-  Players,
-  Rectangle,
-  Region,
-  Unit,
-  unitId,
-} from 'w3lib/src/index';
+import {abilId, MapPlayer, Players, Unit, unitId} from 'w3lib/src/index';
+
+export const maxCreepsDefeat = 120;
 
 export const playerEnemy1 = Players[10];
 export const playerEnemy2 = Players[11];

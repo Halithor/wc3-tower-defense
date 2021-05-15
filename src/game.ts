@@ -32,21 +32,22 @@ export class Game {
       creepTracker.setup();
       towerTracker.setup();
 
+      const gameState = new GameState();
+
       // Other systems
       const towers = new TowerSystem();
       const pathing = new PathingSystem(pathInfo);
       const economics = new EconomicSystem(players);
-      const creeps = new CreepSystem(pathInfo);
+      const creeps = new CreepSystem(pathInfo, gameState);
       const classApplication = new ClassApplication(players);
       const modules = new ModuleSystem();
 
-      const gameState = new GameState();
       const multiboard = new MultiboardUpdater(gameState);
 
       const classSelection = new ClassSelection(players);
       classSelection.eventComplete.subscribe(() => {
         // Will start the game
-        const waves = new WaveSystem(creeps.spawning, players);
+        const waves = new WaveSystem(creeps.spawning, players, gameState);
       });
     });
   }
