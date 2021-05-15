@@ -14,6 +14,8 @@ import {ModuleSystem} from 'system/mods/modulesystem';
 import {moduleTracker} from 'system/mods/moduleTracker';
 import {getPlayerCount} from 'constants';
 import {creepTracker} from 'system/creeps/creeptracker';
+import {GameState} from 'system/gamestate';
+import {MultiboardUpdater} from 'multiboard';
 
 export class Game {
   constructor() {}
@@ -37,6 +39,9 @@ export class Game {
       const creeps = new CreepSystem(pathInfo);
       const classApplication = new ClassApplication(players);
       const modules = new ModuleSystem();
+
+      const gameState = new GameState();
+      const multiboard = new MultiboardUpdater(gameState);
 
       const classSelection = new ClassSelection(players);
       classSelection.eventComplete.subscribe(() => {
