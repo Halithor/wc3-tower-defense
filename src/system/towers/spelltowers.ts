@@ -17,7 +17,7 @@ import {
   Unit,
 } from 'w3lib/src/index';
 import {TowerInfo} from './towerinfo';
-import {TowerTracker} from './towertracker';
+import {towerTracker} from './towertracker';
 
 const shockwavePath = 'Abilities\\Spells\\Orc\\Shockwave\\ShockwaveMissile.mdl';
 const warstompPath = 'Abilities\\Spells\\Orc\\WarStomp\\WarStompCaster.mdl';
@@ -43,7 +43,7 @@ const subjectTowerSpell = new Subject<[tower: TowerInfo]>();
 export const eventTowerSpell: Event<[tower: TowerInfo]> = subjectTowerSpell;
 
 export class SpellTowerEffects {
-  constructor(private readonly towerTracker: TowerTracker) {
+  constructor() {
     this.setupChainLightning();
     this.setupShockwave();
     this.setupWarstomp();
@@ -72,7 +72,7 @@ export class SpellTowerEffects {
   }
 
   private emitSpellEvent(tower: Unit) {
-    const towerInfo = this.towerTracker.getTower(tower);
+    const towerInfo = towerTracker.getTower(tower);
     if (!towerInfo) {
       return;
     }

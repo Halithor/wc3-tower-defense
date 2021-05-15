@@ -1,5 +1,5 @@
 import {AttackType, DefenseType} from 'combattypes';
-import {CreepTracker} from 'system/creeps/creeptracker';
+import {creepTracker} from 'system/creeps/creeptracker';
 import {
   eventAnyDamaging,
   eventAttackDamaging,
@@ -9,8 +9,7 @@ import {
 } from 'system/damage';
 import {eventTowerSpell} from 'system/towers/spelltowers';
 import {TowerInfo} from 'system/towers/towerinfo';
-import {TowerStats} from 'system/towers/towerstats';
-import {TowerTracker} from 'system/towers/towertracker';
+import {towerTracker} from 'system/towers/towertracker';
 import {
   DamageInfo,
   doAfter,
@@ -18,7 +17,6 @@ import {
   eventUnitAcquiresItem,
   eventUnitAttacked,
   eventUnitLosesItem,
-  eventUnitPawnsItemToShop,
   eventUnitSellsItemFromShop,
   Item,
   Unit,
@@ -43,18 +41,15 @@ function convertInfo(info: DamageInfo, target: Unit): ModDamageInfo {
 }
 
 export class ModuleSystem {
-  constructor(
-    private readonly towerTracker: TowerTracker,
-    private readonly creepTracker: CreepTracker
-  ) {
+  constructor() {
     this.setupItemChanges();
     this.setupDamageEvents();
   }
 
   private setupDamageEvents() {
     eventAttackDamaging.subscribe((target, attacker, info) => {
-      const towerInfo = this.towerTracker.getTower(attacker);
-      const creepInfo = this.creepTracker.getCreep(target);
+      const towerInfo = towerTracker.getTower(attacker);
+      const creepInfo = creepTracker.getCreep(target);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -64,8 +59,8 @@ export class ModuleSystem {
       });
     });
     eventSpellDamaging.subscribe((target, attacker, info) => {
-      const towerInfo = this.towerTracker.getTower(attacker);
-      const creepInfo = this.creepTracker.getCreep(target);
+      const towerInfo = towerTracker.getTower(attacker);
+      const creepInfo = creepTracker.getCreep(target);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -75,8 +70,8 @@ export class ModuleSystem {
       });
     });
     eventSpellOrAttackDamaging.subscribe((target, attacker, info) => {
-      const towerInfo = this.towerTracker.getTower(attacker);
-      const creepInfo = this.creepTracker.getCreep(target);
+      const towerInfo = towerTracker.getTower(attacker);
+      const creepInfo = creepTracker.getCreep(target);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -86,8 +81,8 @@ export class ModuleSystem {
       });
     });
     eventOnHitDamaging.subscribe((target, attacker, info) => {
-      const towerInfo = this.towerTracker.getTower(attacker);
-      const creepInfo = this.creepTracker.getCreep(target);
+      const towerInfo = towerTracker.getTower(attacker);
+      const creepInfo = creepTracker.getCreep(target);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -97,8 +92,8 @@ export class ModuleSystem {
       });
     });
     eventAnyDamaging.subscribe((target, attacker, info) => {
-      const towerInfo = this.towerTracker.getTower(attacker);
-      const creepInfo = this.creepTracker.getCreep(target);
+      const towerInfo = towerTracker.getTower(attacker);
+      const creepInfo = creepTracker.getCreep(target);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -113,8 +108,8 @@ export class ModuleSystem {
       });
     });
     eventUnitAttacked.subscribe((target, attacker) => {
-      const towerInfo = this.towerTracker.getTower(attacker);
-      const creepInfo = this.creepTracker.getCreep(target);
+      const towerInfo = towerTracker.getTower(attacker);
+      const creepInfo = creepTracker.getCreep(target);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -126,8 +121,8 @@ export class ModuleSystem {
       if (!killer) {
         return;
       }
-      const towerInfo = this.towerTracker.getTower(killer);
-      const creepInfo = this.creepTracker.getCreep(dying);
+      const towerInfo = towerTracker.getTower(killer);
+      const creepInfo = creepTracker.getCreep(dying);
       if (!towerInfo || !creepInfo) {
         return;
       }
@@ -139,12 +134,12 @@ export class ModuleSystem {
 
   private setupItemChanges() {
     eventUnitAcquiresItem.subscribe((u, i) => {
-      const tower = this.towerTracker.getTower(u);
+      const tower = towerTracker.getTower(u);
       const mod = moduleTracker.get(i);
       this.onItemChange(tower, mod, true);
     });
     eventUnitLosesItem.subscribe((u, i) => {
-      const tower = this.towerTracker.getTower(u);
+      const tower = towerTracker.getTower(u);
       const mod = moduleTracker.get(i);
       doAfter(0, () => this.onItemChange(tower, mod, false));
     });

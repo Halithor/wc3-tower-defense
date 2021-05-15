@@ -10,21 +10,19 @@ import {
   onAnyUnitSpellEffect,
   onAnyUnitUpgradeFinish,
   standardTextTag,
-  Unit,
-  vec2,
 } from 'w3lib/src/index';
 import {SpellTowerEffects} from './spelltowers';
 import {TowerSellingSystem} from './towerselling';
-import {TowerTracker} from './towertracker';
+import {towerTracker} from './towertracker';
 import {TowerUpgrades} from './towerupgrades';
 
 export class TowerSystem {
-  constructor(readonly towerTracker: TowerTracker) {
+  constructor() {
     this.removeRallyAbilityOnTowers();
 
-    const towerSelling = new TowerSellingSystem(towerTracker);
-    const spellTowerEffects = new SpellTowerEffects(towerTracker);
-    const towerUpgrades = new TowerUpgrades(towerTracker);
+    const towerSelling = new TowerSellingSystem();
+    const spellTowerEffects = new SpellTowerEffects();
+    const towerUpgrades = new TowerUpgrades();
 
     this.setupStatisticsAbility();
     this.setupDamageTracking();
@@ -63,7 +61,7 @@ export class TowerSystem {
       if (!ability.equals(SpellIds.showTowerStats)) {
         return;
       }
-      const info = this.towerTracker.getTower(caster);
+      const info = towerTracker.getTower(caster);
       if (!info) {
         return;
       }
@@ -89,7 +87,7 @@ ${info.stats.toString()}`
 
   private setupDamageTracking() {
     onAnyUnitDamaged((target, attacker, info) => {
-      const tower = this.towerTracker.getTower(attacker);
+      const tower = towerTracker.getTower(attacker);
       if (!tower) {
         return;
       }

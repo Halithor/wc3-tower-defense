@@ -1,13 +1,8 @@
 import {SpellIds, UnitIds} from 'constants';
-import {
-  onAnyUnitSellUnit,
-  onAnyUnitTrainingFinish,
-  UnitId,
-} from 'w3lib/src/index';
-import {isUnitTower} from './towerconstants';
+import {onAnyUnitSellUnit} from 'w3lib/src/index';
 import {TowerInfo} from './towerinfo';
 import {TowerStats} from './towerstats';
-import {TowerTracker} from './towertracker';
+import {towerTracker} from './towertracker';
 
 const dmgUpgrade = TowerStats.damage(0, 20);
 const spdUpgrade = TowerStats.attackSpeed(0, 20);
@@ -22,9 +17,9 @@ const inventoryAbilities = [
 ];
 
 export class TowerUpgrades {
-  constructor(tracker: TowerTracker) {
+  constructor() {
     onAnyUnitSellUnit((sold, seller) => {
-      const tower = tracker.getTower(seller);
+      const tower = towerTracker.getTower(seller);
       if (!tower) {
         return;
       }

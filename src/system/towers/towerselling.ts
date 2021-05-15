@@ -2,10 +2,10 @@ import {UnitIds} from 'constants';
 import {moduleTracker} from 'system/mods/moduleTracker';
 import {onAnyUnitTrainingFinish} from 'w3lib/src/index';
 import {isUnitTower} from './towerconstants';
-import {TowerTracker} from './towertracker';
+import {towerTracker} from './towertracker';
 
 export class TowerSellingSystem {
-  constructor(readonly towerTracker: TowerTracker) {
+  constructor() {
     onAnyUnitTrainingFinish((trained, trainer) => {
       if (trained.typeId.equals(UnitIds.sellTower) && isUnitTower(trainer)) {
         const info = towerTracker.getTower(trainer);

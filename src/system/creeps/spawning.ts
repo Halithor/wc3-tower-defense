@@ -12,7 +12,7 @@ import {
 } from 'w3lib/src/index';
 import {creep} from './creep';
 import {CreepIds} from './creepids';
-import {CreepTracker} from './creeptracker';
+import {creepTracker} from './creeptracker';
 
 const movespeed = (difficulty: number) => Math.round(240 + difficulty);
 const maxLife = (difficulty: number) =>
@@ -45,10 +45,7 @@ const challengeArmorFactor = 2.0;
 const challengeVisualScale = 1.5;
 
 export class CreepSpawning {
-  constructor(
-    private readonly tracker: CreepTracker,
-    private spawns: SpawnInfo[]
-  ) {}
+  constructor(private spawns: SpawnInfo[]) {}
 
   spawnLevel(
     difficulty: number,
@@ -108,7 +105,7 @@ export class CreepSpawning {
         u.name = nameChanger(u.name);
       }
       waveGroup.addUnit(u);
-      this.tracker.addCreep(creep(u, value, spawnInfo.moveTarget));
+      creepTracker.addCreep(creep(u, value, spawnInfo.moveTarget));
     });
   }
 

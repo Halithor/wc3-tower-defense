@@ -3,17 +3,17 @@ import {CreepSystem} from 'system/creeps/creepsystem';
 import {doAfter, eventAnyPlayerChat, Rectangle} from 'w3lib/src/index';
 import {TowerSystem} from 'system/towers/towersystem';
 import {PathInfo, SpawnInfo} from 'system/pathinfo';
-import {CreepTracker} from 'system/creeps/creeptracker';
 import {EconomicSystem} from 'system/economics/economicsystem';
 import {PlayerSystem} from 'system/players/playerSystem';
 import {WaveSystem} from 'system/wavesystem';
-import {TowerTracker} from 'system/towers/towertracker';
+import {towerTracker} from 'system/towers/towertracker';
 import {Quests} from 'quests';
 import {ClassSelection} from 'system/class/classSelection';
 import {ClassApplication} from 'system/class/classApplication';
 import {ModuleSystem} from 'system/mods/modulesystem';
 import {moduleTracker} from 'system/mods/moduleTracker';
 import {getPlayerCount} from 'constants';
+import {creepTracker} from 'system/creeps/creeptracker';
 
 export class Game {
   constructor() {}
@@ -27,16 +27,16 @@ export class Game {
 
       // Trackers
       moduleTracker.setup();
-      const creepTracker = new CreepTracker();
-      const towerTracker = new TowerTracker();
+      creepTracker.setup();
+      towerTracker.setup();
 
       // Other systems
-      const towers = new TowerSystem(towerTracker);
+      const towers = new TowerSystem();
       const pathing = new PathingSystem(pathInfo);
-      const economics = new EconomicSystem(creepTracker, players);
-      const creeps = new CreepSystem(creepTracker, pathInfo);
-      const classApplication = new ClassApplication(players, towerTracker);
-      const modules = new ModuleSystem(towerTracker, creepTracker);
+      const economics = new EconomicSystem(players);
+      const creeps = new CreepSystem(pathInfo);
+      const classApplication = new ClassApplication(players);
+      const modules = new ModuleSystem();
 
       const classSelection = new ClassSelection(players);
       classSelection.eventComplete.subscribe(() => {

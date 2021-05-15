@@ -10,12 +10,10 @@ import {baseTowerStats, isUnitTower, towerGoldValue} from './towerconstants';
 import {TowerInfo} from './towerinfo';
 
 // TowerTracker tracks the association of TowerInfos with a given unit
-export class TowerTracker {
-  readonly eventNewTower: Subject<[info: TowerInfo]>;
+class TowerTracker {
+  readonly eventNewTower = new Subject<[info: TowerInfo]>();
   private towers: {[key: number]: TowerInfo} = {};
-  constructor() {
-    this.eventNewTower = new Subject<[info: TowerInfo]>();
-
+  setup() {
     onAnyUnitDeath(dying => {
       this.removeTower(dying);
     });
@@ -69,3 +67,5 @@ export class TowerTracker {
     }
   }
 }
+
+export const towerTracker = new TowerTracker();
