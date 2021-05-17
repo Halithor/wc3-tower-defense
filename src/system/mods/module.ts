@@ -22,6 +22,7 @@ export abstract class Module {
   tower?: TowerInfo;
 
   abstract readonly name: string;
+  readonly cost: number = 10;
   get stats(): TowerStats {
     if (!this.enabled) {
       return TowerStats.empty();

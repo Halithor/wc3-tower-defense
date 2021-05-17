@@ -14,8 +14,9 @@ export class TowerSellingSystem {
         }
 
         const goldValue = info.goldValue;
-        trainer.owner.gold += goldValue;
 
+        trainer.owner.gold += goldValue;
+        
         info.mods.modules.forEach(mod => {
           info.unit.removeItem(mod.item);
           // mod.onRemove(info);

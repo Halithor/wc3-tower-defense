@@ -35,4 +35,10 @@ export class TowerModules {
       mod.updateTooltip();
     });
   }
+
+  get goldValue(): number {
+    return this.modules.reduce((acc, mod) => {
+      return acc + mod.cost;
+    }, 0)
+  }
 }

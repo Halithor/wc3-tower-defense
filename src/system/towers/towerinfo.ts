@@ -45,7 +45,7 @@ export class TowerInfo {
   }
 
   get goldValue(): number {
-    return this._goldValue + this.upgradeGoldValue;
+    return this._goldValue + this.upgradeGoldValue + this.mods.goldValue;
   }
 
   get stats(): TowerStats {
