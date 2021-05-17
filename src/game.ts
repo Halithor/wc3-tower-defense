@@ -1,6 +1,11 @@
 import {PathingSystem} from 'system/pathing/pathingsystem';
 import {CreepSystem} from 'system/creeps/creepsystem';
-import {doAfter, eventAnyPlayerChat, Rectangle} from 'w3lib/src/index';
+import {
+  doAfter,
+  eventAnyPlayerChat,
+  Multiboard,
+  Rectangle,
+} from 'w3lib/src/index';
 import {TowerSystem} from 'system/towers/towersystem';
 import {PathInfo, SpawnInfo} from 'system/pathinfo';
 import {EconomicSystem} from 'system/economics/economicsystem';
@@ -42,12 +47,11 @@ export class Game {
       const classApplication = new ClassApplication(players);
       const modules = new ModuleSystem();
 
-      const multiboard = new MultiboardUpdater(gameState);
-
       const classSelection = new ClassSelection(players);
       classSelection.eventComplete.subscribe(() => {
         // Will start the game
         const waves = new WaveSystem(creeps.spawning, players, gameState);
+        const multiboard = new MultiboardUpdater(gameState, waves);
       });
     });
   }

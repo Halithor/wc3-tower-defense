@@ -1,13 +1,12 @@
 import {SpellIds, UnitIds} from 'constants';
 import {
   createGoldBountyTextTag,
-  degrees,
   FogModifier,
   MapPlayer,
   onAnyPlayerLeaves,
+  playerColors,
   Players,
   Rectangle,
-  Unit,
   Vec2,
 } from 'w3lib/src/index';
 import {ClassInfo, classNone} from '../class/classInfo';
@@ -91,7 +90,7 @@ export class PlayerSystem {
       true,
       true
     );
-    shopFog.start()
+    shopFog.start();
     const info = this.getInfo(player);
     if (!info) {
       return;

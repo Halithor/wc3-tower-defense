@@ -1,4 +1,4 @@
-import {Event, onAnyUnitDecay, Subject, Unit} from 'w3lib/src/index';
+import {Event, onAnyUnitDecay, Subject, Trigger, Unit} from 'w3lib/src/index';
 import {Creep} from './creep';
 
 // CreepTracker handles keeping track of living creeps and removing them as they die.

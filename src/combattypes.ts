@@ -77,43 +77,43 @@ export class AttackType {
 export class DefenseType {
   static readonly Flesh = new DefenseType(
     'Flesh',
-    color(0, 0, 0),
+    color(0xff, 0x99, 0xcc),
     0,
     DEFENSE_TYPE_LIGHT
   );
   static readonly Unclean = new DefenseType(
     'Unclean',
-    color(0, 0, 0),
+    color(0, 66, 66),
     1,
     DEFENSE_TYPE_MEDIUM
   );
   static readonly Elemental = new DefenseType(
     'Elemental',
-    color(0, 0, 0),
+    color(0xff, 66, 0),
     2,
     DEFENSE_TYPE_LARGE
   );
   static readonly Natural = new DefenseType(
     'Natural',
-    color(0, 0, 0),
+    color(33, 0xcc, 33),
     4,
     DEFENSE_TYPE_NORMAL
   );
   static readonly Construct = new DefenseType(
     'Construct',
-    color(0, 0, 0),
+    color(99, 66, 0),
     5,
     DEFENSE_TYPE_HERO
   );
   static readonly Demonic = new DefenseType(
     'Demonic',
-    color(0, 0, 0),
+    color(0xcc, 0x33, 0),
     6,
     DEFENSE_TYPE_DIVINE
   );
   static readonly Mystical = new DefenseType(
     'Mystical',
-    color(0, 0, 0),
+    color(0xcc, 33, 0xff),
     7,
     DEFENSE_TYPE_NONE
   );

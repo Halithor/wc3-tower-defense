@@ -2,8 +2,10 @@ import {DefenseType} from 'combattypes';
 import {
   doAfter,
   doPeriodically,
+  Event,
   Group,
   onAnyUnitDeath,
+  Subject,
   Timer,
 } from 'w3lib/src/index';
 import {CreepSpawning} from './creeps/spawning';
@@ -61,8 +63,22 @@ class ActiveWave {
 }
 
 export class WaveSystem {
-  private waves: ActiveWave[] = [];
+  private _level = 1;
+  private _waveInfos: WaveInfo[] = [];
+  private activeWaves: ActiveWave[] = [];
   private spawning?: {cancel: () => void; timer: Timer};
+
+  private readonly subjectWaveSpawnStart = new Subject<[waveInfo: WaveInfo]>();
+  readonly eventWaveSpawnStart: Event<[waveInfo: WaveInfo]> = this
+    .subjectWaveSpawnStart;
+
+  get level(): number {
+    return this._level;
+  }
+
+  get waveInfos(): WaveInfo[] {
+    return this._waveInfos;
+  }
 
   constructor(
     readonly spawner: CreepSpawning,
@@ -70,24 +86,29 @@ export class WaveSystem {
     readonly gameState: GameState
   ) {
     let difficulty = 1;
-    let level = 1;
+    for (let i = 0; i < 10; i++) {
+      this.generateNextWaveInfo();
+    }
+
     doAfter(10, () => {
-      this.spawnLevel(level, difficulty);
+      this.spawnLevel(this._level, difficulty);
       this.spawning = doPeriodically(45, () => {
-        level++;
+        this._level++;
         difficulty = difficulty * 1.01 + 1;
-        this.spawnLevel(level, difficulty);
+
+        this.generateNextWaveInfo();
+        this.spawnLevel(this._level, difficulty);
       });
     });
 
     onAnyUnitDeath(dying => {
-      for (let i = 0; i < this.waves.length; i++) {
-        const w = this.waves[i];
+      for (let i = 0; i < this.activeWaves.length; i++) {
+        const w = this.activeWaves[i];
         if (w.group.hasUnit(dying)) {
           w.group.removeUnit(dying);
           if (w.group.size == 0 && w.spawnFinished) {
             // Wave is cleared
-            this.waves.splice(i, 1);
+            this.activeWaves.splice(i, 1);
             players.waveReward(w.level);
           }
           break;
@@ -101,8 +122,12 @@ export class WaveSystem {
     });
   }
 
+  private generateNextWaveInfo() {
+    this._waveInfos[this._waveInfos.length] = this.randomLevelInfo();
+  }
+
   private spawnLevel(level: number, difficulty: number) {
-    const info = this.randomLevelInfo();
+    const info = this._waveInfos[level];
     print(
       `Spawning Level ${level} - ${
         info.defenseType.nameColored
@@ -112,7 +137,8 @@ export class WaveSystem {
     const onSpawnFinish = this.spawner.spawnLevel(difficulty, info, g);
     const wave = new ActiveWave(level, g);
     onSpawnFinish.subscribe(() => (wave.spawnFinished = true));
-    this.waves.push(wave);
+    this.activeWaves.push(wave);
+    this.subjectWaveSpawnStart.emit(info);
   }
 
   private randomLevelInfo(): WaveInfo {

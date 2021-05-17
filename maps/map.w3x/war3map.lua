@@ -12,7 +12,38 @@ gg_rct_Spawn3 = nil
 gg_rct_ClassSelection = nil
 gg_rct_ModShops = nil
 gg_trg_Untitled_Trigger_001 = nil
+gg_trg_Untitled_Trigger_002 = nil
 function InitGlobals()
+end
+
+function ItemTable000000_DropItems()
+    local trigWidget = nil
+    local trigUnit = nil
+    local itemID = 0
+    local canDrop = true
+    trigWidget = bj_lastDyingWidget
+    if (trigWidget == nil) then
+        trigUnit = GetTriggerUnit()
+    end
+    if (trigUnit ~= nil) then
+        canDrop = not IsUnitHidden(trigUnit)
+        if (canDrop and GetChangingUnit() ~= nil) then
+            canDrop = (GetChangingUnitPrevOwner() == Player(PLAYER_NEUTRAL_AGGRESSIVE))
+        end
+    end
+    if (canDrop) then
+        RandomDistReset()
+        RandomDistAddItem(FourCC("modt"), 20)
+        RandomDistAddItem(-1, 80)
+        itemID = RandomDistChoose()
+        if (trigUnit ~= nil) then
+            UnitDropItem(trigUnit, itemID)
+        else
+            WidgetDropItem(trigWidget, itemID)
+        end
+    end
+    bj_lastDyingWidget = nil
+    DestroyTrigger(GetTriggeringTrigger())
 end
 
 function CreateNeutralHostileBuildings()
@@ -140,8 +171,17 @@ function InitTrig_Untitled_Trigger_001()
     TriggerAddAction(gg_trg_Untitled_Trigger_001, Trig_Untitled_Trigger_001_Actions)
 end
 
+function Trig_Untitled_Trigger_002_Actions()
+end
+
+function InitTrig_Untitled_Trigger_002()
+    gg_trg_Untitled_Trigger_002 = CreateTrigger()
+    TriggerAddAction(gg_trg_Untitled_Trigger_002, Trig_Untitled_Trigger_002_Actions)
+end
+
 function InitCustomTriggers()
     InitTrig_Untitled_Trigger_001()
+    InitTrig_Untitled_Trigger_002()
 end
 
 function InitCustomPlayerSlots()
