@@ -172,6 +172,7 @@ function InitTrig_Untitled_Trigger_001()
 end
 
 function Trig_Untitled_Trigger_002_Actions()
+    BlzSetUnitWeaponRealFieldBJ(GetTriggerUnit(), UNIT_WEAPON_RF_ATTACK_RANGE, 0, 600.00)
 end
 
 function InitTrig_Untitled_Trigger_002()
