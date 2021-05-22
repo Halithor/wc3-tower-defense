@@ -38,6 +38,7 @@ export class PlayerSystem {
       this.playerInfos[p.id] = new PlayerInfo(p);
     }
     onAnyPlayerLeaves(leaving => {
+      print(`${playerColors[leaving.id]}${leaving.name}|r has left the game.`);
       const idx = this.players.indexOf(leaving);
       if (idx > -1) {
         this.players.splice(idx, 1);

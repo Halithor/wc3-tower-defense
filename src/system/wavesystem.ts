@@ -94,7 +94,7 @@ export class WaveSystem {
       this.spawnLevel(this._level, difficulty);
       this.spawning = doPeriodically(45, () => {
         this._level++;
-        difficulty = difficulty * 1.01 + 1;
+        difficulty = difficulty * 1.02 + 1;
 
         this.generateNextWaveInfo();
         this.spawnLevel(this._level, difficulty);
