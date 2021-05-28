@@ -18,8 +18,8 @@ import {creepTracker} from './creeptracker';
 
 const movespeed = (difficulty: number) => Math.round(240 + difficulty);
 const maxLife = (difficulty: number) =>
-  Math.round(24 * difficulty * getPlayerCount());
-const armor = (difficulty: number) => Math.floor(difficulty / 2) + 1;
+  Math.round(30 * difficulty * getPlayerCount());
+const armor = (difficulty: number) => Math.floor(difficulty / 1.4) + 4;
 
 const standardValue = 1;
 const bossValue = 10;

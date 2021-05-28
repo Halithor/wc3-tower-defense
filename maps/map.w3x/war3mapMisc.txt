@@ -28,4 +28,6 @@ StructureDecayTime=10.0
 TradingIncLarge=0
 TradingIncSmall=0
 UpgradeRefundRate=1.0
+UpkeepGoldTax=0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00
+UpkeepUsage=10000,10000,10000,10000,10000,10000,10000,10000,10000,10000
 

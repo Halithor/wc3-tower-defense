@@ -85,7 +85,7 @@ export class WaveSystem {
     readonly players: PlayerSystem,
     readonly gameState: GameState
   ) {
-    let difficulty = 1;
+    let difficulty = 1.6;
     for (let i = 0; i < 10; i++) {
       this.generateNextWaveInfo();
     }
