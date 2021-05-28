@@ -8,12 +8,13 @@ import {color, flashEffect, standardTextTag} from 'w3lib/src/index';
 import {ModDamageInfo, Module} from './module';
 import {
   DamageFlatComponent,
+  DisableUniqueComponent,
   RestoreManaComponent,
   TowerStatsComponent,
 } from './standardComponents';
 
 const scryingStoneRange = 200;
-const scryingStoneDamage = 2;
+const scryingStoneDamage = 8;
 const scryingStoneAttackType = AttackType.Arcane;
 
 const manaStoneFlatBonus = 5;
@@ -57,9 +58,10 @@ export namespace Arcane {
     false,
     diviningRodManaRestored
   );
+  const rodDisableUnique = new DisableUniqueComponent();
   export class DiviningRod extends Module {
     static readonly itemId = itemId('I002');
     name = 'Divining Rod';
-    components = [rodManaRestore];
+    components = [rodManaRestore, rodDisableUnique];
   }
 }

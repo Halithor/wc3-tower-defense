@@ -15,6 +15,7 @@ import {
   CountTowersWithModuleComponent,
   DamageMultComponent,
   DisableModByCategoryComponent,
+  DisableUniqueComponent,
   TowerStatsComponent,
   UpdateOnEventComponent,
 } from './standardComponents';
@@ -56,10 +57,11 @@ export namespace Beast {
     TowerStats.attackSpeed(-enrageCooldownReduction, 0),
     stats => `|cffffcc00${stats.cooldown}|r second cooldown (minimum 0.1).`
   );
+  const enrageUnique = new DisableUniqueComponent();
   export class Enrage extends Module {
     static readonly itemId = itemId('I006');
     name = 'Enrage';
-    components = [enrageStats];
+    components = [enrageStats, enrageUnique];
   }
 
   const ferocitySpellDamage = new DamageMultComponent(

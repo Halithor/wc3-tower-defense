@@ -12,6 +12,10 @@ import {CreepSpawning} from './creeps/spawning';
 import {GameState} from './gamestate';
 import {PlayerSystem} from './players/playerSystem';
 
+const startingDifficulty = 1.6;
+const difficultyMultiplier = 1.02;
+const difficultyConstant = 1;
+
 const defOptions = [
   DefenseType.Flesh,
   DefenseType.Unclean,
@@ -85,7 +89,7 @@ export class WaveSystem {
     readonly players: PlayerSystem,
     readonly gameState: GameState
   ) {
-    let difficulty = 1.6;
+    let difficulty = startingDifficulty;
     for (let i = 0; i < 10; i++) {
       this.generateNextWaveInfo();
     }
@@ -94,7 +98,7 @@ export class WaveSystem {
       this.spawnLevel(this._level, difficulty);
       this.spawning = doPeriodically(45, () => {
         this._level++;
-        difficulty = difficulty * 1.02 + 1;
+        difficulty = difficulty * difficultyMultiplier + difficultyConstant;
 
         this.generateNextWaveInfo();
         this.spawnLevel(this._level, difficulty);

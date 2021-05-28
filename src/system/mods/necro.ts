@@ -79,6 +79,7 @@ export namespace Necro {
     }
   }
 
+  const towerSouls: {[key: number]: number} = {};
   class SoulBatteryCountNearbyDeaths
     extends CountingEventComponent
     implements Component {
@@ -92,34 +93,52 @@ export namespace Necro {
         if (this.count >= soulBatteryMaxBonus) {
           return;
         }
+        if (towerSouls[module.tower.unit.id] == dying.id) {
+          // Already handled by another module.
+          return;
+        }
         const distSq = dying.pos.distanceToSq(module.tower.unit.pos);
         if (distSq > soulBatteryRangeSq) {
           return;
         }
-        this.incCount();
+        const soulBatteries = module.tower.mods.modules.filter(
+          mod => mod instanceof SoulBattery
+        ) as SoulBattery[];
+        if (soulBatteries.length == 1) {
+          this.incCount();
+        } else {
+          const chosenBattery =
+            soulBatteries[Math.floor(Math.random() * soulBatteries.length)];
+          chosenBattery.counter.forceIncrease();
+        }
+        towerSouls[module.tower.unit.id] = dying.id;
       });
     }
     unregister(): void {
       this.subscription?.unsubscribe();
     }
     description(): string {
-      return '';
+      return 'Only one soul battery will be empowered on a tower.';
     }
     towerStats(): TowerStats {
       return TowerStats.empty();
+    }
+
+    forceIncrease() {
+      this.incCount();
     }
   }
   export class SoulBattery extends Module {
     static readonly itemId = itemId('I009');
     name = 'Soul Battery';
-    private readonly counter = new SoulBatteryCountNearbyDeaths();
+    readonly counter = new SoulBatteryCountNearbyDeaths();
     components = [
-      this.counter,
       new TowerStatsComponent(
         () => TowerStats.damage(0, this.counter.count),
         stats =>
           `|cffffcc00+${stats.damagePerc}%|r damage, an additional 1% for each creep that dies within ${soulBatteryRange}. Max ${soulBatteryMaxBonus}% bonus.`
       ),
+      this.counter,
       new UpdateOnEventComponent(this.counter.event),
     ];
   }

@@ -9,6 +9,7 @@ import {
   Event,
   flashEffect,
   ItemId,
+  randomAngle,
   standardTextTag,
   Subscription,
 } from 'w3lib/src/index';
@@ -324,7 +325,10 @@ export class RestoreManaComponent implements Component {
       'Abilities\\Spells\\Items\\AIma\\AImaTarget.mdl',
       tower.unit.pos
     );
-    const tt = standardTextTag(tower.unit.pos, `+${mana}`);
+    const tt = standardTextTag(
+      tower.unit.pos.polarOffset(randomAngle(), 16),
+      `+${mana}`
+    );
     tt.color = color(0x1e, 0x90, 0xff);
   }
   unregister(): void {
@@ -414,5 +418,26 @@ export class DisableModByCategoryComponent implements Component {
       (this.enabledFor.length == 0 || inEnabled) &&
       (this.disabledFor.length == 0 || !inDisabled);
     return result;
+  }
+}
+
+export class DisableUniqueComponent implements Component {
+  register(module: Module): void {}
+  unregister(): void {}
+
+  enableModule(module: Module): boolean {
+    if (!module.tower) {
+      return true;
+    }
+    const sames = module.tower.mods.modules.filter(
+      mod => mod.constructor == module.constructor
+    );
+    if (sames[0] == module) {
+      return true;
+    }
+    return false;
+  }
+  description(): string {
+    return 'Limit 1 per tower.';
   }
 }
