@@ -31,7 +31,8 @@ const necromancyAttackType = AttackType.Cursed;
 
 const soulBatteryRange = 300;
 const soulBatteryRangeSq = soulBatteryRange * soulBatteryRange;
-const soulBatteryMaxBonus = 300;
+const soulBatteryPercPointsPerCount = 0.2;
+const soulBatteryMaxCount = Math.round(300 / soulBatteryPercPointsPerCount);
 
 export namespace Necro {
   export class Necromancer extends Module {
@@ -90,7 +91,7 @@ export namespace Necro {
         if (!module.tower || !module.enabled) {
           return;
         }
-        if (this.count >= soulBatteryMaxBonus) {
+        if (this.count >= soulBatteryMaxCount) {
           return;
         }
         if (towerSouls[module.tower.unit.id] == dying.id) {
@@ -134,9 +135,17 @@ export namespace Necro {
     readonly counter = new SoulBatteryCountNearbyDeaths();
     components = [
       new TowerStatsComponent(
-        () => TowerStats.damage(0, this.counter.count),
+        () =>
+          TowerStats.damage(
+            0,
+            Math.round(this.counter.count * soulBatteryPercPointsPerCount)
+          ),
         stats =>
-          `|cffffcc00+${stats.damagePerc}%|r damage, an additional 1% for each creep that dies within ${soulBatteryRange}. Max ${soulBatteryMaxBonus}% bonus.`
+          `|cffffcc00+${
+            stats.damagePerc
+          }%|r damage, an additional ${soulBatteryPercPointsPerCount}% for each creep that dies within ${soulBatteryRange}. Max ${Math.round(
+            soulBatteryMaxCount * soulBatteryPercPointsPerCount
+          )}% bonus.`
       ),
       this.counter,
       new UpdateOnEventComponent(this.counter.event),

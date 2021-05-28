@@ -1693,3 +1693,75 @@ STRING 502
 |cff6699ffBonuses:|r|n•Increases the bonus damage provided by |cffffcc00Priesthood|r and |cffffcc00Bishop|r modules by |cffffcc0020%|r.
 }
 
+STRING 503
+// Items: I00G (Wired Connection), Description (Description)
+{
+|cff6699ffBonuses:|r|n•Increases damage by a flat amount for each touching tower.
+}
+
+STRING 504
+// Items: I00G (Wired Connection), Name (Name)
+{
+Wired Connection
+}
+
+STRING 505
+// Items: I00G (Wired Connection), Tip (Tooltip - Basic)
+{
+Purchase Wired Connection
+}
+
+STRING 506
+// Items: I00G (Wired Connection), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n•Increases damage by a flat amount for each touching tower.
+}
+
+STRING 511
+// Items: I00H (Crystal Scope), Description (Description)
+{
+|cff6699ffBonuses:|r|n•Increases attack range by a large amount.
+}
+
+STRING 512
+// Items: I00H (Crystal Scope), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n•Increases attack range by a large amount.
+}
+
+STRING 513
+// Items: I00H (Crystal Scope), Name (Name)
+{
+Crystal Scope
+}
+
+STRING 514
+// Items: I00H (Crystal Scope), Tip (Tooltip - Basic)
+{
+Purchase Crystal Scope
+}
+
+STRING 516
+// Items: I00I (Immolation), Name (Name)
+{
+Immolation
+}
+
+STRING 517
+// Items: I00I (Immolation), Tip (Tooltip - Basic)
+{
+Purchase Immolation
+}
+
+STRING 520
+// Items: I00I (Immolation), Description (Description)
+{
+|cff6699ffBonuses:|r|n• Every second, deal a percentage of the tower's base damage to nearby enemies.|n• Dramatically reduces attack damage.
+}
+
+STRING 521
+// Items: I00I (Immolation), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n• Every second, deal a percentage of the tower's base damage to nearby enemies.|n• Dramatically reduces attack damage.
+}
+
