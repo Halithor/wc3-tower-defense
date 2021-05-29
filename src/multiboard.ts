@@ -12,8 +12,6 @@ export class MultiboardUpdater {
     private readonly gameState: GameState,
     private readonly waves: WaveSystem
   ) {
-    print('new multiboard');
-
     this.board = new Multiboard();
     this.board.rows = rowCount;
     this.board.cols = colCount;

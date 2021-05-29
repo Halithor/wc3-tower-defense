@@ -1,29 +1,34 @@
 import {Module} from 'system/mods/module';
 import {
   doAfter,
+  Event,
   eventUnitPawnsItemToShop,
   Item,
   Subject,
 } from 'w3lib/src/index';
 
 class ModuleTracker {
-  readonly eventModuleDestruction = new Subject<[mod: Module]>();
+  private readonly subjectRemoveModule = new Subject<[mod: Module]>();
+  readonly eventModuleDestruction: Event<[mod: Module]> = this
+    .subjectRemoveModule;
+    
   private modules: {[key: number]: Module} = {};
 
   setup() {
     eventUnitPawnsItemToShop.subscribe((seller, shop, item) => {
-      this.removeModule(item);
-    });
-    this.eventModuleDestruction.subscribe(mod => {
-      this.removeModule(mod.item);
+      this.destroyModule(item);
     });
   }
 
-  private removeModule(item: Item) {
+  destroyModule(item: Item) {
     const id = item.id;
     if (id in this.modules) {
+      this.subjectRemoveModule.emit(this.modules[id]);
       // delay by a second to allow for eol events to happen for the mod.
-      doAfter(1, () => delete this.modules[id]);
+      doAfter(1, () => {
+        this.modules[id].destroy();
+        delete this.modules[id];
+      });
     }
   }
 

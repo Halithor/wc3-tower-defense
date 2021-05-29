@@ -1723,12 +1723,6 @@ STRING 511
 |cff6699ffBonuses:|r|n•Increases attack range by a large amount.
 }
 
-STRING 512
-// Items: I00H (Crystal Scope), Ubertip (Tooltip - Extended)
-{
-|cff6699ffBonuses:|r|n•Increases attack range by a large amount.
-}
-
 STRING 513
 // Items: I00H (Crystal Scope), Name (Name)
 {
@@ -1763,5 +1757,29 @@ STRING 521
 // Items: I00I (Immolation), Ubertip (Tooltip - Extended)
 {
 |cff6699ffBonuses:|r|n• Every second, deal a percentage of the tower's base damage to nearby enemies.|n• Dramatically reduces attack damage.
+}
+
+STRING 522
+// Items: I00H (Crystal Scope), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n•Increases attack range by a large percentage.
+}
+
+STRING 523
+// Items: I00J (Long Range Targeting System), Name (Name)
+{
+Long Range Targeting System
+}
+
+STRING 524
+// Items: I00J (Long Range Targeting System), Tip (Tooltip - Basic)
+{
+Purchase Long Range Targeting System
+}
+
+STRING 525
+// Items: I00J (Long Range Targeting System), Ubertip (Tooltip - Extended)
+{
+|cff6699ffBonuses:|r|n•Deal a bonus percentage of damage against a target, increased by how far away the target is.
 }
 

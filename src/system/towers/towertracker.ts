@@ -5,6 +5,7 @@ import {
   onAnyUnitDeath,
   onAnyUnitUpgradeFinish,
   Unit,
+  Event,
 } from 'w3lib/src/index';
 import {baseTowerStats, isUnitTower, towerGoldValue} from './towerconstants';
 import {TowerInfo} from './towerinfo';
@@ -12,7 +13,11 @@ import {TowerInfo} from './towerinfo';
 // TowerTracker tracks the association of TowerInfos with a given unit
 class TowerTracker {
   readonly eventNewTower = new Subject<[info: TowerInfo]>();
+  private readonly subjectRemoveTower = new Subject<[info: TowerInfo]>();
+  readonly eventRemoveTower: Event<[info: TowerInfo]> = this.subjectRemoveTower;
+
   private towers: {[key: number]: TowerInfo} = {};
+
   setup() {
     onAnyUnitDeath(dying => {
       this.removeTower(dying);
@@ -55,14 +60,12 @@ class TowerTracker {
   }
 
   getTower(unit: Unit): TowerInfo | undefined {
-    if (unit.id in this.towers) {
-      return this.towers[unit.id];
-    }
-    return undefined;
+    return this.towers[unit.id];
   }
 
   removeTower(unit: Unit) {
     if (unit.id in this.towers) {
+      this.subjectRemoveTower.emit(this.towers[unit.id]);
       delete this.towers[unit.id];
     }
   }

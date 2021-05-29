@@ -29,6 +29,7 @@ import {Demon} from './demon';
 import {ModDamageInfo, Module} from './module';
 import {moduleTracker} from './moduleTracker';
 import {Necro} from './necro';
+import {Tech} from './tech';
 
 function convertInfo(info: DamageInfo, target: Unit): ModDamageInfo {
   return {
@@ -215,6 +216,12 @@ export function makeModule(item: Item): Module {
       return new Holy.Bishop(item);
     case Holy.Archbishop.itemId.value:
       return new Holy.Archbishop(item);
+    case Tech.CrystalScope.itemId.value:
+      return new Tech.CrystalScope(item);
+    case Tech.LongRangeTargetingSystem.itemId.value:
+      return new Tech.LongRangeTargetingSystem(item);
+    case Tech.WiredConnection.itemId.value:
+      return new Tech.WiredConnection(item);
   }
   return new NullModule(item);
 }

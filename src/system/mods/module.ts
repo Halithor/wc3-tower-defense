@@ -146,7 +146,7 @@ export class CountingEventComponent extends EventComponent<[count: number]> {
   get count(): number {
     return this._count;
   }
-  protected setCount(val: number) {
+  protected updateCount(val: number) {
     this._count = val;
     this.subject.emit(this.count);
   }

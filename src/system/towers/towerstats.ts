@@ -16,7 +16,7 @@ export class TowerStats {
     readonly manaMax: number = 0,
     readonly manaMaxPerc: number = 0,
     readonly manaRegen: number = 0,
-    readonly manaRegenPrec: number = 0
+    readonly manaRegenPerc: number = 0
   ) {}
 
   private calcExpressed() {
@@ -30,7 +30,7 @@ export class TowerStats {
     const manaMax = Math.round(
       this.manaMax * ((100 + this.manaMaxPerc) * 0.01)
     );
-    const manaRegen = this.manaRegen * ((100 + this.manaRegenPrec) * 0.01);
+    const manaRegen = this.manaRegen * ((100 + this.manaRegenPerc) * 0.01);
     return {
       atkType,
       dmg,
@@ -74,7 +74,7 @@ export class TowerStats {
       this.manaMax + other.manaMax,
       this.manaMaxPerc + other.manaMaxPerc,
       this.manaRegen + other.manaRegen,
-      this.manaRegenPrec + other.manaRegenPrec
+      this.manaRegenPerc + other.manaRegenPerc
     );
   }
 
@@ -110,7 +110,7 @@ export class TowerStats {
         this.manaMaxPerc
       }% = ${Math.round(manaMax)}
 |cff6699ffMana Regen:|r ${string.format('%.2f', this.manaRegen)} + ${
-        this.manaRegenPrec
+        this.manaRegenPerc
       }% = ${string.format('%.2f', manaRegen)}`;
     }
     return str;

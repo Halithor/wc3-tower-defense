@@ -1,16 +1,23 @@
 import {AttackType} from 'combattypes';
 import {Creep} from 'system/creeps/creep';
-import {DamageSource, dealDamageOnHit} from 'system/damage';
-import {TowerCategories} from 'system/towers/towerconstants';
+import {DamageSource, dealDamageOnHit, eventAnyDamaging} from 'system/damage';
+import {isUnitTower, TowerCategories} from 'system/towers/towerconstants';
 import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
+import {towerTracker} from 'system/towers/towertracker';
 import {
   color,
+  countUnitsInRect,
   Event,
+  eventAnyUnitDamaged,
+  eventUnitConstructionFinish,
   flashEffect,
+  forUnitsInRange,
   ItemId,
+  onAnyUnitConstructionFinish,
   randomAngle,
   standardTextTag,
+  Subject,
   Subscription,
 } from 'w3lib/src/index';
 import {
@@ -104,9 +111,6 @@ export class DamageMultComponent implements Component {
   unregister(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-  towerStats(): TowerStats {
-    return TowerStats.empty();
-  }
 
   private dealDamage(creep: Creep, tower: TowerInfo, info: ModDamageInfo) {
     const mult =
@@ -196,7 +200,7 @@ export class CountTowersWithModuleComponent
           return;
         }
       }
-      this.setCount(this.count + 1);
+      this.updateCount(this.count + 1);
     });
     const subRemove = module.eventOnRemove.subscribe(tower => {
       if (this.uniqueItemId) {
@@ -206,7 +210,7 @@ export class CountTowersWithModuleComponent
           return;
         }
       }
-      this.setCount(this.count - 1);
+      this.updateCount(this.count - 1);
     });
     this.subscriptions.push(subRemove, subAdd);
   }
@@ -224,13 +228,54 @@ export class CountTowersWithModuleComponent
 export class TowerStatsComponent implements Component {
   constructor(
     private readonly stats: TowerStats | (() => TowerStats),
-    private readonly tooltip: (stats: TowerStats) => string | string[] = () =>
-      ''
+    private readonly tooltip:
+      | ((stats: TowerStats) => string | string[])
+      | undefined = undefined
   ) {}
   register(module: Module): void {}
   unregister(): void {}
+
+  private statDesc(
+    val: number,
+    name: string,
+    perc: boolean,
+    wantPositive: boolean = true
+  ) {
+    const clr = (wantPositive ? val > 0 : val < 0)
+      ? '|cffffcc00'
+      : '|cffaa0000';
+    return `${clr}${val > 0 ? '+' : ''}${val}${perc ? '%' : ''}|r ${name}.`;
+  }
+
+  private addDesc(
+    desc: string[],
+    val: number,
+    name: string,
+    perc: boolean,
+    wantPositive: boolean = true
+  ) {
+    if (val != 0) {
+      desc.push(this.statDesc(val, name, perc, wantPositive));
+    }
+  }
+
   description(): string | string[] {
-    return this.tooltip(this.towerStats());
+    if (this.tooltip) {
+      return this.tooltip(this.towerStats());
+    }
+    const st = this.towerStats();
+    const desc: string[] = [];
+    this.addDesc(desc, st.damage, 'damage', false);
+    this.addDesc(desc, st.damagePerc, 'damage', true);
+    this.addDesc(desc, st.range, 'range', false);
+    this.addDesc(desc, st.rangePerc, 'range', true);
+    this.addDesc(desc, st.cooldown, 'cooldown', false, false);
+    this.addDesc(desc, st.cooldownPerc, 'attack speed', true);
+    this.addDesc(desc, st.manaMax, 'mana', false);
+    this.addDesc(desc, st.manaMaxPerc, 'mana', true);
+    this.addDesc(desc, st.manaRegen, 'mana regen', false);
+    this.addDesc(desc, st.manaRegenPerc, 'mana regen', true);
+    return desc;
   }
   towerStats(): TowerStats {
     return this.stats instanceof TowerStats ? this.stats : this.stats();
@@ -269,14 +314,14 @@ export class ConsecutiveAttackCounter
       (creep, tower, info) => {
         if (!this.target || this.target != creep) {
           this.target = creep;
-          this.setCount(0);
+          this.updateCount(0);
         }
         this.incCount();
       }
     );
     const subRemove = module.eventOnRemove.subscribe(() => {
       this.target = undefined;
-      this.setCount(0);
+      this.updateCount(0);
     });
   }
   unregister(): void {
@@ -439,5 +484,85 @@ export class DisableUniqueComponent implements Component {
   }
   description(): string {
     return 'Limit 1 per tower.';
+  }
+}
+
+// CountNearbyTowersComponent will count the number of nearby towers. Can be configured to include
+// or exclude the holding tower, filter the towers in range, and trigger on more than the standard
+// events. Normally recounts on add/remove of the given module and on tower build/destroy.
+export class CountNearbyTowersComponent
+  extends CountingEventComponent
+  implements Component {
+  private subscriptions: Subscription[] = [];
+
+  constructor(
+    private readonly range: number,
+    private readonly excludeHoldingTower: boolean = true,
+    private readonly filter?: (u: TowerInfo) => boolean,
+    private readonly otherEvents: Event<any>[] = []
+  ) {
+    super();
+  }
+
+  register(module: Module): void {
+    this.subscriptions.push(
+      module.eventOnAdd.subscribe(() => this.countTowers(module))
+    );
+    this.subscriptions.push(
+      module.eventOnRemove.subscribe(() => this.updateCount(0))
+    );
+    this.subscriptions.push(
+      eventUnitConstructionFinish.subscribe(() => this.countTowers(module))
+    );
+    this.subscriptions.push(
+      towerTracker.eventRemoveTower.subscribe(() => this.countTowers(module))
+    );
+    this.otherEvents.forEach(event => {
+      this.subscriptions.push(event.subscribe(() => this.countTowers(module)));
+    });
+  }
+  unregister(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  private countTowers(module: Module) {
+    const tower = module.tower;
+    if (!tower) {
+      return;
+    }
+    let cnt = 0;
+    forUnitsInRange(tower.unit.pos, this.range, u => {
+      const countingTower = towerTracker.getTower(u);
+      if (!countingTower) {
+        return;
+      }
+      if (this.excludeHoldingTower && u.isUnit(tower.unit)) {
+        return;
+      }
+      if (!this.filter || this.filter(countingTower)) {
+        cnt++;
+      }
+    });
+    this.updateCount(cnt);
+  }
+}
+
+// EmitOnAddRemoveComponent takes a subject and emits on the subject whenever the module is added
+// or removed from a tower.
+export class EmitOnAddRemoveComponent implements Component {
+  private subscriptions: Subscription[] = [];
+
+  constructor(private readonly subject: Subject<[]>) {}
+
+  register(module: Module): void {
+    this.subscriptions.push(
+      module.eventOnAdd.subscribe(() => this.subject.emit())
+    );
+    this.subscriptions.push(
+      module.eventOnRemove.subscribe(() => this.subject.emit())
+    );
+  }
+  unregister(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

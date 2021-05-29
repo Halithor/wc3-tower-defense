@@ -160,7 +160,7 @@ function CreateRegions()
     gg_rct_Spawn2 = Rect(-1312.0, -3072.0, -1248.0, -3008.0)
     gg_rct_Spawn3 = Rect(-3072.0, 1248.0, -3008.0, 1312.0)
     gg_rct_ClassSelection = Rect(4192.0, -5280.0, 5024.0, -4448.0)
-    gg_rct_ModShops = Rect(-3968.0, -1152.0, -2688.0, 512.0)
+    gg_rct_ModShops = Rect(-3872.0, -1376.0, -2592.0, 288.0)
 end
 
 function Trig_Untitled_Trigger_001_Actions()
