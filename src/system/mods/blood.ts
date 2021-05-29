@@ -1,11 +1,9 @@
 import {AttackType} from 'combattypes';
-import {Creep} from 'system/creeps/creep';
-import {DamageSource, dealDamageOnHit} from 'system/damage';
+import {DamageSource} from 'system/damage';
 import {TowerCategories} from 'system/towers/towerconstants';
-import {TowerInfo} from 'system/towers/towerinfo';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId} from 'w3lib/src/common';
-import {ModDamageInfo, Module} from './module';
+import {Module} from './module';
 import {
   ConsecutiveAttackCounter,
   DamageFlatComponent,
@@ -14,17 +12,13 @@ import {
   UpdateOnEventComponent,
 } from './standardComponents';
 
-const bloodFrenzyBonusPerAttack = 2;
+const bloodFrenzyBonusPerAttack = 3;
 const bloodFrenzyAttackType = AttackType.Cursed;
 
 const darkRitualSpeedDecrease = 2.0;
-const darkRitualBonusDamagePerc = 100;
+const darkRitualBonusDamagePerc = 66;
 
 export namespace Blood {
-  const frenzyDisabler = new DisableModByCategoryComponent(
-    [],
-    [TowerCategories.AoE]
-  );
   export class BloodFrenzy extends Module {
     static readonly itemId = itemId('I00B');
     name = 'Blood Frenzy';
@@ -39,7 +33,7 @@ export namespace Blood {
         bloodFrenzyAttackType,
         `Each consecutive attack on the same creep increases the damage by +${bloodFrenzyBonusPerAttack}.`
       ),
-      frenzyDisabler,
+      new DisableModByCategoryComponent([], [TowerCategories.AoE]),
       new UpdateOnEventComponent(this.counter.event),
     ];
   }

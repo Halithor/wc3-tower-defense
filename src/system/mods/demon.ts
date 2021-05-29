@@ -51,7 +51,7 @@ export namespace Demon {
 
   let immoTimer: Object;
   const immolationTick = new Subject<[]>();
-  class ImmolationDamage implements Component {
+  class ImmolationDamageComponent implements Component {
     private sub?: Subscription;
     register(module: Module): void {
       if (!immoTimer) {
@@ -76,9 +76,7 @@ export namespace Demon {
       });
     }
     unregister(): void {
-      if (this.sub) {
-        this.sub.unsubscribe();
-      }
+      this.sub?.unsubscribe();
     }
     description() {
       return `Every second, deal |cffffcc00${Math.round(
@@ -88,14 +86,12 @@ export namespace Demon {
       } damage to all nearby units`;
     }
   }
-  const immoDamageComponent = new ImmolationDamage();
   const immoAtkSpdComponent = new TowerStatsComponent(
-    TowerStats.damage(0, -immolationAtkDmgDecreasePerc),
-    stats => `|cffaa0000${stats.damagePerc}%|r attack damage.`
+    TowerStats.damage(0, -immolationAtkDmgDecreasePerc)
   );
   export class Immolation extends Module {
     static readonly itemId = itemId('I00I');
     name = 'Immolation';
-    components = [immoDamageComponent, immoAtkSpdComponent];
+    components = [new ImmolationDamageComponent(), immoAtkSpdComponent];
   }
 }

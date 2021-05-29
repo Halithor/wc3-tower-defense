@@ -94,7 +94,7 @@ export abstract class Module {
   }
 
   destroy() {
-    this.components.forEach(comp => comp.unregister());
+    this.components.forEach(comp => comp.unregister(this));
   }
 
   updateTooltip() {
@@ -127,7 +127,7 @@ export abstract class Module {
 
 export interface Component {
   register(module: Module): void;
-  unregister(): void;
+  unregister(module: Module): void;
 
   description?(): string | string[];
   towerStats?(): TowerStats;

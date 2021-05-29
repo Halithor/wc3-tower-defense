@@ -1,11 +1,8 @@
 import {AttackType} from 'combattypes';
-import {creep, Creep} from 'system/creeps/creep';
-import {DamageSource, dealDamageOnHit} from 'system/damage';
-import {TowerInfo} from 'system/towers/towerinfo';
+import {DamageSource} from 'system/damage';
 import {TowerStats} from 'system/towers/towerstats';
-import {itemId, ItemId} from 'w3lib/src/common';
-import {color, flashEffect, standardTextTag} from 'w3lib/src/index';
-import {ModDamageInfo, Module} from './module';
+import {itemId} from 'w3lib/src/common';
+import {Module} from './module';
 import {
   DamageFlatComponent,
   DisableUniqueComponent,

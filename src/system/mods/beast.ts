@@ -1,16 +1,9 @@
 import {AttackType} from 'combattypes';
-import {Creep} from 'system/creeps/creep';
-import {DamageSource, dealDamageOnHit, dealDamageSpell} from 'system/damage';
-import {
-  isUnitTower,
-  TowerCategories,
-  towerCategories,
-} from 'system/towers/towerconstants';
-import {TowerInfo} from 'system/towers/towerinfo';
+import {DamageSource} from 'system/damage';
+import {TowerCategories} from 'system/towers/towerconstants';
 import {TowerStats} from 'system/towers/towerstats';
 import {itemId} from 'w3lib/src/common';
-import {Item, Subject} from 'w3lib/src/index';
-import {ModDamageInfo, Module} from './module';
+import {Module} from './module';
 import {
   CountTowersWithModuleComponent,
   DamageMultComponent,
@@ -31,9 +24,7 @@ const sharpenedClawsDamageBonusPerc = 50;
 
 export namespace Beast {
   const packHunterItemId = itemId('I005');
-  const packHunterCounterComponent = new CountTowersWithModuleComponent(
-    packHunterItemId
-  );
+  const packHunterCounterComponent = new CountTowersWithModuleComponent();
   const packHunterDamageComponent = new TowerStatsComponent(
     () =>
       TowerStats.damage(
@@ -76,16 +67,14 @@ export namespace Beast {
   }
 
   const clawsDamageComponent = new TowerStatsComponent(
-    TowerStats.damage(0, sharpenedClawsDamageBonusPerc),
-    stats => `|cffffcc00+${stats.damagePerc}%|r damage.`
-  );
-  const clawsDisableComponent = new DisableModByCategoryComponent(
-    [TowerCategories.Melee],
-    []
+    TowerStats.damage(0, sharpenedClawsDamageBonusPerc)
   );
   export class SharpenedClaws extends Module {
     static readonly itemId = itemId('I00A');
     name = 'Sharpened Claws';
-    components = [clawsDamageComponent, clawsDisableComponent];
+    components = [
+      clawsDamageComponent,
+      new DisableModByCategoryComponent([TowerCategories.Melee], []),
+    ];
   }
 }

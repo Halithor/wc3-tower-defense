@@ -23,13 +23,13 @@ export namespace Holy {
   const archbishopItemId = itemId('I00F');
 
   const priestCounterComponent = new CountTowersWithModuleComponent(
-    priesthoodItemId,
+    true,
     `Increases the on attack damage for |cffffcc00Bishop|r modules by ${Math.round(
       100 * bishopDamagePerPriestMult
     )}%.`
   );
   const archBishopCounterComponent = new CountTowersWithModuleComponent(
-    archbishopItemId,
+    true,
     `Increases the bonus damage provided by |cffffcc00Priesthood|r and |cffffcc00Bishop|r modules by ${archbishopDamageBonusPerc}%.`
   );
   const damageBonusFromArchbishopComponent = new TowerStatsComponent(

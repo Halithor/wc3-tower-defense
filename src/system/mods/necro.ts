@@ -45,15 +45,12 @@ export namespace Necro {
     }
     components = [
       this.killCounter,
-      new TowerStatsComponent(
-        () => {
-          if (this.completed) {
-            return TowerStats.mana(necromancyBonusMana, 0);
-          }
-          return TowerStats.empty();
-        },
-        stats => `|cffffcc00+${stats.manaMax}|r max mana.`
-      ),
+      new TowerStatsComponent(() => {
+        if (this.completed) {
+          return TowerStats.mana(necromancyBonusMana, 0);
+        }
+        return TowerStats.empty();
+      }),
       new DamageMultComponent(
         [DamageSource.Spell],
         () => {
@@ -120,9 +117,6 @@ export namespace Necro {
     }
     description(): string {
       return 'Only one soul battery will be empowered on a tower.';
-    }
-    towerStats(): TowerStats {
-      return TowerStats.empty();
     }
 
     forceIncrease() {

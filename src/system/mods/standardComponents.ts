@@ -179,23 +179,25 @@ export class DamageFlatComponent implements Component {
   }
 }
 
+// CountTowersWithModuleComponent counts how many towers have a module with this component. This
+// module has to be constant outside of the Module construction, as it stores the count internally.
 export class CountTowersWithModuleComponent
   extends CountingEventComponent
   implements Component {
-  private subscriptions: Subscription[] = [];
+  private subscriptions: {[key: number]: Subscription[]} = {};
 
   constructor(
-    private readonly uniqueItemId?: ItemId,
+    private readonly countOnce: boolean = true,
     private readonly tooltip = ''
   ) {
     super();
   }
 
   register(module: Module): void {
+    const modItemId = module.item.typeId;
     const subAdd = module.eventOnAdd.subscribe(tower => {
-      if (this.uniqueItemId) {
-        const id = this.uniqueItemId;
-        const count = tower.unit.items.filter(i => i.typeId.equals(id));
+      if (this.countOnce) {
+        const count = tower.unit.items.filter(i => i.typeId.equals(modItemId));
         if (count.length > 1) {
           return;
         }
@@ -203,25 +205,21 @@ export class CountTowersWithModuleComponent
       this.updateCount(this.count + 1);
     });
     const subRemove = module.eventOnRemove.subscribe(tower => {
-      if (this.uniqueItemId) {
-        const id = this.uniqueItemId;
-        const count = tower.unit.items.filter(i => i.typeId.equals(id));
+      if (this.countOnce) {
+        const count = tower.unit.items.filter(i => i.typeId.equals(modItemId));
         if (count.length > 1) {
           return;
         }
       }
       this.updateCount(this.count - 1);
     });
-    this.subscriptions.push(subRemove, subAdd);
+    this.subscriptions[module.item.id] = [subRemove, subAdd];
   }
-  unregister(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  unregister(module: Module): void {
+    this.subscriptions[module.item.id].forEach(sub => sub.unsubscribe());
   }
   description(): string {
     return this.tooltip;
-  }
-  towerStats(): TowerStats {
-    return TowerStats.empty();
   }
 }
 
