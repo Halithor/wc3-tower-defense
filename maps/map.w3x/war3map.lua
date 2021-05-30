@@ -46,40 +46,6 @@ function ItemTable000000_DropItems()
     DestroyTrigger(GetTriggeringTrigger())
 end
 
-function CreateAllItems()
-    local itemID
-    BlzCreateItemWithSkin(FourCC("gold"), 592.8, 1065.7, FourCC("gold"))
-    BlzCreateItemWithSkin(FourCC("gold"), 491.0, 859.0, FourCC("gold"))
-end
-
-function CreateBuildingsForPlayer0()
-    local p = Player(0)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("h009"), 64.0, 640.0, 270.000, FourCC("h009"))
-end
-
-function CreateUnitsForPlayer0()
-    local p = Player(0)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("hfoo"), 85.0, 1022.7, 325.095, FourCC("hfoo"))
-    u = BlzCreateUnitWithSkin(p, FourCC("Hpal"), 393.8, 1022.5, 66.656, FourCC("Hpal"))
-end
-
-function CreateBuildingsForPlayer1()
-    local p = Player(1)
-    local u
-    local unitID
-    local t
-    local life
-    u = BlzCreateUnitWithSkin(p, FourCC("h009"), 256.0, 640.0, 270.000, FourCC("h009"))
-end
-
 function CreateNeutralHostileBuildings()
     local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
     local u
@@ -166,12 +132,9 @@ function CreateNeutralPassive()
 end
 
 function CreatePlayerBuildings()
-    CreateBuildingsForPlayer0()
-    CreateBuildingsForPlayer1()
 end
 
 function CreatePlayerUnits()
-    CreateUnitsForPlayer0()
 end
 
 function CreateAllUnits()
@@ -408,7 +371,6 @@ function main()
     SetAmbientNightSound("DalaranNight")
     SetMapMusic("Music", true, 0)
     CreateRegions()
-    CreateAllItems()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
