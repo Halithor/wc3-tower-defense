@@ -12,7 +12,7 @@ import {CreepSpawning} from './creeps/spawning';
 import {GameState} from './gamestate';
 import {PlayerSystem} from './players/playerSystem';
 
-const startingDifficulty = 1.6;
+const startingDifficulty = 1.0;
 const difficultyMultiplier = 1.02;
 const difficultyConstant = 1;
 

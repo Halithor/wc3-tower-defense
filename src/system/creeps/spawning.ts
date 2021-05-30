@@ -18,8 +18,8 @@ import {CreepIds} from './creepids';
 import {creepTracker} from './creeptracker';
 
 let movespeedBase = 240;
-let lifeMult = 27;
-let armorBase = 3;
+let lifeMult = 20;
+let armorBase = 1;
 let armorFactor = 1.6;
 
 const movespeed = (difficulty: number) =>
