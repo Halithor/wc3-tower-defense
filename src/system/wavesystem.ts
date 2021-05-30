@@ -1,4 +1,5 @@
 import {DefenseType} from 'combattypes';
+import {getPlayerCount} from 'constants';
 import {
   doAfter,
   doPeriodically,
@@ -7,6 +8,7 @@ import {
   onAnyUnitDeath,
   Subject,
   Timer,
+  TimerDialog,
 } from 'w3lib/src/index';
 import {CreepSpawning} from './creeps/spawning';
 import {GameState} from './gamestate';
@@ -71,6 +73,7 @@ export class WaveSystem {
   private _waveInfos: WaveInfo[] = [];
   private activeWaves: ActiveWave[] = [];
   private spawning?: {cancel: () => void; timer: Timer};
+  private dialog?: TimerDialog;
 
   private readonly subjectWaveSpawnStart = new Subject<[waveInfo: WaveInfo]>();
   readonly eventWaveSpawnStart: Event<[waveInfo: WaveInfo]> = this
@@ -93,8 +96,10 @@ export class WaveSystem {
     for (let i = 0; i < 10; i++) {
       this.generateNextWaveInfo();
     }
-
-    doAfter(10, () => {
+    const delay = getPlayerCount() > 1 ? 60 : 10;
+    let startDialog: TimerDialog;
+    const startTimer = doAfter(delay, () => {
+      startDialog.destroy();
       this.spawnLevel(this._level, difficulty);
       this.spawning = doPeriodically(45, () => {
         this._level++;
@@ -103,7 +108,13 @@ export class WaveSystem {
         this.generateNextWaveInfo();
         this.spawnLevel(this._level, difficulty);
       });
+      this.dialog = new TimerDialog(this.spawning.timer);
+      this.dialog.setTitle('Next wave');
+      this.dialog.display = true;
     });
+    startDialog = new TimerDialog(startTimer.timer);
+    startDialog.setTitle('Waves begin');
+    startDialog.display = true;
 
     onAnyUnitDeath(dying => {
       for (let i = 0; i < this.activeWaves.length; i++) {
