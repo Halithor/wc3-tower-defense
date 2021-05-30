@@ -1,5 +1,5 @@
 import {Game} from 'game';
-import {addScriptHook, Quest, W3TS_HOOK} from 'w3lib';
+import {addScriptHook, doAfter, Quest, W3TS_HOOK} from 'w3lib';
 
 const BUILD_DATE = compiletime(() => new Date().toUTCString());
 
@@ -13,11 +13,13 @@ function tsMain() {
   infoQuest.required = false;
   infoQuest.enabled = true;
 
-  try {
-    new Game().start();
-  } catch (e) {
-    print(e);
-  }
+  doAfter(1, () => {
+    try {
+      new Game();
+    } catch (e) {
+      print(e);
+    }
+  });
 }
 
 addScriptHook(W3TS_HOOK.MAIN_AFTER, tsMain);

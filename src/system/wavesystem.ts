@@ -135,7 +135,10 @@ export class WaveSystem {
     print(
       `Spawning Level ${level} - ${
         info.defenseType.nameColored
-      } ${waveFormatString(info.format)}`
+      } ${waveFormatString(info.format)} - (diff: ${string.format(
+        '%.2f',
+        difficulty
+      )})`
     );
     const g = new Group();
     const onSpawnFinish = this.spawner.spawnLevel(difficulty, info, g);

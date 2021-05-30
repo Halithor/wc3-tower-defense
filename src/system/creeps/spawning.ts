@@ -11,15 +11,23 @@ import {
   Subject,
   UnitId,
   Timer,
+  eventAnyPlayerChat,
 } from 'w3lib/src/index';
 import {creep} from './creep';
 import {CreepIds} from './creepids';
 import {creepTracker} from './creeptracker';
 
-const movespeed = (difficulty: number) => Math.round(240 + difficulty);
+let movespeedBase = 240;
+let lifeMult = 27;
+let armorBase = 3;
+let armorFactor = 1.6;
+
+const movespeed = (difficulty: number) =>
+  Math.round(movespeedBase + difficulty);
 const maxLife = (difficulty: number) =>
-  Math.round(27 * difficulty * getPlayerCount());
-const armor = (difficulty: number) => Math.floor(difficulty / 1.6) + 4;
+  Math.round(lifeMult * difficulty * getPlayerCount());
+const armor = (difficulty: number) =>
+  Math.floor(difficulty / armorFactor) + armorBase;
 
 const standardValue = 1;
 const bossValue = 10;
@@ -52,6 +60,43 @@ export class CreepSpawning {
     gameState.eventDefeat.subscribe(() => {
       if (this.currentSpawning) {
         this.currentSpawning.cancel();
+      }
+    });
+
+    eventAnyPlayerChat.subscribe((p, msg) => {
+      if (msg.indexOf('creep') != 0) {
+        return;
+      }
+      if (p.name != 'Local Player') {
+        DisplayTextToPlayer(p.handle, 0, 0, 'Command for admins only');
+        return;
+      }
+      const trimmed = msg.substr('creep'.length).trim();
+      if (trimmed.indexOf('hp') == 0) {
+        const val = S2R(trimmed.substr('hp'.length).trim());
+        lifeMult = val;
+        print('updated hp factor');
+      }
+      if (trimmed.indexOf('armBase') == 0) {
+        const val = S2R(trimmed.substr('armBase'.length).trim());
+        armorBase = val;
+        print('updated armor base');
+      }
+      if (trimmed.indexOf('armF') == 0) {
+        const val = S2R(trimmed.substr('armF'.length).trim());
+        armorFactor = val;
+        print('updated armor factor');
+      }
+      if (trimmed.indexOf('ms') == 0) {
+        const val = S2R(trimmed.substr('ms'.length).trim());
+        movespeedBase = val;
+        print('updated movespeed base');
+      }
+      if (trimmed.indexOf('show') == 0) {
+        print(
+          `hp: ${lifeMult}\narmBase: ${armorBase}\narmF: ${armorFactor}\nms: ${movespeedBase}` +
+            `\n\nLife = hp * diff * playerCount | armor = (diff / armF) + armBase`
+        );
       }
     });
   }

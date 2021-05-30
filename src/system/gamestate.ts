@@ -18,6 +18,8 @@ export class GameState {
   private readonly subjectDefeat = new Subject<[]>();
   readonly eventDefeat: Event<[]> = this.subjectDefeat;
 
+  cheatDeath = false;
+
   constructor() {
     creepTracker.eventCreepSpawn.subscribe(creep => {
       this._creepCount += creep.pointValue;
@@ -35,7 +37,11 @@ export class GameState {
   }
 
   checkDefeat() {
-    if (this.creepCount > maxCreepsDefeat && !this.defeated) {
+    if (
+      this.creepCount > maxCreepsDefeat &&
+      !this.defeated &&
+      !this.cheatDeath
+    ) {
       this.defeated = true;
       this.subjectDefeat.emit();
       print(

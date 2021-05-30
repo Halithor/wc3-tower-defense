@@ -23,36 +23,34 @@ import {GameState} from 'system/gamestate';
 import {MultiboardUpdater} from 'multiboard';
 
 export class Game {
-  constructor() {}
-
-  start() {
+  gameState: GameState;
+  constructor() {
     this.setupCheats();
     const pathInfo = this.setupPathInfo();
-    doAfter(1, () => {
-      const players = new PlayerSystem();
-      const quests = new Quests();
 
-      // Trackers
-      moduleTracker.setup();
-      creepTracker.setup();
-      towerTracker.setup();
+    const players = new PlayerSystem();
+    const quests = new Quests();
 
-      const gameState = new GameState();
+    // Trackers
+    moduleTracker.setup();
+    creepTracker.setup();
+    towerTracker.setup();
 
-      // Other systems
-      const towers = new TowerSystem();
-      const pathing = new PathingSystem(pathInfo);
-      const economics = new EconomicSystem(players);
-      const creeps = new CreepSystem(pathInfo, gameState);
-      const classApplication = new ClassApplication(players);
-      const modules = new ModuleSystem();
+    this.gameState = new GameState();
 
-      const classSelection = new ClassSelection(players);
-      classSelection.eventComplete.subscribe(() => {
-        // Will start the game
-        const waves = new WaveSystem(creeps.spawning, players, gameState);
-        const multiboard = new MultiboardUpdater(gameState, waves);
-      });
+    // Other systems
+    const towers = new TowerSystem();
+    const pathing = new PathingSystem(pathInfo);
+    const economics = new EconomicSystem(players);
+    const creeps = new CreepSystem(pathInfo, this.gameState);
+    const classApplication = new ClassApplication(players);
+    const modules = new ModuleSystem();
+
+    const classSelection = new ClassSelection(players);
+    classSelection.eventComplete.subscribe(() => {
+      // Will start the game
+      const waves = new WaveSystem(creeps.spawning, players, this.gameState);
+      const multiboard = new MultiboardUpdater(this.gameState, waves);
     });
   }
 
@@ -90,12 +88,19 @@ export class Game {
       const trimmed = msg.substr('cheat'.length).trim();
       if (trimmed.indexOf('gold') > -1) {
         p.gold += 1000;
+        print('gold activated');
       }
       if (trimmed.indexOf('wood') > -1 || trimmed.indexOf('lumber') > -1) {
         p.lumber += 1000;
+        print('lumber activated');
       }
       if (trimmed.indexOf('food') > -1) {
         p.foodCap += 100;
+        print('food activated');
+      }
+      if (trimmed.indexOf('death') > -1) {
+        this.gameState.cheatDeath = true;
+        print('You have cheated death!');
       }
     });
   }
